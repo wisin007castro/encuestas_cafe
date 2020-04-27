@@ -19,8 +19,8 @@
     <div class="box-header with-border bg-primary">
         <h3 class="box-title">Respuestas Anteriores</h3>
         <div class="box-tools pull-right">
-            <a href="{{ url('form_densidad') }}" class="btn btn-block btn-success btn-sm">
-              <i class="fa fa-fw fa-plus-circle"></i> Nueva Respuesta
+		<a href="{{route('form_densidad_agregar')}}" class="btn btn-block btn-success btn-sm">
+                <i class="fa fa-fw fa-plus-circle"></i> Nueva Respuesta
             </a>
         </div>
     </div>
@@ -44,8 +44,11 @@
 			<td>{{ $dato->ano }}</td>
 			<td>{{ $dato->created_at }}</td>
 			<td>
-			<button type="button" class="btn  btn-default btn-xs" onclick="verinfo_usuario({{  $dato->id_densidad }}, 1)" ><i class="fa fa-fw fa-edit"></i></button>
-			<button type="button"  class="btn  btn-danger btn-xs"  onclick="borrado_usuario({{  $dato->id_densidad }});"  ><i class="fa fa-fw fa-remove"></i></button>
+				<a href="{{route('form_densidad_editar', ['id_densidad' => $dato->id_densidad])}}" class="btn-accion-tabla">
+					<i class="fa fa-fw fa-edit"></i>
+				</a>
+			{{-- <button type="button" class="btn  btn-default btn-xs" onclick="verinfo_usuario({{  $dato->id_densidad }}, 1)" ><i class="fa fa-fw fa-edit"></i></button> --}}
+			{{-- <button type="button"  class="btn  btn-danger btn-xs"  onclick="borrado_usuario({{  $dato->id_densidad }});"  ><i class="fa fa-fw fa-remove"></i></button> --}}
 			</td>
 		</tr>
 	    @endforeach

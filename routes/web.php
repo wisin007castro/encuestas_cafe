@@ -60,6 +60,37 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('listado_densidad', 'FormEncuestasController@listado_densidad');
 
 
+    //FORMS AGREAGAR
+    Route::get('form_densidad_agregar', 'FormEncuestasController@form_densidad_agregar')->name('form_densidad_agregar');
+
+
+
+
+
+
+    //FORMS GUARDAR
+    Route::post('form_densidad_guardar', 'FormEncuestasController@form_densidad_guardar')->name('form_densidad_guardar');
+
+
+
+
+
+
+
+    //FORMS EDITAR
+    Route::get('form_densidad_editar/{id}', 'FormEncuestasController@form_densidad_editar')->name('form_densidad_editar');
+
+
+
+
+
+    //FORMS ACTUALIZAR
+    Route::post('form_densidad_actualizar/{id}', 'FormEncuestasController@form_densidad_actualizar')->name('form_densidad_actualizar');
+
+
+
+
+
 
 
 

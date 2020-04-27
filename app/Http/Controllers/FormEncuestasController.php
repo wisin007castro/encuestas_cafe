@@ -20,9 +20,7 @@ class FormEncuestasController extends Controller
         return view("listados.encuesta.listado_densidad", compact('datos'));
     }
 
-    public function form_densidad_agregar(){
-        return view("formularios.encuestas.form_densidad_agregar");
-    }
+
 
     public function form_sist_agroforestales_agregar(){
         return view("formularios.encuestas.form_sist_agroforestales_agregar");
@@ -32,5 +30,45 @@ class FormEncuestasController extends Controller
         $datos = \DB::table('enc_densidad')->orderBy('id_densidad', 'desc')->get();
         return view("listados.encuesta.listado_densidad", compact('datos'));
     }
+
+
+
+    //FORMS AGREGAR
+    public function form_densidad_agregar(){
+        return view("formularios.encuestas.form_densidad_agregar");
+    }
+
+
+
+
+
+
+
+
+        //FORMS GUARDAR
+        public function form_densidad_guardar(Request $request){
+            dd($request);
+            // return view("formularios.encuestas.form_densidad_agregar");
+        }
+    
+
+
+
+
+    //FORMS EDITAR
+    public function form_densidad_editar($id){
+        $dato = \DB::table('enc_densidad')->where('id_densidad', $id)->first();
+        return view("formularios.encuestas.form_densidad_editar", compact('dato'));
+    }
+
+
+
+
+    //FORMS ACTUALIZAR
+    public function form_densidad_actualizar(Request $request, $id){
+        dd($request);
+        // return view("formularios.encuestas.form_densidad_agregar");
+    }
+
 
 }
