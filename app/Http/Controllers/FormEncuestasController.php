@@ -16,7 +16,17 @@ class FormEncuestasController extends Controller
     }
 
     public function form_densidad_tabla(){
+<<<<<<< HEAD
 
         return view("formularios.form_densidad_tabla");
+=======
+        return view("formularios.form_densidad_opcion");
+>>>>>>> dd5dad64184825716ef6c8c52f18d3ea703c34cd
     }
+
+    public function listado_densidad(){
+        $datos = \DB::table('enc_densidad')->orderBy('id_densidad', 'desc')->get();
+        return view("listados.encuesta.listado_densidad", compact('datos'));
+    }
+
 }
