@@ -51,6 +51,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('home_encuestas', 'FormEncuestasController@home_encuestas');
     Route::get('form_enc_controles_maleza', 'FormEncuestasController@form_enc_controles_maleza');
+    Route::post('form_densidad_tabla', 'FormEncuestasController@form_densidad_tabla'); 
 
 
 
@@ -59,7 +60,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/listado_personas', function (){
         return view('listado.listado_personas');
     })->name('admin.listado_personas'); // <--- este es el nombre que busca el controlador.
-    
+
     Route::get('/home', 'HomeController@index');
 
     Route::get('form_asignacion_delegado_excel', 'ExcelController@form_asignacion_delegado_excel');
@@ -68,7 +69,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::get('form_vista_recintos', 'VistasController@form_vista_recintos');
-    
+
 
     Route::get('form_agregar_transporte', 'TransportesController@form_agregar_transporte');
     Route::post('agregar_transporte', 'TransportesController@agregar_transporte');
@@ -152,7 +153,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('agregar_usuario', 'UsuariosController@agregar_usuario');
     Route::get('consultaUsuarioRegistrado/{recinto}', 'PersonasController@consultaUsuarioRegistrado');
-    
+
     Route::get('consultaDistritos/{id_circunscripcion}', 'RecintosController@consultaDistritos');
     Route::get('consultaRecintos/{id_distrito}/{id_circunscripcion}', 'RecintosController@consultaRecintos');
     Route::get('consultaRecintosPorRecinto/{recinto}', 'RecintosController@consultaRecintosPorRecinto');
@@ -200,7 +201,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('form_votar_uninominal_subir_imagen', 'VotacionesController@form_votar_uninominal_subir_imagen');
     Route::get('form_votar_uninominal_subir_imagen_popup/{id_mesa}', 'VotacionesController@form_votar_uninominal_subir_imagen_popup');
     Route::post('votar_uninominal_subir_imagen', 'VotacionesController@votar_uninominal_subir_imagen');
-    
+
 
 
 
