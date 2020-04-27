@@ -7,12 +7,20 @@
 @section('main-content')
 
 <section  id="contenido_principal">
-<div class="box box-primary box-white">
+<div class="col-md-2">
+</div>
+<div class="col-md-8">
+	<div class="myform-top">
+		<div class="myform-top-left">
+			<h3>Densidades de Plantación de Café</h3>
+		</div>
+
+	 </div>
     <div class="box-header with-border bg-primary">
-        <h3 class="box-title">Listado Encuesta Densidad</h3>
+        <h3 class="box-title">Respuestas Anteriores</h3>
         <div class="box-tools pull-right">
-            <a href="" class="btn btn-block btn-default btn-sm">
-                <i class="fa fa-fw fa-plus-circle"></i> Nueva Encuesta
+            <a href="" class="btn btn-block btn-success btn-sm">
+                <i class="fa fa-fw fa-plus-circle"></i> Nueva Respuesta
             </a>
         </div>
     </div>
@@ -21,7 +29,7 @@
     <div class="table-responsive" >
 	    <table  class="table table-hover table-striped" cellspacing="0" width="100%">
 			<thead>
-				<tr>    
+				<tr>
 					<th>#</th>
 					<th>Año</th>
 					<th>Fecha de Registro</th>
@@ -39,7 +47,7 @@
 			<button type="button" class="btn  btn-default btn-xs" onclick="verinfo_usuario({{  $dato->id_densidad }}, 1)" ><i class="fa fa-fw fa-edit"></i></button>
 			<button type="button"  class="btn  btn-danger btn-xs"  onclick="borrado_usuario({{  $dato->id_densidad }});"  ><i class="fa fa-fw fa-remove"></i></button>
 			</td>
-		</tr> 
+		</tr>
 	    @endforeach
 
 
@@ -58,14 +66,14 @@
 <div class="box box-primary col-xs-12">
 
 <div class='aprobado' style="margin-top:70px; text-align: center">
- 
+
 <label style='color:#177F6B'>
-              ... no se encontraron resultados para su busqueda...
-</label> 
+              ... No se encontraron respuestas anteriores ...
+</label>
 
 </div>
 
- </div> 
+ </div>
 
 @endif
 
