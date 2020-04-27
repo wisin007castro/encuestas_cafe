@@ -1,19 +1,14 @@
 <!-- Main Header -->
 <header class="main-header">
-
-    
-
-
-
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
         {{-- <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">{{ trans('adminlte_lang::message.togglenav') }}</span>
-            
+
         </a> --}}
 <div class="container">
-        
+
     <div class="navbar-header">
         <a href="{{ url('form_votar_seleccionar_mesa') }}" class="navbar-brand"><b>Encuestas</b></a>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
@@ -30,10 +25,10 @@
                 <!-- Messages: style can be found in dropdown.less-->
                 <li class="dropdown messages-menu">
                     <!-- Menu toggle button -->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    {{--<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="fa fa-envelope-o"></i>
                         <span class="label label-success">1</span>
-                    </a>
+                    </a>--}}
                     <ul class="dropdown-menu">
                         {{-- <li class="header">{{ trans('adminlte_lang::message.tabmessages') }}</li> --}}
                         <li class="header">Mensajes</li>
@@ -49,7 +44,7 @@
                                         <!-- Message title and timestamp -->
                                         <h3 style="background-color:#31a65a; text-align:center; color:white" id="clock"></h3>
                                         {{-- <h4>
-                                            Faltan 
+                                            Faltan
                                             <H3><i class="fa fa-clock-o"></i> 5 mins</H3>
                                         </h4> --}}
                                         <!-- The message -->
@@ -62,92 +57,8 @@
                     </ul>
                 </li>
                 <!-- /.messages-menu -->
-{{-- {{dd($control_mesas_votacion)}} --}}
-                @php
-                    $inferior = 42.8;
-                    $superior = 79.6;
-                    // $numero_mensajes = 0;
-                    $mensajes_inferior = 0;
-                    $mensajes_superior = 0;
 
-                    foreach ($control_mesas_votacion as $key => $control) {
-                        $porcentaje_votos= (100 * $control->validos) / $control->numero_votantes;
-                        // if ($porcentaje_votos < $inferior || $porcentaje_votos > $superior ) {
-                        //     $numero_mensajes++;
-                        // }
-                        if ($porcentaje_votos < $inferior ) {
-                            $mensajes_inferior++;
-                        }
-                        if ($porcentaje_votos > $superior ) {
-                            $mensajes_superior++;
-                        }
-                    }
-                @endphp
 
-                <!-- Notifications Menu -->
-                <li class="dropdown notifications-menu">
-                    <!-- Menu toggle button -->
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-bell-o"></i>
-                    <span class="label label-warning">{{$mensajes_inferior}}</span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="header">Tiene {{$mensajes_inferior}} notificaciones</li>
-                        <li>
-                            <!-- Inner Menu: contains the notifications -->
-                            <ul class="menu">
-            
-
-                                @foreach ($control_mesas_votacion as $control)
-                                @php
-                                    $porcentaje_votos= (100 * $control->validos) / $control->numero_votantes;
-                                @endphp
-                                    @if ($porcentaje_votos < $inferior)
-                                    <li><!-- start notification -->
-                                        <a href="#">
-                                            <i class="fa fa-circle-o text-yellow"></i>Mesa {{ $control->id_mesa }} por debajo del límite
-                                        </a>
-                                    </li><!-- end notification -->
-                                    @endif
-                                @endforeach
-                            </ul>
-                            
-                        </li>
-                        {{-- <li class="footer"><a href="#">{{ trans('adminlte_lang::message.viewall') }}</a></li> --}}
-                    </ul>
-                </li>
-                <!-- Notifications Menu -->
-                <li class="dropdown notifications-menu">
-                        <!-- Menu toggle button -->
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-bell-o"></i>
-                        <span class="label label-danger">{{$mensajes_superior}}</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li class="header">Tiene {{$mensajes_superior}} notificaciones</li>
-                            <li>
-                                <!-- Inner Menu: contains the notifications -->
-                                <ul class="menu">
-             
-                                    @foreach ($control_mesas_votacion as $control)
-                                    @php
-                                        $porcentaje_votos= (100 * $control->validos) / $control->numero_votantes;
-                                    @endphp
-                                        @if ($porcentaje_votos > $superior)
-                                        <li><!-- start notification -->
-                                            <a href="#">
-                                                <i class="fa fa-circle-o text-red"></i> Mesa {{ $control->id_mesa }} sobrepasando el límite
-                                            </a>
-                                        </li><!-- end notification -->
-                                        @endif
-                                    @endforeach
-                                </ul>
-                                
-                            </li>
-                            {{-- <li class="footer"><a href="#">{{ trans('adminlte_lang::message.viewall') }}</a></li> --}}
-                        </ul>
-                    </li>
-    
                 <!-- Tasks Menu -->
                 {{-- <li class="dropdown tasks-menu">
                     <!-- Menu Toggle Button -->
@@ -190,7 +101,9 @@
                     <!-- User Account Menu -->
                     <li class="dropdown user user-menu">
                         <!-- Menu Toggle Button -->
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                          <a href="{{ url('/logout') }}"
+                                   onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();"  class="btn btn-primary btn-flat btn-block">
                             <!-- The user image in the navbar-->
                             <img src="{{asset('/img/on_off.png')}}" class="user-image" alt="User Image"/>
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -204,7 +117,7 @@
                                 @if ( $persona->ci == Auth::user()->ci)
                                             <!-- Status -->
                                     <p> {{ $persona->unidad }}</p>
-                                        @endif   
+                                        @endif
                                 @endforeach --}}
                                 <p>
                                     {{ Auth::user()->name }}
@@ -243,7 +156,7 @@
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
-                                
+
 
                                 </div>
                             </li>
