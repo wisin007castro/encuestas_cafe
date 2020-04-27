@@ -58,10 +58,12 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::get('listado_densidad', 'FormEncuestasController@listado_densidad');
+    Route::get('listado_preparacion', 'FormEncuestasController@listado_preparacion');
 
 
     //FORMS AGREAGAR
     Route::get('form_densidad_agregar', 'FormEncuestasController@form_densidad_agregar')->name('form_densidad_agregar');
+    Route::get('form_preparacion_agregar', 'FormEncuestasController@form_preparacion_agregar')->name('form_preparacion_agregar');
 
 
 
@@ -69,8 +71,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //FORMS GUARDAR
-    Route::post('form_densidad_guardar', 'FormEncuestasController@form_densidad_guardar')->name('form_densidad_guardar');
-
+    Route::post('densidad_guardar', 'FormEncuestasController@densidad_guardar')->name('densidad_guardar');
+    Route::post('preparacion_guardar', 'FormEncuestasController@preparacion_guardar')->name('preparacion_guardar');
 
 
 
@@ -85,7 +87,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //FORMS ACTUALIZAR
-    Route::post('form_densidad_actualizar/{id}', 'FormEncuestasController@form_densidad_actualizar')->name('form_densidad_actualizar');
+    Route::post('densidad_actualizar/{id}', 'FormEncuestasController@densidad_actualizar')->name('densidad_actualizar');
+    Route::post('preparacion_actualizar/{id}', 'FormEncuestasController@preparacion_actualizar')->name('preparacion_actualizar');
 
 
 
