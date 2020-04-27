@@ -10,9 +10,9 @@
           </ul>
       </li>
       @endrole
-      <li><a href="#">Quienes Somos</a></li>
-      <li><a href="#">Contactos</a></li>
-      <li><a href="#">F.A.Q</a></li>
+      <li><a href="#"><i class="fa fa-info-circle"></i> Quienes Somos</a></li>
+      <li><a href="#"><i class="fa fa-phone-square"></i>Contactos</a></li>
+      <li><a href="#"><i class="fa fa-question-circle "></i> F.A.Q.</a></li>
       {{-- <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
