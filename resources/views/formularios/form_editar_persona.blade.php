@@ -634,7 +634,16 @@
 
     //id obtenido de la base de datos "campo : slug"
     var rol_slug = $("#rol_slug").val();
-        if (rol_slug == 'militante') {
+        if (rol_slug == 'productor') {
+            alertify.success(rol_slug);
+            $("#div_circ").hide();
+            $("#div_distrito").hide();
+            $("#div_recinto").hide();
+            $("#div_mesas").hide();
+            $("#div_casa_campana").hide();
+            $("#div_vehiculo").hide();
+            $("#btn_registrar").prop('disabled', true);
+        }else if (rol_slug == 'militante') {
             alertify.success(rol_slug);
             $("#div_circ").hide();
             $("#div_distrito").hide();

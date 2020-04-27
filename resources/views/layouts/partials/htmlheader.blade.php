@@ -1,11 +1,11 @@
 <head>
     <meta charset="UTF-8">
-    <title> ControlAzul - @yield('htmlheader_title', 'ControlAzul') </title>
+    <title> Encuestas - @yield('htmlheader_title', 'Encuestas') </title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
     {{-- <meta name="description" content="@yield('description')"> --}}
-    <meta name="description" content="Realiza el Control Electoral con el Sistema Control Azul, Registrate en el sistema, confirma tu asistencia, selecciona tu(s) mesa(s) asignadas, selecciona el partido político al que ingresaras la cantidad de votos, continúa llenando para todos los partidos incluyendo Nulos y Blancos.">
+    <meta name="description" content="Realiza encuestas de producción de Cafe y Cacao">
     {{-- <meta name="keywords" content="@yield('keywords')"> --}}
-    <meta name="keywords" content="Control Azul, controlazul, elecciones 2019, elecciones bolivia, elecciones, ajllita, control">
+    <meta name="keywords" content="encuestas cacao, encuestas cafe, encuestas 2020, bolivia, cacao, cafe">
     <!-- Bootstrap 3.3.4 -->
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ url('css/mycustom.css') }}">

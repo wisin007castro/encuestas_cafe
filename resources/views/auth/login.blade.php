@@ -21,8 +21,8 @@
               <div class="col-sm-6 col-sm-offset-3 myform-cont" >
                     <div class="myform-top">
                         <div class="myform-top-left">
-                         <img  src="{{ url('img/futuro.png') }} " class="img-responsive logo" />
-                          <h3>Control Azul</h3>
+                         <img  src="{{ url('img/encuesta.png') }} " class="img-responsive logo" />
+                          <h3>Ecuenstas</h3>
                             <p>Digita tu usuario y contraseña:</p>
                         </div>
                         <div class="myform-top-right">

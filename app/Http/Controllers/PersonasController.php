@@ -731,7 +731,7 @@ class PersonasController extends Controller
         ->get();
 
         $roles = \DB::table('roles')
-        ->where('id', '>=', 15)
+        ->where('id', '>=', 3)
         ->get();
 
         $casas =  \DB::table('casas_campana')
@@ -927,7 +927,9 @@ class PersonasController extends Controller
                 $usuario->revokeRole($rol_actual->id);
 
                 //Rol Actual a liberar
-                if ($rol_actual->slug == 'militante') {
+                if ($rol_actual->slug == 'productor') {
+                 
+                }elseif ($rol_actual->slug == 'militante') {
                     # militantes...
                 }elseif ($rol_actual->slug == 'conductor') {
                     # conductor
@@ -969,7 +971,13 @@ class PersonasController extends Controller
 
                 $persona->id_recinto = $request->input("recinto");
 
-                if($request->input("rol_slug") == 'militante'){
+                if($request->input("rol_slug") == 'productor'){
+                    //rol delegado del MAS
+                    $persona->id_rol = $rol->id;
+                    if ($persona->save()) {
+                        return view("mensajes.msj_enviado")->with("msj","enviado_editar_persona");
+                    }
+                }elseif($request->input("rol_slug") == 'militante'){
                     //rol delegado del MAS
                     $persona->id_rol = $rol->id;
                     if ($persona->save()) {
@@ -1496,7 +1504,7 @@ class PersonasController extends Controller
     }
 
     public function listado_personas_asignacion(){
-        if(\Auth::user()->isRole('admin')==false){
+        if(\Auth::user()->isRole('super_admin')==false){
             return view("mensajes.mensaje_error")->with("msj",'<div class="box box-danger col-xs-12"><div class="rechazado" style="margin-top:70px; text-align: center">    <span class="label label-success">#!<i class="fa fa-check"></i></span><br/>  <label style="color:#177F6B">  Acceso restringido </label>   </div></div> ') ;
         }
         $personas = [];

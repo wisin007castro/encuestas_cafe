@@ -49,6 +49,13 @@ Route::group(['middleware' => 'cors'], function () {
 
 Route::group(['middleware' => 'auth'], function () {
 
+    Route::get('home_encuestas', 'FormEncuestasController@home_encuestas');
+    Route::get('form_enc_controles_maleza', 'FormEncuestasController@form_enc_controles_maleza');
+
+
+
+
+
     Route::get('/listado_personas', function (){
         return view('listado.listado_personas');
     })->name('admin.listado_personas'); // <--- este es el nombre que busca el controlador.
