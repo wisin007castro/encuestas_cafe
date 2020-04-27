@@ -20,6 +20,10 @@ class FormEncuestasController extends Controller
         return view("listados.encuesta.listado_densidad", compact('datos'));
     }
 
+    public function form_densidad_agregar(){
+        return view("formularios.encuestas.form_densidad_agregar");
+    }
+
     public function listado_densidad(){
         $datos = \DB::table('enc_densidad')->orderBy('id_densidad', 'desc')->get();
         return view("listados.encuesta.listado_densidad", compact('datos'));

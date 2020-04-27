@@ -19,8 +19,8 @@
     <div class="box-header with-border bg-primary">
         <h3 class="box-title">Respuestas Anteriores</h3>
         <div class="box-tools pull-right">
-            <a href="" class="btn btn-block btn-success btn-sm">
-                <i class="fa fa-fw fa-plus-circle"></i> Nueva Respuesta
+            <a href="{{ url('form_densidad') }}" class="btn btn-block btn-success btn-sm">
+              <i class="fa fa-fw fa-plus-circle"></i> Nueva Respuesta
             </a>
         </div>
     </div>
