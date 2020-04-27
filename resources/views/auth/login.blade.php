@@ -2,27 +2,27 @@
 
 @section('content')
 
-<body class="mybody">      
+<body class="mybody">
     <div class="mytop-content" >
-        <div class="container" > 
-          
-                <div class="col-sm-12 " style="background-color:rgba(0, 0, 0, 0.35); height: 60px; " >
-                    {{-- <a class="mybtn-social pull-right" href="{{ url('/login') }}">
-                      Registrar Votos
-                 </a> --}}
+        <div class="container" >
 
-                  <a class="mybtn-social pull-right" href="{{ url('/form_consulta') }}">
-                       ¿Eres delegado?
-                  </a>
-               
-                </div>           
-            
+            {{--<div class="col-sm-12 " style="background-color:rgba(0, 0, 0, 0.35); height: 60px; " >
+              <a class="mybtn-social pull-right" href="{{ url('/login') }}">
+                  Boton 1
+              </a>
+
+              <a class="mybtn-social pull-right" href="{{ url('/form_consulta') }}">
+                  Boton 2
+              </a>
+
+            </div>--}}
+
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3 myform-cont" >
                     <div class="myform-top">
                         <div class="myform-top-left">
-                         <img  src="{{ url('img/futuro.png') }} " class="img-responsive logo" />
-                          <h3>Control Azul</h3>
+                         <img  src="{{ url('img/logo_cafe.png') }} " class="img-responsive logo" />
+                          <h3>Productores de Café y Cocoa</h3>
                             <p>Digita tu usuario y contraseña:</p>
                         </div>
                         <div class="myform-top-right">
@@ -33,7 +33,7 @@
             @if (count($errors) > 0)
                  <div class="col-sm-12" >
                         <div class="alert alert-danger">
-                            <strong>Whoops!</strong> Error de Accesso 
+                            <strong>Whoops!</strong> Error de Accesso
                             <ul>
                                 @foreach ($errors->all() as $error)
                                     <li>{{ $error }}</li>
@@ -43,7 +43,7 @@
                 </div>
                 @endif
                     <div class="myform-bottom">
-                      
+
                       <form role="form" action="{{ url('/login') }}" method="post" >
                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
@@ -63,12 +63,6 @@
                     </div>
               </div>
             </div>
-            {{-- <div class="row">
-                <div class="col-sm-12 mysocial-login">
-                    <h3>...Visitanos en nuestra Pagina</h3>
-                    <h1><strong>minculturas.gob.bo</strong>.net</h1>
-                </div>
-            </div> --}}
         </div>
       </div>
 
@@ -77,8 +71,3 @@
   </body>
 
 @endsection
-
-
-
-
-
