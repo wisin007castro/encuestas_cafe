@@ -52,11 +52,11 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('home_encuestas', 'FormEncuestasController@home_encuestas');
     Route::get('form_enc_controles_maleza', 'FormEncuestasController@form_enc_controles_maleza');
     Route::post('form_densidad_tabla', 'FormEncuestasController@form_densidad_tabla');
-    Route::post('form_densidad_agregar', 'FormEncuestasController@form_densidad_agregar');
+    Route::get('form_densidad_agregar', 'FormEncuestasController@form_densidad_agregar');
 
 
 
-    Route::get('listado_densidad', 'FormEncuestasController@listado_densidad'); 
+    Route::get('listado_densidad', 'FormEncuestasController@listado_densidad');
 
 
     //FORMS AGREAGAR

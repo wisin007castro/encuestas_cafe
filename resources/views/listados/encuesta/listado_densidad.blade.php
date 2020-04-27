@@ -12,7 +12,7 @@
 <div class="col-md-8">
 	<div class="myform-top">
 		<div class="myform-top-left">
-			<h3>Densidades de Plantación de Café</h3>
+			<h3>Densidad de Plantación de Café</h3>
 		</div>
 
 	 </div>
@@ -68,7 +68,7 @@
 
 <div class="box box-primary col-xs-12">
 
-<div class='aprobado' style="margin-top:70px; text-align: center">
+<div class='aprobado' style="margin-top:10px; text-align: center">
 
 <label style='color:#177F6B'>
               ... No se encontraron respuestas anteriores ...
