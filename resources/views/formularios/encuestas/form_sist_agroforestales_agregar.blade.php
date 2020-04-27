@@ -48,38 +48,30 @@
                         <div class="form-group">
                           <label >¿Tiene cultivos de Pacay aosciados con el café?</label>
 													<br>
-													<input type="radio" id="pacay_si" name="pacay" value="1" onchange="mostrar_pacay()"> Si &nbsp;&nbsp;&nbsp;&nbsp;
-													<input type="radio" id="pacay_no" name="pacay" value="0" onchange="mostrar_pacay()" checked> No
+													<input type="radio" id="pacay_si" name="pacay" value="1" onchange="mostrar_pacay()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
+													<input type="radio" id="pacay_no" name="pacay" value="0" onchange="mostrar_pacay()"> No
 												</div>
 
 												<div class="content_pacay" id="content_pacay">
 													<div class="form-group">
-														<label >Densidad de Siembra</label>
-														<input type="number" min="0" step="1" oninput="calculo_cantidad_plantas()" name="densidad" id="densidad" placeholder="0" class="form-control" value="" required/ >
+														<label >Cantidad Aproximada de Plantas</label>
+														<input type="date" name="pacay_fecha_siembra" id="pacay_fecha_siembra" class="form-control" required>
 													</div>
+
+													<div class="form-group">
+														<label >Fecha de Siembra</label>
+														<input type="number" min="0" step="1" name="pacay_cantidad" id="pacay_cantidad" class="form-control" required>
+	                        </div>
+
+													<div class="form-group">
+														<label >¿La Siembra es Permanente?</label>
+														<select class="form-control" name="pacay_permanente" id="pacay_permanente">
+					                    <option value="1">Si</option>
+					                    <option value="0">No</option>
+					            			</select>
+	                        </div>
 												</div>
 
-
-
-                        <div class="form-group">
-                          <label >Superficie en Hectáreas (Ha)</label>
-                          <input type="number" min="0" step="0.01" oninput="calculo_cantidad_plantas()" name="superficie" id="superficie" placeholder="0" class="form-control" value="" required/>
-                        </div>
-
-                        <div class="form-group">
-                          <label >Cantidad de Plantas</label>
-                          <input type="number" name="cantidad_plantas" id="cantidad_plantas" placeholder="0" class="form-control" value="" readonly/>
-                        </div>
-
-                        <div class="form-group">
-                          <label >Plantas Muertas</label>
-                          <input type="number" min="0" step="0.01" oninput="calculo_plantas_efectivas()" name="plantas_muertas" id="plantas_muertas" placeholder="0" class="form-control" value="" required/>
-                        </div>
-
-                        <div class="form-group">
-                          <label >Plantas Efectivas</label>
-                          <input type="number" name="plntas_efectivas" id="plantas_efectivas" placeholder="0" class="form-control" value="" readonly/>
-                        </div>
 												<br>
                         <button type="submit" class="mybtn">Registrar</button>
                       </form>
@@ -103,11 +95,17 @@
 			pacay_si = document.getElementById("pacay_si");
 			if (pacay_si.checked) {
 				document.getElementById("content_pacay").style.display='block';
+				document.getElementById("pacay_fecha_siembra").required = true;
+				document.getElementById("pacay_cantidad").required = true;
+				document.getElementById("pacay_permanente").required = true;
 			}
 			else {
 				document.getElementById("content_pacay").style.display='none';
+				document.getElementById("pacay_fecha_siembra").required = false;
+				document.getElementById("pacay_cantidad").required = false;
+				document.getElementById("pacay_permanente").required = false;
 			}
-			alert(pacay_si);
+			//alert(pacay_si);
         /*element = document.getElementById("content");
         check = document.getElementById("check");
         if (check.checked) {
