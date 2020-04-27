@@ -24,6 +24,10 @@ class FormEncuestasController extends Controller
         return view("formularios.encuestas.form_densidad_agregar");
     }
 
+    public function form_sist_agroforestales_agregar(){
+        return view("formularios.encuestas.form_sist_agroforestales_agregar");
+    }
+
     public function listado_densidad(){
         $datos = \DB::table('enc_densidad')->orderBy('id_densidad', 'desc')->get();
         return view("listados.encuesta.listado_densidad", compact('datos'));
