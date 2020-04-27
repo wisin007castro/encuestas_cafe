@@ -55,6 +55,10 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
+    Route::get('listado_densidad', 'FormEncuestasController@listado_densidad'); 
+
+
+
 
 
     Route::get('/listado_personas', function (){
