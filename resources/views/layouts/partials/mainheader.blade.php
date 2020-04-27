@@ -10,7 +10,7 @@
 <div class="container">
 
     <div class="navbar-header">
-        <a href="{{ url('form_votar_seleccionar_mesa') }}" class="navbar-brand"><i class="fa fa-wpforms"></i> <b>Encuestas</b></a>
+        <a href="{{ url('home_encuestas') }}" class="navbar-brand"><i class="fa fa-wpforms"></i> <b>Encuestas</b></a>
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
           <i class="fa fa-bars"></i>
         </button>

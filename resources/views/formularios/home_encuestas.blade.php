@@ -17,8 +17,8 @@
                      <div class="myform-top">
                         <div class="myform-top-left">
                            {{-- <img  src="" class="img-responsive logo" /> --}}
-                          <h3>Mesas de Votación a llenar</h3>
-                            <p>Por favor pulse sobre la mesa de votación a llenar</p>
+                          <h3>Monitoreo de Plantaciones de Café</h3>
+                            <p>Por favor pulse sobre la cada uno de los botones para llenar las diferentes encuestas</p>
                         </div>
                         <div class="myform-top-right">
                           <i class="fa fa-edit"></i>
@@ -43,66 +43,118 @@
 <div class="row">
 	<div class="col-md-6">
 		<div class="myform-bottom">
-										
-			<form action="{{ url('form_votar_seleccionar_tipo') }}"  method="post">
-				<input type="hidden" name="id_mesa" value="">
+			<form action="{{ url('form_preparaciones') }}"  method="post">
+				<input type="hidden" name="" value="">
 				<br>
-				
 				<button type="submit" style="font-size: 16px; padding: 30px;width: 100%; background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87CEEB), color-stop(100%,#4682B4)); -webkit-box-shadow: inset 0px 0px 6px #fff; border-radius: 10px;">
 					<div class="">
 						<div class="">
-							
-					<span  style='font-size: 20px; color:black; height: 50px; font-weight:bold; text-align:center' class="">MESA 10</span>
-					<br><span class="info-box-number">(1010101010)</span>
-					<span  style='font-size: 15px; color:black; font-weight:bold; text-align:center' class="">[10101010101010 ]</span>		
-
-					<br>
-						<span class="info-box-number">Votos Uninominales:</span>
-
-									<i style='font-size: 22px; color:yellow; height: 50px; font-weight:bold; text-align:center' class="fa fa-circle"></i><span style='font-size: 18px; height: 50px; text-align:center'>  Incompleto sin Foto</span>
-
-									<i style='font-size: 22px; color:yellow; height: 50px; font-weight:bold; text-align:center' class="fa fa-circle"></i><span style='font-size: 18px; height: 50px; text-align:center'>  Incompleto con Foto</span>
-
-									<i style='font-size: 22px; color:yellow; height: 50px; font-weight:bold; text-align:center' class="fa fa-circle"></i><span style='font-size: 18px; height: 50px; text-align:center'>  Completo sin Foto</span>
-
-									<i style='font-size: 22px; color:yellow; height: 50px; font-weight:bold; text-align:center' class="fa fa-circle"></i><span style='font-size: 18px; height: 50px; text-align:center'>  Completo con Foto</span>
-
-								<br>
-								<i style='font-size: 22px; color:red; height: 50px; font-weight:bold; text-align:center' class="fa fa-circle"></i><span style='font-size: 18px; height: 50px; text-align:center'>  Rev.&nbspValores</span>
-							
+							<span  style='font-size: 20px; color:black; height: 50px; font-weight:bold; text-align:center' class="">Información Básica</span>
+							<br>
+							<span class="info-box-number">Zona de Plantación</span>
 						</div>
-						<!-- /.info-box-content -->
+					</div>
+				</button>
+			</form>
+
+			<form action="{{ url('form_preparaciones') }}"  method="post">
+				<input type="hidden" name="" value="">
+				<br>
+				<button type="submit" style="font-size: 16px; padding: 30px;width: 100%; background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87CEEB), color-stop(100%,#4682B4)); -webkit-box-shadow: inset 0px 0px 6px #fff; border-radius: 10px;">
+					<div class="">
+						<div class="">
+							<span  style='font-size: 20px; color:black; height: 50px; font-weight:bold; text-align:center' class="">Sistemas Agroforestales</span>
+							<br>
+							<span class="info-box-number">Cultivos Asociados al Café</span>
 						</div>
+					</div>
+				</button>
+			</form>
+
+			<form action="{{ url('form_preparaciones') }}"  method="post">
+				<input type="hidden" name="" value="">
+				<br>
+				<button type="submit" style="font-size: 16px; padding: 30px;width: 100%; background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87CEEB), color-stop(100%,#4682B4)); -webkit-box-shadow: inset 0px 0px 6px #fff; border-radius: 10px;">
+					<div class="">
+						<div class="">
+							<span  style='font-size: 20px; color:black; height: 50px; font-weight:bold; text-align:center' class="">Enfermedades y Plagas de Cultivo de Café</span>
+							<br><br>
+							<!--span class="info-box-number">Cultivos Asociados al Café</span-->
+						</div>
+					</div>
+				</button>
+			</form>
+
+			<form action="{{ url('form_preparaciones') }}"  method="post">
+				<input type="hidden" name="" value="">
+				<br>
+				<button type="submit" style="font-size: 16px; padding: 30px;width: 100%; background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87CEEB), color-stop(100%,#4682B4)); -webkit-box-shadow: inset 0px 0px 6px #fff; border-radius: 10px;">
+					<div class="">
+						<div class="">
+							<span  style='font-size: 20px; color:black; height: 50px; font-weight:bold; text-align:center' class="">Fertilización</span>
+							<br>
+							<!--span class="info-box-number">Cultivos Asociados al Café</span-->
+						</div>
+					</div>
 				</button>
 			</form>
 		</div>
 	</div>
 	<div class="col-md-6">
 		<div class="myform-bottom">
-										
-			<form action="{{ url('form_votar_seleccionar_tipo') }}"  method="post">
-				<input type="hidden" name="id_mesa" value="">
+			<form action="{{ url('form_preparaciones') }}"  method="post">
+				<input type="hidden" name="" value="">
 				<br>
-				
 				<button type="submit" style="font-size: 16px; padding: 30px;width: 100%; background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87CEEB), color-stop(100%,#4682B4)); -webkit-box-shadow: inset 0px 0px 6px #fff; border-radius: 10px;">
 					<div class="">
 						<div class="">
-							
-					<span  style='font-size: 20px; color:black; height: 50px; font-weight:bold; text-align:center' class="">MESA 10</span>
-					<br><span class="info-box-number">(1010101010)</span>
-					<span  style='font-size: 15px; color:black; font-weight:bold; text-align:center' class="">[10101010101010 ]</span>
-					<br>
-					<span class="info-box-number">Votos Presidenciales:</span>
-					<i style='font-size: 22px; color:white; height: 50px; font-weight:bold; text-align:center' class="fa fa-circle"></i><span style='font-size: 18px; height: 50px; text-align:center'>  Pendiente</span>
-					<i style='font-size: 22px; color:yellow; height: 50px; font-weight:bold; text-align:center' class="fa fa-circle"></i><span style='font-size: 18px; height: 50px; text-align:center'>  Incompleto sin Foto</span>
-					<i style='font-size: 22px; color:yellow; height: 50px; font-weight:bold; text-align:center' class="fa fa-circle"></i><span style='font-size: 18px; height: 50px; text-align:center'>  Incompleto con Foto</span>
-
-					<i style='font-size: 22px; color:red; height: 50px; font-weight:bold; text-align:center' class="fa fa-circle"></i><span style='font-size: 18px; height: 50px; text-align:center'>  Rev.&nbspValores</span>
-					<i style='font-size: 22px; color:white; height: 50px; font-weight:bold; text-align:center' class="fa fa-circle"></i><span style='font-size: 18px; height: 50px; text-align:center'>  Pendiente</span>
-
+							<span  style='font-size: 20px; color:black; height: 50px; font-weight:bold; text-align:center' class="">Densidad de Plantación de Café</span>
+							<br>
+							<!--span class="info-box-number">Cultivos Asociados al Café</span-->
 						</div>
-						<!-- /.info-box-content -->
+					</div>
+				</button>
+			</form>
+
+			<form action="{{ url('form_preparaciones') }}"  method="post">
+				<input type="hidden" name="" value="">
+				<br>
+				<button type="submit" style="font-size: 16px; padding: 30px;width: 100%; background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87CEEB), color-stop(100%,#4682B4)); -webkit-box-shadow: inset 0px 0px 6px #fff; border-radius: 10px;">
+					<div class="">
+						<div class="">
+							<span  style='font-size: 20px; color:black; height: 50px; font-weight:bold; text-align:center' class="">Podas y Control de Maleza</span>
+							<br><br>
+							<!--span class="info-box-number">Cultivos Asociados al Café</span-->
 						</div>
+					</div>
+				</button>
+			</form>
+
+			<form action="{{ url('form_preparaciones') }}"  method="post">
+				<input type="hidden" name="" value="">
+				<br>
+				<button type="submit" style="font-size: 16px; padding: 30px;width: 100%; background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87CEEB), color-stop(100%,#4682B4)); -webkit-box-shadow: inset 0px 0px 6px #fff; border-radius: 10px;">
+					<div class="">
+						<div class="">
+							<span  style='font-size: 20px; color:black; height: 50px; font-weight:bold; text-align:center' class="">Transformación</span>
+							<br>
+							<span class="info-box-number">2do Eslabon de la Cadena Productiva del Café</span>
+						</div>
+					</div>
+				</button>
+			</form>
+
+			<form action="{{ url('form_preparaciones') }}"  method="post">
+				<input type="hidden" name="" value="">
+				<br>
+				<button type="submit" style="font-size: 16px; padding: 30px;width: 100%; background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87CEEB), color-stop(100%,#4682B4)); -webkit-box-shadow: inset 0px 0px 6px #fff; border-radius: 10px;">
+					<div class="">
+						<div class="">
+							<span  style='font-size: 20px; color:black; height: 50px; font-weight:bold; text-align:center' class="">Deficiencias</span>
+							<br>
+							<!--span class="info-box-number">Cultivos Asociados al Café</span-->
+						</div>
+					</div>
 				</button>
 			</form>
 		</div>
