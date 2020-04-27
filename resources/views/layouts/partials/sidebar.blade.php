@@ -35,9 +35,6 @@
                     @endrole --}}
 
 
-                    @role('militante')
-                    <p><i class="fa fa-caret-right text-yellow"></i> Delegado del MAS</p>
-                    @endrole
                     @role('conductor')
                     <p><i class="fa fa-caret-right text-yellow"></i> Conductor</p>
                     @endrole
@@ -49,20 +46,8 @@
                     <p><i class="fa fa-caret-right text-yellow"></i> Supervisor Call Center</p>
                     @endrole
 
-                    @role('responsable_mesa')
-                    <p><i class="fa fa-caret-right text-yellow"></i> Responsable de Mesa</p>
-                    @endrole
-
-                    @role('responsable_recinto')
-                    <p><i class="fa fa-caret-right text-yellow"></i> Responsable de Recinto</p>
-                    @endrole
-
-                    @role('responsable_distrito')
-                    <p><i class="fa fa-caret-right text-yellow"></i> Responsable de Distrito</p>
-                    @endrole
-
-                    @role('responsable_circunscripcion')
-                    <p><i class="fa fa-caret-right text-yellow"></i> Resp. Circunscripción</p>
+                    @role('productor')
+                    <p><i class="fa fa-caret-right text-yellow"></i> Productor</p>
                     @endrole
 
                     {{-- <p><i class="fa fa-caret-right text-yellow"></i> </p> --}}
@@ -180,9 +165,9 @@
                 <a href="{{ url('form_registrar_asistencia') }}"><i class='fa fa-calendar-check-o'></i> <span>Registrar mi asistencia</span> </a>
             </li>
             @endcan
-            @can('registrar_votos')
+            @can('registrar_encuestas')
             <li class="treeview">
-                <a href="{{ url('form_votar_seleccionar_mesa') }}"><i class='fa fa-list-ol'></i> <span>Registrar votos</span> </a>
+                <a href="{{ url('form_votar_seleccionar_mesa') }}"><i class='fa fa-list-ol'></i> <span>Registrar Encuesta</span> </a>
             </li>
             @endcan
 

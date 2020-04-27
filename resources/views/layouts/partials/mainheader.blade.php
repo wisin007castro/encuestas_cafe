@@ -1,25 +1,29 @@
 <!-- Main Header -->
 <header class="main-header">
 
-    <!-- Logo -->
-    <a href="{{ url('/home') }}" class="logo">
-        <!-- mini logo for sidebar mini 50x50 pixels -->
-        <span class="logo-mini"><b><i class='fa fa-square'></i></b></span>
-        <div class="row centered logo-lg">
-            <span><b>ControlAzul</b></span>
-            {{-- <img src="{{asset('/img/encuestas_logo_blanco_final.png')}}" style="width:160px;height:40px;" class="centered" alt="User Image"/> --}}
-        </div>
-        <!-- logo for regular state and mobile devices -->
-        {{-- <span class="logo-lg"><b>J</b>aqi</span> --}}
-    </a>
+    
+
+
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">
         <!-- Sidebar toggle button-->
-        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        {{-- <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">{{ trans('adminlte_lang::message.togglenav') }}</span>
             
-        </a>
+        </a> --}}
+<div class="container">
+        
+    <div class="navbar-header">
+        <a href="{{ url('form_votar_seleccionar_mesa') }}" class="navbar-brand"><b>Encuestas</b></a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+    <!-- Logo -->
+
+        @include('layouts.partials.navbar_top')
+
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
@@ -253,5 +257,6 @@
                 </li> --}}
             </ul>
         </div>
+    </div>
     </nav>
 </header>

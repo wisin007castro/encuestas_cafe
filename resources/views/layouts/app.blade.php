@@ -29,7 +29,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="skin-blue sidebar-mini">
+<body class="skin-blue layout-top-nav">
 
 <div style="display: none;" id="cargador_empresa" align="center">
         <br>
@@ -51,7 +51,7 @@ desired effect
 
     @include('layouts.partials.mainheader')
 
-    @include('layouts.partials.sidebar')
+    {{-- @include('layouts.partials.sidebar') --}}
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
