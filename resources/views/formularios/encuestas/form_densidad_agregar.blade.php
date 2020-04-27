@@ -42,7 +42,7 @@
 
                     <div id="div_notificacion_sol" class="myform-bottom">
 
-                    <form action="{{ url('enviar_gastronomia') }}"  method="post" id="f_enviar_gastronomia" class="formentrada" >
+                    <form action="{{ route('form_densidad_guardar') }}"  method="post" class="" >
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 												<h4 style="color:white">Titulo principal si lo tuviera Ej. Biologico</h4>
                         <div class="form-group">
