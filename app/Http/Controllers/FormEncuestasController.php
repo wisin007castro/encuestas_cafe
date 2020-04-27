@@ -25,4 +25,23 @@ class FormEncuestasController extends Controller
         return view("listados.encuesta.listado_densidad", compact('datos'));
     }
 
+
+
+    //FORMS AGREGAR
+    public function form_densidad_agregar(){
+        return view("formularios.encuestas.form_densidad_agregar");
+    }
+
+
+
+
+
+
+
+
+    //FORMS EDITAR
+    public function form_densidad_editar($id){
+        return view("formularios.encuestas.form_densidad_editar");
+    }
+
 }
