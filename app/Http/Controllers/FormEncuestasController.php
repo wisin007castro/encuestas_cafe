@@ -17,6 +17,6 @@ class FormEncuestasController extends Controller
 
     public function form_densidad_tabla(){
 
-        return view("formularios.form_densidad_opcion");
+        return view("formularios.form_densidad_tabla");
     }
 }

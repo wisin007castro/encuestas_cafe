@@ -41,21 +41,21 @@
                    </div  >
 
 	                  <div class="myform-bottom">
-											@foreach ($mesas as $mesa)
+
 												<form action="{{ url('form_votar_seleccionar_tipo') }}"  method="post">
 													<input type="hidden" name="id_mesa" value="{{ $mesa->id_mesa }}">
 													<br>
-													
+
 													<button type="submit" style="font-size: 16px; padding: 30px;width: 100%; background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#87CEEB), color-stop(100%,#4682B4)); -webkit-box-shadow: inset 0px 0px 6px #fff; border-radius: 10px;">
 														<div class="">
 															<div class="">
-																
+
 														<span  style='font-size: 20px; color:black; height: 50px; font-weight:bold; text-align:center' class="">MESA {{ $mesa->codigo_mesas_oep }}</span>
 														<br><span class="info-box-number">({{ $mesa->codigo_ajllita }})</span>
 														<span  style='font-size: 15px; color:black; font-weight:bold; text-align:center' class="">[ {{ $mesa->id_mesa }} ]</span>
 														<br>
 														<span class="info-box-number">Votos Presidenciales:</span>
-															
+
 																<?php
 																	//Controlamos que hayan llenado los 10 registros (9 presidente y 1 blancos y nulos)
 																	$registros_presidenciales = $mesa->registros_presidenciales + $mesa->registros_presidenciales_r;
@@ -174,7 +174,6 @@
 														  </div>
 													</button>
 												</form>
-											@endforeach
 									</div>
               </div>
             </div>
