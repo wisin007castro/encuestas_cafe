@@ -14,6 +14,10 @@ class FormEncuestasController extends Controller
         return view("formularios.home_encuestas");
     }
 
+    public function quienes_somos(){
+        return view("encuestas.quienes_somos");
+    }
+
     public function form_enc_controles_maleza(){
         return view("formularios.form_enc_controles_maleza");
     }

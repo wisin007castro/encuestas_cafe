@@ -61,6 +61,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('listado_densidad', 'FormEncuestasController@listado_densidad');
     Route::get('listado_preparacion', 'FormEncuestasController@listado_preparacion');
 
+    //MENU PRINCIPAL
+    Route::get('quienes_somos', 'FormEncuestasController@quienes_somos');
+
 
     //FORMS AGREAGAR
     Route::get('form_densidad_agregar', 'FormEncuestasController@form_densidad_agregar')->name('form_densidad_agregar');

@@ -106,6 +106,7 @@
 											</form>
 										</div>
 									</div>
+
 									<div class="col-md-6">
 										<div class="myform-bottom">
 											<form action="{{ url('form_densidad_tabla') }}"  method="post">

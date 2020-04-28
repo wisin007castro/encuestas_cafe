@@ -10,7 +10,7 @@
           </ul>
       </li>
       @endrole
-      <li><a href="#"><i class="fa fa-info-circle"></i> Quienes Somos</a></li>
+      <li><a href="{{ url('quienes_somos') }}"><i class="fa fa-info-circle"></i> Quienes Somos</a></li>
       <li><a href="#"><i class="fa fa-phone-square"></i> Contactos</a></li>
       <li><a href="#"><i class="fa fa-question-circle "></i> F.A.Q.</a></li>
       {{-- <li class="dropdown">
