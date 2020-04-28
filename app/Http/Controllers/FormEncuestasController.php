@@ -18,6 +18,10 @@ class FormEncuestasController extends Controller
         return view("encuestas.quienes_somos");
     }
 
+    public function contactos(){
+        return view("encuestas.contactos");
+    }
+
     public function form_enc_controles_maleza(){
         return view("formularios.form_enc_controles_maleza");
     }

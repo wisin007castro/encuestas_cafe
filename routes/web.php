@@ -63,6 +63,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //MENU PRINCIPAL
     Route::get('quienes_somos', 'FormEncuestasController@quienes_somos');
+    Route::get('contactos', 'FormEncuestasController@contactos');
 
 
     //FORMS AGREAGAR

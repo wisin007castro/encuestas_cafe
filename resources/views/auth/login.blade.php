@@ -27,7 +27,7 @@
                         </div>
                         <div class="myform-top-right">
                           <img  src="{{ url('img/fautapo.png') }} " class="img-responsive logo" />
-                          <i class="fa fa-key"></i>
+                          <!--i class="fa fa-key"></i-->
                         </div>
                     </div>
 

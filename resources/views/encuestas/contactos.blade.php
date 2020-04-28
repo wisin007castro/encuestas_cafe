@@ -17,11 +17,11 @@
                  <div class="myform-top">
                     <div class="myform-top-left">
                        {{-- <img  src="" class="img-responsive logo" /> --}}
-                      <h3>FAUTAPO</h3>
-											<p>INVENTARIO DE PARCELAS CULTIVADAS DE CAFÉ Y CACAO</p>
+                      <h3>MEDIOS DE CONTACTO</h3>
+											<p>FAUTAPO</p>
                     </div>
                     <div class="myform-top-right">
-                      <i class="fa fa-info-circle"></i>
+                      <i class="fa fa-phone-square"></i>
                     </div>
                   </div>
 
@@ -40,24 +40,18 @@
                     @endif
                    </div  >
 
-                   <div id="div_notificacion_sol" class="myform-bottom col-md-5">
+                   <div id="div_notificacion_sol" class="myform-bottom">
                    	<div class="form-group" style="text-align:center">
-											<br><br>
-											<img  src="{{ url('img/fautapo_2.png') }} " />
-											<br><br>
-										</div>
-                   </div>
-									 <!--div id="div_notificacion_sol" class="col-md-1">
+											<h4>Contacto Cobija</h4>
+											<p> <i class="fa fa-phone"></i> (591) (3) 842-1245 </p>
+											<p> <i class="fa fa-at"></i> fautapo.redamazonica@fundacionautapo.org </p>
+											<p> <i class="fa fa-map-marker"></i> Av. los Tajibos Nº 147 entre Av. 9 de Febrero y Av. Manuripi</p>
 
-									 </div-->
-                   <div id="div_notificacion_sol" class="myform-bottom col-md-7">
-                   	<div class="form-group" style="text-align:center">
-
-											<h4>El Instituto Geográfico Militar se constituye en la actualidad en una de las instituciones
-												con mayor experiencia profesional y renovada tecnología instrumental para la ejecución de diferentes
-												trabajos en el campo de la Cartografía, Geodesia, Fotogrametría, Topografía, Catastro, Recursos Naturales,
-												Demarcación de Limites y trabajos en general, es por ello que a través del Distrito Geográfico de Cobija se
-												presentó la propuesta del  Proyecto: INVENTARIO DE PARCELAS CULTIVADAS DE CACAO Y CAFÉ DE FAUTAPO</h4>
+											<br><br>
+											<h4>Contacto Sede - Tarija</h4>
+											<p> <i class="fa fa-phone"></i> (591) 4 6114208 </p>
+											<p> <i class="fa fa-at"></i> fautapo.tarija@fundacionautapo.org </p>
+											<p> <i class="fa fa-clock-o"></i> Atención de Lunes a Viernes 9:00-17:00</p>
 										 </div>
                    </div>
               </div>
