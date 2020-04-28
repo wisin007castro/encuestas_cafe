@@ -12,14 +12,14 @@
 <div class="col-md-8">
 	<div class="myform-top">
 		<div class="myform-top-left">
-			<h3>Densidad de Plantación de Café</h3>
+			<h3>Sistemas Agroforestales</h3>
 		</div>
 
 	 </div>
     <div class="box-header with-border bg-primary">
         <h3 class="box-title">Respuestas Anteriores</h3>
         <div class="box-tools pull-right">
-		<a href="{{route('form_densidad_agregar')}}" class="btn btn-block btn-success btn-sm">
+		<a href="{{route('form_sist_agroforestales_agregar')}}" class="btn btn-block btn-success btn-sm">
                 <i class="fa fa-fw fa-plus-circle"></i> Nueva Respuesta
             </a>
         </div>
@@ -44,8 +44,8 @@
 			<td>{{ $dato->ano }}</td>
 			<td>{{ f_formato($dato->updated_at) }}</td>
 			<td>
-				<?php $id_densidad_encode = base64_encode($dato->id_densidad); ?>
-				<a href="{{route('form_densidad_editar', ['id_densidad' => $id_densidad_encode])}}" class="btn-accion-tabla">
+				<?php $id_sist_agroforestal_encode = base64_encode($dato->id_sist_agroforestal); ?>
+				<a href="{{route('form_sist_agroforestales_editar', ['id_densidad' => $id_sist_agroforestal_encode])}}" class="btn-accion-tabla">
 					<i class="fa fa-fw fa-edit"></i>
 				</a>
 			{{-- <button type="button" class="btn  btn-default btn-xs" onclick="verinfo_usuario({{  $dato->id_densidad }}, 1)" ><i class="fa fa-fw fa-edit"></i></button> --}}
