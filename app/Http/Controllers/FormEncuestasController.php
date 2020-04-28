@@ -223,10 +223,57 @@ class FormEncuestasController extends Controller
     }
 
     public function controles_guardar(Request $request){
+        $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
 
+        //METODO BIOLOGICO
+        if ($request->biologico == 1) {
+            $biologico_fecha = $request->biologico_fecha;
+            $biologico_producto = $request->biologico_producto;
+        }
+        else {
+            $biologico_fecha = "0000-00-00";
+            $biologico_producto = "";
+        }
+
+        //METODO QUIMICO
+        if ($request->quimico == 1) {
+            $quimico_fecha = $request->quimico_fecha;
+            $quimico_producto = $request->quimico_producto;
+        }
+        else {
+            $quimico_fecha = "0000-00-00";
+            $quimico_producto = "";
+        }
+
+
+        //METODO MECANICO
+        if ($request->mecanico == 1) {
+            $mecanico_fecha = $request->mecanico_fecha;
+            $mecanico_producto = $request->mecanico_producto;
+        }
+        else {
+            $mecanico_fecha = "0000-00-00";
+            $mecanico_producto = "";
+        }
+        \DB::table('enc_controles_maleza')->insert([
+            [
+                'object_id' => Auth::user()->object_id,
+                'biologico' => $request->biologico,
+                'biologico_fecha' => $biologico_fecha,
+                'biologico_producto' => $biologico_producto,
+                'quimico' => $request->quimico,
+                'quimico_fecha' => $quimico_fecha,
+                'quimico_producto' => $quimico_producto,
+                'mecanico' => $request->mecanico,
+                'mecanico_fecha' => $mecanico_fecha,
+                'mecanico_producto' => $mecanico_producto,
+                'created_at' => $tiempo_actual,
+                'updated_at' => $tiempo_actual,
+                'activo' => 1
+                ]
+            ]);
+        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Control de Malezas guardada exitosamente');
     }
-
-
 
         public function sist_agroforestales_guardar(Request $request){
             $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
@@ -334,8 +381,6 @@ class FormEncuestasController extends Controller
             ]);
             return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Sistemas Agroforestales Guardada Exitosamente');
         }
-
-
 
 
 
@@ -639,6 +684,54 @@ class FormEncuestasController extends Controller
 
     }
     public function controles_actualizar(Request $request, $id){
+
+        $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+        //METODO BIOLOGICO
+        if ($request->biologico == 1) {
+            $biologico_fecha = $request->biologico_fecha;
+            $biologico_producto = $request->biologico_producto;
+        }
+        else {
+            $biologico_fecha = "0000-00-00";
+            $biologico_producto = "";
+        }
+
+        //METODO QUIMICO
+        if ($request->quimico == 1) {
+            $quimico_fecha = $request->quimico_fecha;
+            $quimico_producto = $request->quimico_producto;
+        }
+        else {
+            $quimico_fecha = "0000-00-00";
+            $quimico_producto = "";
+        }
+
+        //METODO MECANICO
+        if ($request->mecanico == 1) {
+            $mecanico_fecha = $request->mecanico_fecha;
+            $mecanico_producto = $request->mecanico_producto;
+        }
+        else {
+            $mecanico_fecha = "0000-00-00";
+            $mecanico_producto = "";
+        }
+
+        $dato = \DB::table('enc_controles_maleza')->where('id_control_maleza', $id)->update([
+        [
+            'biologico' => $request->biologico,
+            'biologico_fecha' => $biologico_fecha,
+            'biologico_producto' => $biologico_producto,
+            'quimico' => $request->quimico,
+            'quimico_fecha' => $quimico_fecha,
+            'quimico_producto' => $quimico_producto,
+            'mecanico' => $request->mecanico,
+            'mecanico_fecha' => $mecanico_fecha,
+            'mecanico_producto' => $mecanico_producto,
+            'updated_at' => $tiempo_actual,
+            ]
+        ]);
+        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Control de Malezas actualizada exitosamente');
 
     }
 
