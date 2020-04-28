@@ -19,7 +19,7 @@
     <div class="box-header with-border bg-primary">
         <h3 class="box-title">Respuestas Anteriores</h3>
         <div class="box-tools pull-right">
-		<a href="{{route('form_preparacion_agregar')}}" class="btn btn-block btn-success btn-sm">
+		<a href="{{route('form_controles_agregar')}}" class="btn btn-block btn-success btn-sm">
                 <i class="fa fa-fw fa-plus-circle"></i> Nueva Respuesta
             </a>
         </div>
@@ -32,8 +32,9 @@
 				<tr>
 					<th>#</th>
 					<th>Fecha de Respuesta</th>
-					<th>Metodo</th>
-					<th>Fecha de preparación</th>
+					<th>Metodo Biológico</th>
+					<th>Metodo Químico</th>
+					<th>Metodo Mecánico</th>
 					<th>Acción</th>
 				</tr>
 			</thead>
@@ -41,15 +42,17 @@
 
 		@foreach ($datos as $key => $dato)
 		@php
-			$id_preparacion_encode = base64_encode($dato->id_preparacion)
+			$id_control_encode = base64_encode($dato->id_control_maleza)
 		@endphp
 		 <tr role="row" class="odd">
 			<td>{{ $key + 1 }}</td>
 			<td>{{ f_formato($dato->updated_at) }}</td>
-			<td>{{ $dato->con_quema == 1 ? 'Con Quema' : 'Sin Quema'}}</td>
-			<td>{{ f_formato($dato->fecha) }}</td>
+			<td>{{ $dato->biologico == 1 ? 'SI' : 'NO'}}</td>
+			<td>{{ $dato->quimico == 1 ? 'SI' : 'NO'}}</td>
+			<td>{{ $dato->mecanico == 1 ? 'SI' : 'NO'}}</td>
+			{{-- <td>{{ f_formato($dato->fecha) }}</td> --}}
 			<td>
-				<a href="{{route('form_preparacion_editar', ['id_preparacion' => $id_preparacion_encode])}}" class="btn-accion-tabla">
+				<a href="{{route('form_controles_editar', ['id_control_maleza' => $id_control_encode])}}" class="btn-accion-tabla">
 					<i class="fa fa-fw fa-edit"></i>
 				</a>
 			{{-- <button type="button" class="btn  btn-default btn-xs" onclick="verinfo_usuario({{  $dato->id_densidad }}, 1)" ><i class="fa fa-fw fa-edit"></i></button> --}}

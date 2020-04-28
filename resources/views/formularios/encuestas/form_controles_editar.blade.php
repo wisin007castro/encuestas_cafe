@@ -18,7 +18,7 @@
                     <div class="myform-top-left">
                        {{-- <img  src="" class="img-responsive logo" /> --}}
                       <h3>Control de Maleza</h3>
-                        <p>Por favor responda las siguientes preguntas</p>
+                        <p>Por favor responda las siguientes preguntas (Editando)</p>
                     </div>
                     <div class="myform-top-right">
                       <i class="fa fa-edit"></i>
@@ -45,24 +45,26 @@
                     <form action="{{ route('controles_guardar') }}"  method="post" class="" >
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+
+
                       {{-- METODO BIOLOGICO --}}
                       <br>
                       <h4 style="color:white">Biológico</h4>
                       <div class="form-group">
                         <label >Metodo Biológico</label>
                         <br>
-                        <input type="radio" id="biologico_si" name="biologico" value="1" onchange="mostrar_biologico()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="radio" id="biologico_no" name="biologico" value="0" onchange="mostrar_biologico()"> No
+                        <input type="radio" id="biologico_si" name="biologico" value="1" onchange="mostrar_biologico()" {{ $dato->biologico == 1 ? 'checked' : ''}}> Si &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" id="biologico_no" name="biologico" value="0" onchange="mostrar_biologico()" {{ $dato->biologico == 0 ? 'checked' : ''}}> No
                       </div>
 
                       <div class="content_biologico" id="content_biologico">
                         <div class="form-group">
                           <label >Fecha de Metodo Biológico</label>
-                          <input type="date" name="biologico_fecha" id="biologico_fecha" class="form-control" required>
+                          <input type="date" name="biologico_fecha" id="biologico_fecha" value="{{old('biologico_fecha', $dato->biologico_fecha ?? '')}}" class="form-control" required>
                         </div>
                         <div class="form-group">
                           <label >Producto Metodo Biológico</label>
-                          <input type="text" name="biologico_producto" id="biologico_producto" class="form-control" required>
+                          <input type="text" name="biologico_producto" id="biologico_producto" value="{{old('biologico_producto', $dato->biologico_producto ?? '')}}" class="form-control" required>
                         </div>
                       </div>
 
@@ -72,18 +74,18 @@
                       <div class="form-group">
                         <label >Metodo Químico</label>
                         <br>
-                        <input type="radio" id="quimico_si" name="quimico" value="1" onchange="mostrar_quimico()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="radio" id="quimico_no" name="quimico" value="0" onchange="mostrar_quimico()"> No
+                        <input type="radio" id="quimico_si" name="quimico" value="1" onchange="mostrar_quimico()" {{ $dato->quimico == 1 ? 'checked' : ''}}> Si &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" id="quimico_no" name="quimico" value="0" onchange="mostrar_quimico()" {{ $dato->quimico == 0 ? 'checked' : ''}}> No
                       </div>
 
                       <div class="content_quimico" id="content_quimico">
                         <div class="form-group">
                           <label >Fecha de Metodo Químico</label>
-                          <input type="date" name="quimico_fecha" id="quimico_fecha" class="form-control" required>
+                          <input type="date" name="quimico_fecha" id="quimico_fecha" value="{{old('quimico_fecha', $dato->quimico_fecha ?? '')}}" class="form-control" required>
                         </div>
                         <div class="form-group">
                           <label >Producto Metodo Químico</label>
-                          <input type="text" name="quimico_producto" id="quimico_producto" class="form-control" required>
+                          <input type="text" name="quimico_producto" id="quimico_producto" value="{{old('quimico_producto', $dato->quimico_producto ?? '')}}" class="form-control" required>
                         </div>
                       </div>
 
@@ -93,23 +95,23 @@
                       <div class="form-group">
                         <label >Metodo Mecánico</label>
                         <br>
-                        <input type="radio" id="mecanico_si" name="mecanico" value="1" onchange="mostrar_mecanico()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="radio" id="mecanico_no" name="mecanico" value="0" onchange="mostrar_mecanico()"> No
+                        <input type="radio" id="mecanico_si" name="mecanico" value="1" onchange="mostrar_mecanico()" {{ $dato->mecanico == 1 ? 'checked' : ''}}> Si &nbsp;&nbsp;&nbsp;&nbsp;
+                        <input type="radio" id="mecanico_no" name="mecanico" value="0" onchange="mostrar_mecanico()" {{ $dato->mecanico == 0 ? 'checked' : ''}}> No
                       </div>
 
                       <div class="content_mecanico" id="content_mecanico">
                         <div class="form-group">
                           <label >Fecha de Metodo Mecánico</label>
-                          <input type="date" name="mecanico_fecha" id="mecanico_fecha" class="form-control" required>
+                          <input type="date" name="mecanico_fecha" id="mecanico_fecha" value="{{old('mecanico_fecha', $dato->mecanico_fecha ?? '')}}" class="form-control" required>
                         </div>
                         <div class="form-group">
                           <label >Producto Metodo Mecánico</label>
-                          <input type="text" name="mecanico_producto" id="mecanico_producto" class="form-control" required>
+                          <input type="text" name="mecanico_producto" id="mecanico_producto" value="{{old('mecanico_producto', $dato->mecanico_producto ?? '')}}" class="form-control" required>
                         </div>
                       </div>
 
 												<br>
-                        <button type="submit" class="mybtn">Guardar</button>
+                        <button type="submit" class="mybtn">Actualizar</button>
                       </form>
 
                     </div>
@@ -127,6 +129,9 @@
 
 @parent
 <script type="text/javascript">
+  mostrar_biologico();
+  mostrar_quimico();
+  mostrar_mecanico();
   function mostrar_biologico() {
 		biologico_si = document.getElementById("biologico_si");
 		if (biologico_si.checked) {
