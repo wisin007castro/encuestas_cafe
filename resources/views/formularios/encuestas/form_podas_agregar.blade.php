@@ -44,12 +44,11 @@
 
                     <form action="{{ route('podas_guardar') }}"  method="post" class="" >
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        {{-- <h4 style="color:white">Titulo principal si lo tuviera Ej. Biologico</h4> --}}
-                      {{-- FORMACION DE PLANTAS --}}
+
                         <br>
-                        <h4 style="color:white">Tipos de Podas</h4>
+                        <h4 style="color:white">Poda de Formación de Planta</h4>
                         <div class="form-group">
-                          <label >Formación de Planta</label>
+                          <label >¿Realizó Poda de Formación de Planta?</label>
 													<br>
 													<input type="radio" id="form_planta_si" name="form_planta" value="1" onchange="mostrar_form_planta()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="form_planta_no" name="form_planta" value="0" onchange="mostrar_form_planta()"> No
@@ -57,20 +56,20 @@
 
 												<div class="content_form_planta" id="content_form_planta">
 													<div class="form-group">
-														<label >Fecha de Formación de Planta</label>
+														<label >Fecha de Poda de Formación de Planta</label>
 														<input type="date" name="form_planta_fecha" id="form_planta_fecha" class="form-control" required>
                           </div>
                           <div class="form-group">
-														<label >Recomendación de fecha Final para Formación de Planta</label>
+														<label >Recomendación de Fecha Final para Poda de Formación de Planta</label>
 														<input type="date" name="form_planta_fecha_final" id="form_planta_fecha_final" class="form-control" required>
 													</div>
                         </div>
-                        
+
                       {{-- MANTENIMIENTO --}}
-                      <br>
-                      
+											<br>
+											<h4 style="color:white">Poda de Mantenimiento</h4>
                       <div class="form-group">
-                        <label >Poda de Mantenimiento</label>
+                        <label >¿Realizó Poda de Mantenimiento?</label>
                         <br>
                         <input type="radio" id="mantenimiento_si" name="mantenimiento" value="1" onchange="mostrar_mantenimiento()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="radio" id="mantenimiento_no" name="mantenimiento" value="0" onchange="mostrar_mantenimiento()"> No
@@ -82,16 +81,16 @@
                           <input type="date" name="mantenimiento_fecha" id="mantenimiento_fecha" class="form-control" required>
                         </div>
                         <div class="form-group">
-                          <label >Recomendación de fecha Final para Poda de Mantenimiento</label>
+                          <label >Recomendación de Fecha Final para Poda de Mantenimiento</label>
                           <input type="date" name="mantenimiento_fecha_final" id="mantenimiento_fecha_final" class="form-control" required>
                         </div>
                       </div>
 
                       {{-- SELECCION DE BROTES --}}
                       <br>
-                      
+											<h4 style="color:white">Poda de Selección de Brotes</h4>
                       <div class="form-group">
-                        <label >Selección de Brotes</label>
+                        <label >¿Realizó Poda de Selección de Brotes?</label>
                         <br>
                         <input type="radio" id="sel_brotes_si" name="sel_brotes" value="1" onchange="mostrar_sel_brotes()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="radio" id="sel_brotes_no" name="sel_brotes" value="0" onchange="mostrar_sel_brotes()"> No
@@ -99,11 +98,11 @@
 
                       <div class="content_sel_brotes" id="content_sel_brotes">
                         <div class="form-group">
-                          <label >Fecha de Selección de Brotes</label>
+                          <label >Fecha de Poda de Selección de Brotes</label>
                           <input type="date" name="sel_brotes_fecha" id="sel_brotes_fecha" class="form-control" required>
                         </div>
                         <div class="form-group">
-                          <label >Recomendación de fecha Final para Selección de Brotes</label>
+                          <label >Recomendación de Fecha Final para Poda de Selección de Brotes</label>
                           <input type="date" name="sel_brotes_fecha_final" id="sel_brotes_fecha_final" class="form-control" required>
                         </div>
                       </div>
@@ -111,9 +110,9 @@
 
                       {{-- REHABILITACION --}}
                       <br>
-                      
+											<h4 style="color:white">Poda de Rehabilitación</h4>
                       <div class="form-group">
-                        <label >Poda de Rehabilitación</label>
+                        <label >¿Realizó Poda de Rehabilitación?</label>
                         <br>
                         <input type="radio" id="rehabilitacion_si" name="rehabilitacion" value="1" onchange="mostrar_rehabilitacion()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="radio" id="rehabilitacion_no" name="rehabilitacion" value="0" onchange="mostrar_rehabilitacion()"> No
@@ -125,16 +124,16 @@
                           <input type="date" name="rehabilitacion_fecha" id="rehabilitacion_fecha" class="form-control" required>
                         </div>
                         <div class="form-group">
-                          <label >Recomendación de fecha Final para Poda de Rehabilitación</label>
+                          <label >Recomendación de Fecha Final para Poda de Rehabilitación</label>
                           <input type="date" name="rehabilitacion_fecha_final" id="rehabilitacion_fecha_final" class="form-control" required>
                         </div>
                       </div>
 
                       {{-- RENOVACION --}}
                       <br>
-                      
+											<h4 style="color:white">Poda de Renovación</h4>
                       <div class="form-group">
-                        <label >Poda de Renovación</label>
+                        <label >¿Realizó Poda de Renovación?</label>
                         <br>
                         <input type="radio" id="renovacion_si" name="renovacion" value="1" onchange="mostrar_renovacion()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="radio" id="renovacion_no" name="renovacion" value="0" onchange="mostrar_renovacion()"> No
@@ -146,16 +145,16 @@
                           <input type="date" name="renovacion_fecha" id="renovacion_fecha" class="form-control" required>
                         </div>
                         <div class="form-group">
-                          <label >Recomendación de fecha Final para Poda de Renovación</label>
+                          <label >Recomendación de Fecha Final para Poda de Renovación</label>
                           <input type="date" name="renovacion_fecha_final" id="renovacion_fecha_final" class="form-control" required>
                         </div>
                       </div>
 
                       {{-- DESHOJE Y DESPUNTE --}}
                       <br>
-                      
+											<h4 style="color:white">Deshoje y Despunte</h4>
                       <div class="form-group">
-                        <label >Deshoje y Despunte</label>
+                        <label >¿Realizó Deshoje y Despunte?</label>
                         <br>
                         <input type="radio" id="deshoje_despunte_si" name="deshoje_despunte" value="1" onchange="mostrar_deshoje_despunte()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="radio" id="deshoje_despunte_no" name="deshoje_despunte" value="0" onchange="mostrar_deshoje_despunte()"> No
@@ -167,7 +166,7 @@
                           <input type="date" name="deshoje_despunte_fecha" id="deshoje_despunte_fecha" class="form-control" required>
                         </div>
                         <div class="form-group">
-                          <label >Recomendación de fecha Final para Deshoje y Despunte</label>
+                          <label >Recomendación de Fecha Final para Deshoje y Despunte</label>
                           <input type="date" name="deshoje_despunte_fecha_final" id="deshoje_despunte_fecha_final" class="form-control" required>
                         </div>
                       </div>

@@ -18,7 +18,7 @@
                     <div class="myform-top-left">
                        {{-- <img  src="" class="img-responsive logo" /> --}}
                       <h3>Encuesta - Sistemas Agroforestales</h3>
-                        <p>Por favor responda las siguientes preguntas</p>
+                        <p>Por favor responda las siguientes preguntas (Editando)</p>
                     </div>
                     <div class="myform-top-right">
                       <i class="fa fa-edit"></i>
@@ -248,16 +248,15 @@
 
 @parent
 <script type="text/javascript">
-window.onload=function() {
-	//Ejecutamos todas las funciones
-	mostrar_pacay();
-	mostrar_platano();
-	mostrar_citricos();
-	mostrar_maderables();
-	mostrar_frutas_amazonicas();
-	mostrar_otros();
-}
-
+	window.onload=function() {
+		//Ejecutamos todas las funciones
+		mostrar_pacay();
+		mostrar_platano();
+		mostrar_citricos();
+		mostrar_maderables();
+		mostrar_frutas_amazonicas();
+		mostrar_otros();
+	}
 </script>
 
 <script type="text/javascript">

@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-
 use DateTime;
-use Illuminate\Support\Facades\Auth;
 
 class FormEncuestasController extends Controller
 {
@@ -128,9 +126,9 @@ class FormEncuestasController extends Controller
                 'activo' => 1
                 ]
         ]);
-        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Información Básica guardada exitosamente');
+        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Información Básica (Zona de Plantación) Guardada Exitosamente');
     }
-    
+
     public function podas_guardar(Request $request){
         $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
 
@@ -221,7 +219,7 @@ class FormEncuestasController extends Controller
                 ]
             ]);
 
-            return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Podas guardada exitosamente');
+            return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Podas Guardada Exitosamente');
     }
 
     public function controles_guardar(Request $request){
@@ -529,8 +527,8 @@ class FormEncuestasController extends Controller
 
        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Sistemas Agroforestales Actualizada Exitosamente');
     }
-  
-  
+
+
     public function preparacion_actualizar(Request $request, $id){
 
         $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
@@ -548,7 +546,7 @@ class FormEncuestasController extends Controller
             'sin_quema' => $sin_quema,
             'updated_at' => $tiempo_actual
         ]);
-        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Información Básica actualizada exitosamente');
+        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Información Básica Actualizada Exitosamente');
     }
 
 
@@ -637,7 +635,7 @@ class FormEncuestasController extends Controller
                 'updated_at' => $tiempo_actual,
             ]);
 
-            return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Podas guardada exitosamente');
+            return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Podas Actualizada Exitosamente');
 
     }
     public function controles_actualizar(Request $request, $id){

@@ -18,7 +18,7 @@
                     <div class="myform-top-left">
                        {{-- <img  src="" class="img-responsive logo" /> --}}
                       <h3>Encuesta - Densidad de Plantación de Café</h3>
-                        <p>Por favor responda las siguientes preguntas (edición)</p>
+                        <p>Por favor responda las siguientes preguntas (Editando)</p>
                     </div>
                     <div class="myform-top-right">
                       <i class="fa fa-edit"></i>
