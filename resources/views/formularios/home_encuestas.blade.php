@@ -14,16 +14,22 @@
             <div class="row">
               <div class="col-sm-8 col-sm-offset-2 myform-cont" >
 
-                     <div class="myform-top">
-                        <div class="myform-top-left">
-                           {{-- <img  src="" class="img-responsive logo" /> --}}
-                          <h3>Monitoreo de Plantaciones de Café</h3>
-                            <p>Por favor pulse sobre la cada uno de los botones para llenar las diferentes encuestas</p>
-                        </div>
-                        <div class="myform-top-right">
-                          <i class="fa fa-edit"></i>
-                        </div>
-                      </div>
+									@if(session()->has('mensaje_exito'))
+										<div class="alert alert-success">
+										{{ session()->get('mensaje_exito') }}
+										</div>
+									@endif
+
+                 <div class="myform-top">
+                    <div class="myform-top-left">
+                       {{-- <img  src="" class="img-responsive logo" /> --}}
+                      <h3>Monitoreo de Plantaciones de Café</h3>
+                        <p>Por favor pulse sobre la cada uno de los botones para llenar las diferentes encuestas</p>
+                    </div>
+                    <div class="myform-top-right">
+                      <i class="fa fa-edit"></i>
+                    </div>
+                  </div>
 
                   <div class="col-md-12" >
                     @if (count($errors) > 0)

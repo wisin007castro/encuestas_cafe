@@ -53,8 +53,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('form_enc_controles_maleza', 'FormEncuestasController@form_enc_controles_maleza');
     Route::post('form_densidad_tabla', 'FormEncuestasController@form_densidad_tabla');
     Route::get('form_densidad_agregar', 'FormEncuestasController@form_densidad_agregar');
-    Route::get('form_sist_agroforestales_agregar', 'FormEncuestasController@form_sist_agroforestales_agregar');
 
+
+    Route::post('form_sist_agroforestales_tabla', 'FormEncuestasController@form_sist_agroforestales_tabla');
 
 
     Route::get('listado_densidad', 'FormEncuestasController@listado_densidad');
@@ -64,6 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
     //FORMS AGREAGAR
     Route::get('form_densidad_agregar', 'FormEncuestasController@form_densidad_agregar')->name('form_densidad_agregar');
     Route::get('form_preparacion_agregar', 'FormEncuestasController@form_preparacion_agregar')->name('form_preparacion_agregar');
+    Route::get('form_sist_agroforestales_agregar', 'FormEncuestasController@form_sist_agroforestales_agregar')->name('form_sist_agroforestales_agregar');;
 
 
 
@@ -72,6 +74,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //FORMS GUARDAR
     Route::post('densidad_guardar', 'FormEncuestasController@densidad_guardar')->name('densidad_guardar');
+    Route::post('sist_agroforestales_guardar', 'FormEncuestasController@sist_agroforestales_guardar')->name('sist_agroforestales_guardar');
     Route::post('preparacion_guardar', 'FormEncuestasController@preparacion_guardar')->name('preparacion_guardar');
 
 
@@ -81,6 +84,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     //FORMS EDITAR
     Route::get('form_densidad_editar/{id}', 'FormEncuestasController@form_densidad_editar')->name('form_densidad_editar');
+    Route::get('form_sist_agroforestales_editar/{id}', 'FormEncuestasController@form_sist_agroforestales_editar')->name('form_sist_agroforestales_editar');
 
 
 
@@ -89,6 +93,7 @@ Route::group(['middleware' => 'auth'], function () {
     //FORMS ACTUALIZAR
     Route::post('densidad_actualizar/{id}', 'FormEncuestasController@densidad_actualizar')->name('densidad_actualizar');
     Route::post('preparacion_actualizar/{id}', 'FormEncuestasController@preparacion_actualizar')->name('preparacion_actualizar');
+    Route::post('sist_agroforestales_actualizar/{id}', 'FormEncuestasController@sist_agroforestales_guardar')->name('sist_agroforestales_actualizar');
 
 
 

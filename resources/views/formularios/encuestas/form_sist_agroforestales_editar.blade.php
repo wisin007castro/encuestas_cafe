@@ -42,12 +42,12 @@
 
                     <div id="div_notificacion_sol" class="myform-bottom">
 
-                    <form action="{{ route('sist_agroforestales_guardar') }}" method="post" class="">
+                    <form action="{{ route('sist_agroforestales_actualizar', ['id' => $dato->id_sist_agroforestal]) }}" method="post" class="">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 												<div class="form-group">
 													<label >Año en que se produjo el registro de los datos que introducirá</label>
-													<input type="number" min="1500" max="2050" step="1" name="ano" class="form-control" required>
+													<input type="number" min="1500" max="2050" step="1" name="ano" class="form-control" value="{{old('ano', $dato->ano ?? '')}}" required>
                         </div>
 
 												<br>
@@ -55,26 +55,26 @@
                         <div class="form-group">
                           <label >¿Tiene cultivos de Pacay asociados con el café?</label>
 													<br>
-													<input type="radio" id="pacay_si" name="pacay" value="1" onchange="mostrar_pacay()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
-													<input type="radio" id="pacay_no" name="pacay" value="0" onchange="mostrar_pacay()"> No
+													<input type="radio" id="pacay_si" name="pacay" value="1" onchange="mostrar_pacay()" <?php if ($dato->pacay==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
+													<input type="radio" id="pacay_no" name="pacay" value="0" onchange="mostrar_pacay()" <?php if ($dato->pacay==0){echo "checked";}?>> No
 												</div>
 
 												<div class="content_pacay" id="content_pacay">
 													<div class="form-group">
 														<label >Fecha de Siembra de Pacay</label>
-														<input type="date" name="pacay_fecha_siembra" id="pacay_fecha_siembra" class="form-control" required>
+														<input type="date" name="pacay_fecha_siembra" id="pacay_fecha_siembra" class="form-control" value="{{old('pacay_fecha_siembra', $dato->pacay_fecha_siembra ?? '')}}" required>
 													</div>
 
 													<div class="form-group">
 														<label >Cantidad Aproximada de Plantas de Pacay</label>
-														<input type="number" min="0" step="1" name="pacay_cantidad" id="pacay_cantidad" class="form-control" required>
+														<input type="number" min="0" step="1" name="pacay_cantidad" id="pacay_cantidad" class="form-control" value="{{old('pacay_cantidad', $dato->pacay_cantidad ?? '')}}" required>
 	                        </div>
 
 													<div class="form-group">
 														<label >¿La Siembra de Pacay es Permanente?</label>
 														<select class="form-control" name="pacay_permanente" id="pacay_permanente" required>
-					                    <option value="1">Si</option>
-					                    <option value="0">No</option>
+					                    <option value="1" <?php if ($dato->pacay_permanente==1){echo "selected";}?>>Si</option>
+					                    <option value="0" <?php if ($dato->pacay_permanente==0){echo "selected";}?>>No</option>
 					            			</select>
 	                        </div>
 												</div>
@@ -84,26 +84,26 @@
                         <div class="form-group">
                           <label >¿Tiene cultivos de Plátano asociados con el café?</label>
 													<br>
-													<input type="radio" id="platano_si" name="platano" value="1" onchange="mostrar_platano()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
-													<input type="radio" id="platano_no" name="platano" value="0" onchange="mostrar_platano()"> No
+													<input type="radio" id="platano_si" name="platano" value="1" onchange="mostrar_platano()" <?php if ($dato->platano==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
+													<input type="radio" id="platano_no" name="platano" value="0" onchange="mostrar_platano()" <?php if ($dato->platano==0){echo "checked";}?>> No
 												</div>
 
 												<div class="content_platano" id="content_platano">
 													<div class="form-group">
 														<label >Fecha de Siembra de Plátanos</label>
-														<input type="date" name="platano_fecha_siembra" id="platano_fecha_siembra" class="form-control" required>
+														<input type="date" name="platano_fecha_siembra" id="platano_fecha_siembra" class="form-control" value="{{old('platano_fecha_siembra', $dato->platano_fecha_siembra ?? '')}}"required>
 													</div>
 
 													<div class="form-group">
 														<label >Cantidad Aproximada de Plantas de Plátano</label>
-														<input type="number" min="0" step="1" name="platano_cantidad" id="platano_cantidad" class="form-control" required>
+														<input type="number" min="0" step="1" name="platano_cantidad" id="platano_cantidad" class="form-control" value="{{old('platano_cantidad', $dato->platano_cantidad ?? '')}}" required>
 	                        </div>
 
 													<div class="form-group">
 														<label >¿La Siembra de Plátanos es Permanente?</label>
 														<select class="form-control" name="platano_permanente" id="platano_permanente" required>
-					                    <option value="1">Si</option>
-					                    <option value="0">No</option>
+					                    <option value="1" <?php if ($dato->platano_permanente==1){echo "selected";}?>>Si</option>
+					                    <option value="0" <?php if ($dato->platano_permanente==0){echo "selected";}?>>No</option>
 					            			</select>
 	                        </div>
 												</div>
@@ -113,26 +113,26 @@
                         <div class="form-group">
                           <label >¿Tiene cultivos de Cítricos asociados con el café?</label>
 													<br>
-													<input type="radio" id="citricos_si" name="citricos" value="1" onchange="mostrar_citricos()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
-													<input type="radio" id="citricos_no" name="citricos" value="0" onchange="mostrar_citricos()"> No
+													<input type="radio" id="citricos_si" name="citricos" value="1" onchange="mostrar_citricos()" <?php if ($dato->citricos==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
+													<input type="radio" id="citricos_no" name="citricos" value="0" onchange="mostrar_citricos()" <?php if ($dato->citricos==0){echo "checked";}?>> No
 												</div>
 
 												<div class="content_citricos" id="content_citricos">
 													<div class="form-group">
 														<label >Fecha de Siembra de Cítricos</label>
-														<input type="date" name="citricos_fecha_siembra" id="citricos_fecha_siembra" class="form-control" required>
+														<input type="date" name="citricos_fecha_siembra" id="citricos_fecha_siembra" class="form-control" value="{{old('citricos_fecha_siembra', $dato->citricos_fecha_siembra ?? '')}}" required>
 													</div>
 
 													<div class="form-group">
 														<label >Cantidad Aproximada de Plantas de Cítricos</label>
-														<input type="number" min="0" step="1" name="citricos_cantidad" id="citricos_cantidad" class="form-control" required>
+														<input type="number" min="0" step="1" name="citricos_cantidad" id="citricos_cantidad" class="form-control" value="{{old('citricos_cantidad', $dato->citricos_cantidad ?? '')}}" required>
 	                        </div>
 
 													<div class="form-group">
 														<label >¿La Siembra de Cítricos es Permanente?</label>
 														<select class="form-control" name="citricos_permanente" id="citricos_permanente" required>
-					                    <option value="1">Si</option>
-					                    <option value="0">No</option>
+					                    <option value="1" <?php if ($dato->citricos_permanente==1){echo "selected";}?>>Si</option>
+					                    <option value="0" <?php if ($dato->citricos_permanente==0){echo "selected";}?>>No</option>
 					            			</select>
 	                        </div>
 												</div>
@@ -142,26 +142,26 @@
                         <div class="form-group">
                           <label >¿Tiene cultivos de Maderables asociados con el café?</label>
 													<br>
-													<input type="radio" id="maderables_si" name="maderables" value="1" onchange="mostrar_maderables()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
-													<input type="radio" id="maderables_no" name="maderables" value="0" onchange="mostrar_maderables()"> No
+													<input type="radio" id="maderables_si" name="maderables" value="1" onchange="mostrar_maderables()" <?php if ($dato->maderables==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
+													<input type="radio" id="maderables_no" name="maderables" value="0" onchange="mostrar_maderables()" <?php if ($dato->maderables==0){echo "checked";}?>> No
 												</div>
 
 												<div class="content_maderables" id="content_maderables">
 													<div class="form-group">
 														<label >Fecha de Siembra de Maderables</label>
-														<input type="date" name="maderables_fecha_siembra" id="maderables_fecha_siembra" class="form-control" required>
+														<input type="date" name="maderables_fecha_siembra" id="maderables_fecha_siembra" class="form-control" value="{{old('maderables_fecha_siembra', $dato->maderables_fecha_siembra ?? '')}}" required>
 													</div>
 
 													<div class="form-group">
 														<label >Cantidad Aproximada de Plantas de Maderables</label>
-														<input type="number" min="0" step="1" name="maderables_cantidad" id="maderables_cantidad" class="form-control" required>
+														<input type="number" min="0" step="1" name="maderables_cantidad" id="maderables_cantidad" class="form-control" value="{{old('maderables_cantidad', $dato->maderables_cantidad ?? '')}}" required>
 	                        </div>
 
 													<div class="form-group">
 														<label >¿La Siembra de Maderables es Permanente?</label>
 														<select class="form-control" name="maderables_permanente" id="maderables_permanente" required>
-					                    <option value="1">Si</option>
-					                    <option value="0">No</option>
+					                    <option value="1" <?php if ($dato->maderables_permanente==1){echo "selected";}?>>Si</option>
+					                    <option value="0" <?php if ($dato->maderables_permanente==0){echo "selected";}?>>No</option>
 					            			</select>
 	                        </div>
 												</div>
@@ -171,26 +171,26 @@
                         <div class="form-group">
                           <label >¿Tiene cultivos de Frutas Amazónicas asociados con el café?</label>
 													<br>
-													<input type="radio" id="frutas_amazonicas_si" name="frutas_amazonicas" value="1" onchange="mostrar_frutas_amazonicas()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
-													<input type="radio" id="frutas_amazonicas_no" name="frutas_amazonicas" value="0" onchange="mostrar_frutas_amazonicas()"> No
+													<input type="radio" id="frutas_amazonicas_si" name="frutas_amazonicas" value="1" onchange="mostrar_frutas_amazonicas()" <?php if ($dato->frutas_amazonicas==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
+													<input type="radio" id="frutas_amazonicas_no" name="frutas_amazonicas" value="0" onchange="mostrar_frutas_amazonicas()" <?php if ($dato->frutas_amazonicas==0){echo "checked";}?>> No
 												</div>
 
 												<div class="content_frutas_amazonicas" id="content_frutas_amazonicas">
 													<div class="form-group">
 														<label >Fecha de Siembra de Frutas Amazónicas</label>
-														<input type="date" name="frutas_amazonicas_fecha_siembra" id="frutas_amazonicas_fecha_siembra" class="form-control" required>
+														<input type="date" name="frutas_amazonicas_fecha_siembra" id="frutas_amazonicas_fecha_siembra" class="form-control" value="{{old('frutas_amazonicas_fecha_siembra', $dato->frutas_amazonicas_fecha_siembra ?? '')}}" required>
 													</div>
 
 													<div class="form-group">
 														<label >Cantidad Aproximada de Plantas de Frutas Amazónicas</label>
-														<input type="number" min="0" step="1" name="frutas_amazonicas_cantidad" id="frutas_amazonicas_cantidad" class="form-control" required>
+														<input type="number" min="0" step="1" name="frutas_amazonicas_cantidad" id="frutas_amazonicas_cantidad" class="form-control" value="{{old('frutas_amazonicas_cantidad', $dato->frutas_amazonicas_cantidad ?? '')}}" required>
 	                        </div>
 
 													<div class="form-group">
 														<label >¿La Siembra de Frutas Amazónicas es Permanente?</label>
 														<select class="form-control" name="frutas_amazonicas_permanente" id="frutas_amazonicas_permanente" required>
-					                    <option value="1">Si</option>
-					                    <option value="0">No</option>
+					                    <option value="1" <?php if ($dato->frutas_amazonicas_permanente==1){echo "selected";}?>>Si</option>
+					                    <option value="0" <?php if ($dato->frutas_amazonicas_permanente==0){echo "selected";}?>>No</option>
 					            			</select>
 	                        </div>
 												</div>
@@ -200,37 +200,37 @@
                         <div class="form-group">
                           <label >¿Tiene otros cultivos asociados con el café? (No registrados previamente)</label>
 													<br>
-													<input type="radio" id="otros_si" name="otros" value="1" onchange="mostrar_otros()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
-													<input type="radio" id="otros_no" name="otros" value="0" onchange="mostrar_otros()"> No
+													<input type="radio" id="otros_si" name="otros" value="1" onchange="mostrar_otros()" <?php if ($dato->otros==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
+													<input type="radio" id="otros_no" name="otros" value="0" onchange="mostrar_otros()" <?php if ($dato->otros==0){echo "checked";}?>> No
 												</div>
 
 												<div class="content_otros" id="content_otros">
 													<div class="form-group">
 														<label >Nombre del Cultivo Asociado</label>
-														<input type="text" name="otros_descripcion" id="otros_descripcion" class="form-control" required>
+														<input type="text" name="otros_descripcion" id="otros_descripcion" class="form-control" value="{{old('otros_descripcion', $dato->otros_descripcion ?? '')}}" required>
 													</div>
 
 													<div class="form-group">
 														<label >Fecha de Siembra</label>
-														<input type="date" name="otros_fecha_siembra" id="otros_fecha_siembra" class="form-control" required>
+														<input type="date" name="otros_fecha_siembra" id="otros_fecha_siembra" class="form-control" value="{{old('otros_fecha_siembra', $dato->otros_fecha_siembra ?? '')}}" required>
 													</div>
 
 													<div class="form-group">
 														<label >Cantidad Aproximada de Plantas</label>
-														<input type="number" min="0" step="1" name="otros_cantidad" id="otros_cantidad" class="form-control" required>
+														<input type="number" min="0" step="1" name="otros_cantidad" id="otros_cantidad" class="form-control" value="{{old('otros_cantidad', $dato->otros_cantidad ?? '')}}" required>
 	                        </div>
 
 													<div class="form-group">
 														<label >¿La Siembra es Permanente?</label>
 														<select class="form-control" name="otros_permanente" id="otros_permanente" required>
-					                    <option value="1">Si</option>
-					                    <option value="0">No</option>
+					                    <option value="1" <?php if ($dato->otros_permanente==1){echo "selected";}?>>Si</option>
+					                    <option value="0" <?php if ($dato->otros_permanente==0){echo "selected";}?>>No</option>
 					            			</select>
 	                        </div>
 												</div>
 
 												<br>
-                        <button type="submit" class="mybtn">Guardar</button>
+                        <button type="submit" class="mybtn">Editar</button>
                       </form>
 
                     </div>
@@ -247,6 +247,19 @@
 @section('scripts')
 
 @parent
+<script type="text/javascript">
+window.onload=function() {
+	//Ejecutamos todas las funciones
+	mostrar_pacay();
+	mostrar_platano();
+	mostrar_citricos();
+	mostrar_maderables();
+	mostrar_frutas_amazonicas();
+	mostrar_otros();
+}
+
+</script>
+
 <script type="text/javascript">
   function mostrar_pacay() {
 		pacay_si = document.getElementById("pacay_si");
