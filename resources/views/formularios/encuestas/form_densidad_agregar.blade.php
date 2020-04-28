@@ -42,9 +42,13 @@
 
                     <div id="div_notificacion_sol" class="myform-bottom">
 
-                    <form action="{{ route('form_densidad_guardar') }}"  method="post" class="" >
+                    <form action="{{ route('densidad_guardar') }}"  method="post" class="" >
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-												<h4 style="color:white">Titulo principal si lo tuviera Ej. Biologico</h4>
+												<div class="form-group">
+													<label >Año en que se produjo el registro de los datos que introducirá</label>
+													<input type="number" min="1500" max="2050" step="1" name="ano" class="form-control" required>
+												</div>
+
                         <div class="form-group">
                           <label >Densidad de Siembra</label>
                           <input type="number" min="0" step="1" oninput="calculo_cantidad_plantas()" name="densidad" id="densidad" placeholder="0" class="form-control" value="" required/ >
@@ -70,7 +74,7 @@
                           <input type="number" name="plntas_efectivas" id="plantas_efectivas" placeholder="0" class="form-control" value="" readonly/>
                         </div>
 												<br>
-                        <button type="submit" class="mybtn">Registrar</button>
+                        <button type="submit" class="mybtn">Guardar</button>
                       </form>
 
                     </div>

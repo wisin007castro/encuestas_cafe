@@ -103,7 +103,7 @@
                         <!-- Menu Toggle Button -->
                           <a href="{{ url('/logout') }}"
                                    onclick="event.preventDefault();
-                                       document.getElementById('logout-form').submit();"  class="btn btn-primary btn-flat btn-block">
+                                       document.getElementById('logout-form').submit();">
                             <!-- The user image in the navbar-->
                             <img src="{{asset('/img/on_off.png')}}" class="user-image" alt="User Image"/>
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->

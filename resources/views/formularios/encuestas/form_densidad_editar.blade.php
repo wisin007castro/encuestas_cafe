@@ -18,7 +18,7 @@
                     <div class="myform-top-left">
                        {{-- <img  src="" class="img-responsive logo" /> --}}
                       <h3>Encuesta - Densidad de Plantación de Café</h3>
-                        <p>Por favor responda las siguientes preguntas (edición)</p>
+                        <p>Por favor responda las siguientes preguntas (Editando)</p>
                     </div>
                     <div class="myform-top-right">
                       <i class="fa fa-edit"></i>
@@ -39,12 +39,16 @@
 
                     @endif
                    </div  >
-                   
+
                     <div id="div_notificacion_sol" class="myform-bottom">
 
-                    <form action="{{ route('form_densidad_actualizar', ['id' => $dato->id_densidad]) }}"  method="post" id="f_enviar_gastronomia" class="" >
+                    <form action="{{ route('densidad_actualizar', ['id' => $dato->id_densidad]) }}"  method="post" id="f_enviar_gastronomia" class="" >
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-												<h4 style="color:white">Titulo principal si lo tuviera Ej. Biologico</h4>
+												<div class="form-group">
+													<label >Año en que se produjo el registro de los datos que introducirá</label>
+													<input type="number" min="1500" max="2050" step="1" name="ano" class="form-control" value="{{old('ano', $dato->ano ?? '')}}" required>
+												</div>
+
                         <div class="form-group">
                           <label >Densidad de Siembra</label>
                           <input type="number" min="0" step="1" oninput="calculo_cantidad_plantas()" name="densidad" id="densidad" placeholder="0" class="form-control" value="{{old('densidad', $dato->densidad ?? '')}}" required/ >
@@ -52,12 +56,12 @@
 
                         <div class="form-group">
                           <label >Superficie en Hectáreas (Ha)</label>
-                          <input type="number" min="0" step="0.01" oninput="calculo_cantidad_plantas()" name="superficie" id="superficie" placeholder="0" class="form-control" value="" required/>
+                          <input type="number" min="0" step="0.01" oninput="calculo_cantidad_plantas()" name="superficie" id="superficie" placeholder="0" class="form-control" value="{{old('superficie', $dato->superficie ?? '')}}" required/>
                         </div>
 
                         <div class="form-group">
                           <label >Cantidad de Plantas</label>
-                          <input type="number" name="cantidad_plantas" id="cantidad_plantas" placeholder="0" class="form-control" value="" readonly/>
+                          <input type="number" name="cantidad_plantas" id="cantidad_plantas" placeholder="0" class="form-control" value="{{old('cantidad_plantas', $dato->cantidad_plantas ?? '')}}" readonly/>
                         </div>
 
                         <div class="form-group">
@@ -67,10 +71,10 @@
 
                         <div class="form-group">
                           <label >Plantas Efectivas</label>
-                          <input type="number" name="plntas_efectivas" id="plantas_efectivas" placeholder="0" class="form-control" value="" readonly/>
+                          <input type="number" name="plntas_efectivas" id="plantas_efectivas" placeholder="0" class="form-control" value="{{old('plantas_efectivas', $dato->plantas_efectivas ?? '')}}" readonly/>
                         </div>
 												<br>
-                        <button type="submit" class="mybtn">Registrar</button>
+                        <button type="submit" class="mybtn">Editar</button>
                       </form>
 
                     </div>

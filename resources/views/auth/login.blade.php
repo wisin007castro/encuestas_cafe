@@ -21,12 +21,13 @@
               <div class="col-sm-6 col-sm-offset-3 myform-cont" >
                     <div class="myform-top">
                         <div class="myform-top-left">
-                         <img  src="{{ url('img/logo_cafe.png') }} " class="img-responsive logo" />
-                          <h3>Productores de Café y Cocoa</h3>
+                          <img  src="{{ url('img/logo_cafe.png') }} " class="img-responsive logo" />
+                          <h3>Productores de Café y Cacao</h3>
                             <p>Digita tu usuario y contraseña:</p>
                         </div>
                         <div class="myform-top-right">
-                          <i class="fa fa-key"></i>
+                          <img  src="{{ url('img/fautapo.png') }} " class="img-responsive logo" />
+                          <!--i class="fa fa-key"></i-->
                         </div>
                     </div>
 
@@ -43,7 +44,7 @@
                 </div>
                 @endif
                     <div class="myform-bottom">
-
+                      <br>
                       <form role="form" action="{{ url('/login') }}" method="post" >
                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group">
