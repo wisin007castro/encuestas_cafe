@@ -67,7 +67,7 @@
                           </div>
                         </div>
 												<br>
-                        <button type="submit" class="mybtn">Guardar</button>
+                        <button type="submit" class="mybtn">Registrar</button>
                       </form>
 
                     </div>
