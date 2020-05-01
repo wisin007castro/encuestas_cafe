@@ -45,11 +45,11 @@
                     <form action="{{ route('controles_guardar') }}"  method="post" class="" >
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                      {{-- METODO BIOLOGICO --}}
-                      <br>
-                      <h4 style="color:white">Biológico</h4>
+											{{-- METODO BIOLÓGICO --}}
+											<br>
+                      <h4 style="color:white">Métodos Biológicos</h4>
                       <div class="form-group">
-                        <label >Metodo Biológico</label>
+                        <label >¿Empleó métodos biológicos para el control de maleza?</label>
                         <br>
                         <input type="radio" id="biologico_si" name="biologico" value="1" onchange="mostrar_biologico()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="radio" id="biologico_no" name="biologico" value="0" onchange="mostrar_biologico()"> No
@@ -57,20 +57,20 @@
 
                       <div class="content_biologico" id="content_biologico">
                         <div class="form-group">
-                          <label >Fecha de Metodo Biológico</label>
+                          <label >Fecha en que se emplearon Metodos Biológicos</label>
                           <input type="date" name="biologico_fecha" id="biologico_fecha" class="form-control" required>
                         </div>
                         <div class="form-group">
-                          <label >Producto Metodo Biológico</label>
+                          <label >Producto Biológico empleado</label>
                           <input type="text" name="biologico_producto" id="biologico_producto" class="form-control" required>
                         </div>
                       </div>
 
                       {{-- METODO QUIMICO --}}
                       <br>
-                      <h4 style="color:white">Químico</h4>
+                      <h4 style="color:white">Métodos Químicos</h4>
                       <div class="form-group">
-                        <label >Metodo Químico</label>
+                        <label >¿Empleó métodos químicos para el control de maleza?</label>
                         <br>
                         <input type="radio" id="quimico_si" name="quimico" value="1" onchange="mostrar_quimico()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="radio" id="quimico_no" name="quimico" value="0" onchange="mostrar_quimico()"> No
@@ -78,20 +78,20 @@
 
                       <div class="content_quimico" id="content_quimico">
                         <div class="form-group">
-                          <label >Fecha de Metodo Químico</label>
+                          <label >Fecha en que se emplearon Metodos Químicos</label>
                           <input type="date" name="quimico_fecha" id="quimico_fecha" class="form-control" required>
                         </div>
                         <div class="form-group">
-                          <label >Producto Metodo Químico</label>
+                          <label >Producto Químico empleado</label>
                           <input type="text" name="quimico_producto" id="quimico_producto" class="form-control" required>
                         </div>
                       </div>
 
                       {{-- METODO mecanico --}}
                       <br>
-                      <h4 style="color:white">Mecánico</h4>
+                      <h4 style="color:white">Métodos Mecánicos</h4>
                       <div class="form-group">
-                        <label >Metodo Mecánico</label>
+                        <label >¿Empleó métodos mecánicos para el control de maleza?</label>
                         <br>
                         <input type="radio" id="mecanico_si" name="mecanico" value="1" onchange="mostrar_mecanico()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="radio" id="mecanico_no" name="mecanico" value="0" onchange="mostrar_mecanico()"> No
@@ -99,11 +99,11 @@
 
                       <div class="content_mecanico" id="content_mecanico">
                         <div class="form-group">
-                          <label >Fecha de Metodo Mecánico</label>
+                          <label >Fecha en que se emplearon Metodos Mecánicos</label>
                           <input type="date" name="mecanico_fecha" id="mecanico_fecha" class="form-control" required>
                         </div>
                         <div class="form-group">
-                          <label >Producto Metodo Mecánico</label>
+                          <label >Producto Mecánico empleado</label>
                           <input type="text" name="mecanico_producto" id="mecanico_producto" class="form-control" required>
                         </div>
                       </div>

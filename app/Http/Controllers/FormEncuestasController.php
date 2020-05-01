@@ -272,7 +272,7 @@ class FormEncuestasController extends Controller
                 'activo' => 1
                 ]
             ]);
-        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Control de Malezas guardada exitosamente');
+        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Control de Malezas Guardada Exitosamente');
     }
 
         public function sist_agroforestales_guardar(Request $request){
@@ -718,7 +718,6 @@ class FormEncuestasController extends Controller
         }
 
         $dato = \DB::table('enc_controles_maleza')->where('id_control_maleza', $id)->update([
-        [
             'biologico' => $request->biologico,
             'biologico_fecha' => $biologico_fecha,
             'biologico_producto' => $biologico_producto,
@@ -728,10 +727,9 @@ class FormEncuestasController extends Controller
             'mecanico' => $request->mecanico,
             'mecanico_fecha' => $mecanico_fecha,
             'mecanico_producto' => $mecanico_producto,
-            'updated_at' => $tiempo_actual,
-            ]
+            'updated_at' => $tiempo_actual
         ]);
-        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Control de Malezas actualizada exitosamente');
+        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Control de Malezas Actualizada Exitosamente');
 
     }
 
