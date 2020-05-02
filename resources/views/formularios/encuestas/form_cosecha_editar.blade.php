@@ -17,8 +17,8 @@
                  <div class="myform-top">
                     <div class="myform-top-left">
                        {{-- <img  src="" class="img-responsive logo" /> --}}
-                      <h3>Preparación del Terreno</h3>
-                        <p>Por favor responda las siguientes preguntas</p>
+                      <h3>Cosecha</h3>
+                        <p>Por favor responda las siguientes preguntas (Editando)</p>
                     </div>
                     <div class="myform-top-right">
                       <i class="fa fa-edit"></i>
@@ -42,32 +42,47 @@
 
                     <div id="div_notificacion_sol" class="myform-bottom">
 
-                    <form action="{{ route('preparacion_guardar') }}"  method="post" class="" >
+                    <form action="{{ route('cosecha_actualizar', ['id' => $dato->id_cosecha]) }}"  method="post" class="" >
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <br>
                         <div class="form-group">
                           <label >Fecha</label>
-                          <input type="date" name="fecha" id="fecha" class="form-control" value="" required/ >
+                          <input type="date" name="fecha" id="fecha" class="form-control" value="{{old('ano', $dato->fecha ?? '')}}"  required/ >
 												</div>
                         <br>
                         <div class="form-group">
-                          <label >Metodo</label>
-                          <div class="radio">
+                          <label >Método de Cosecha</label>
+													<div class="radio">
+														<label>
+												@if ($dato->manual == 1)
+																<input type="radio" name="metodo" id="metodo1" value="1" checked="">
+																Manual
+														</label>
+													</div>
+													<div class="radio">
                             <label>
-                              <input type="radio" name="quema" id="quema1" value="1" checked="">
-                              Con Quema
+                              <input type="radio" name="metodo" id="metodo2" value="0">
+                              Mecánica
                             </label>
                           </div>
-                          <div class="radio">
-                            <label>
-                              <input type="radio" name="quema" id="quema2" value="0">
-                              Sin Quema
-                            </label>
-                          </div>
-                        </div>
+												@else
+																<input type="radio" name="metodo" id="metodo1" value="1">
+																Manual
+														</label>
+													</div>
+													<div class="radio">
+														<label>
+															<input type="radio" name="metodo" id="metodo2" value="0" checked="">
+															Mecánica
+														</label>
+													</div>
+												@endif
 												<br>
-                        <button type="submit" class="mybtn">Guardar</button>
+                        <button type="submit" class="mybtn">Actualizar</button>
                       </form>
+
+
+
 
                     </div>
               </div>

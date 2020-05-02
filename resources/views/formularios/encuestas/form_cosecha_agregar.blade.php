@@ -17,7 +17,7 @@
                  <div class="myform-top">
                     <div class="myform-top-left">
                        {{-- <img  src="" class="img-responsive logo" /> --}}
-                      <h3>Preparación del Terreno</h3>
+                      <h3>Cosecha</h3>
                         <p>Por favor responda las siguientes preguntas</p>
                     </div>
                     <div class="myform-top-right">
@@ -42,7 +42,7 @@
 
                     <div id="div_notificacion_sol" class="myform-bottom">
 
-                    <form action="{{ route('preparacion_guardar') }}"  method="post" class="" >
+                    <form action="{{ route('cosecha_guardar') }}"  method="post" class="" >
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <br>
                         <div class="form-group">
@@ -51,17 +51,17 @@
 												</div>
                         <br>
                         <div class="form-group">
-                          <label >Metodo</label>
+                          <label >Método de Cosecha</label>
                           <div class="radio">
                             <label>
-                              <input type="radio" name="quema" id="quema1" value="1" checked="">
-                              Con Quema
+                              <input type="radio" name="metodo" id="metodo1" value="1" checked="">
+                              Manual
                             </label>
                           </div>
                           <div class="radio">
                             <label>
-                              <input type="radio" name="quema" id="quema2" value="0">
-                              Sin Quema
+                              <input type="radio" name="metodo" id="metodo2" value="0">
+                              Mecánica
                             </label>
                           </div>
                         </div>

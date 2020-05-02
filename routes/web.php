@@ -57,6 +57,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::post('form_podas_control_opcion', 'FormEncuestasController@form_podas_control_opcion');
+    Route::post('form_transformacion_opcion', 'FormEncuestasController@form_transformacion_opcion');
 
     Route::post('form_sist_agroforestales_tabla', 'FormEncuestasController@form_sist_agroforestales_tabla');
 
@@ -64,10 +65,13 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('listado_densidad', 'FormEncuestasController@listado_densidad');
 
-    
+
     Route::post('form_preparacion_tabla', 'FormEncuestasController@form_preparacion_tabla');
     Route::post('form_podas_tabla', 'FormEncuestasController@form_podas_tabla');
     Route::post('form_controles_tabla', 'FormEncuestasController@form_controles_tabla');
+    Route::post('form_cosecha_tabla', 'FormEncuestasController@form_cosecha_tabla');
+    Route::post('form_post_cosecha_tabla', 'FormEncuestasController@form_post_cosecha_tabla');
+    Route::post('form_secado_tabla', 'FormEncuestasController@form_secado_tabla');
 
     //MENU PRINCIPAL
     Route::get('quienes_somos', 'FormEncuestasController@quienes_somos');
@@ -80,7 +84,10 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('form_podas_agregar', 'FormEncuestasController@form_podas_agregar')->name('form_podas_agregar');
     Route::get('form_controles_agregar', 'FormEncuestasController@form_controles_agregar')->name('form_controles_agregar');
-    Route::get('form_sist_agroforestales_agregar', 'FormEncuestasController@form_sist_agroforestales_agregar')->name('form_sist_agroforestales_agregar');;
+    Route::get('form_sist_agroforestales_agregar', 'FormEncuestasController@form_sist_agroforestales_agregar')->name('form_sist_agroforestales_agregar');
+    Route::get('form_cosecha_agregar', 'FormEncuestasController@form_cosecha_agregar')->name('form_cosecha_agregar');
+    Route::get('form_post_cosecha_agregar', 'FormEncuestasController@form_post_cosecha_agregar')->name('form_post_cosecha_agregar');
+    Route::get('form_secado_agregar', 'FormEncuestasController@form_secado_agregar')->name('form_secado_agregar');
 
 
 
@@ -94,6 +101,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('preparacion_guardar', 'FormEncuestasController@preparacion_guardar')->name('preparacion_guardar');
     Route::post('podas_guardar', 'FormEncuestasController@podas_guardar')->name('podas_guardar');
     Route::post('controles_guardar', 'FormEncuestasController@controles_guardar')->name('controles_guardar');
+    Route::post('cosecha_guardar', 'FormEncuestasController@cosecha_guardar')->name('cosecha_guardar');
+    Route::post('post_cosecha_guardar', 'FormEncuestasController@post_cosecha_guardar')->name('post_cosecha_guardar');
+    Route::post('secado_guardar', 'FormEncuestasController@secado_guardar')->name('secado_guardar');
 
 
 
@@ -107,6 +117,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('form_podas_editar/{id}', 'FormEncuestasController@form_podas_editar')->name('form_podas_editar');
     Route::get('form_controles_editar/{id}', 'FormEncuestasController@form_controles_editar')->name('form_controles_editar');
     Route::get('form_sist_agroforestales_editar/{id}', 'FormEncuestasController@form_sist_agroforestales_editar')->name('form_sist_agroforestales_editar');
+    Route::get('form_cosecha_editar/{id}', 'FormEncuestasController@form_cosecha_editar')->name('form_cosecha_editar');
+    Route::get('form_post_cosecha_editar/{id}', 'FormEncuestasController@form_post_cosecha_editar')->name('form_post_cosecha_editar');
+    Route::get('form_secado_editar/{id}', 'FormEncuestasController@form_secado_editar')->name('form_secado_editar');
 
 
 
@@ -118,7 +131,10 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('preparacion_actualizar/{id}', 'FormEncuestasController@preparacion_actualizar')->name('preparacion_actualizar');
     Route::post('podas_actualizar/{id}', 'FormEncuestasController@podas_actualizar')->name('podas_actualizar');
     Route::post('controles_actualizar/{id}', 'FormEncuestasController@controles_actualizar')->name('controles_actualizar');
-    Route::post('sist_agroforestales_actualizar/{id}', 'FormEncuestasController@sist_agroforestales_guardar')->name('sist_agroforestales_actualizar');
+    Route::post('sist_agroforestales_actualizar/{id}', 'FormEncuestasController@sist_agroforestales_actualizar')->name('sist_agroforestales_actualizar');
+    Route::post('cosecha_actualizar/{id}', 'FormEncuestasController@cosecha_actualizar')->name('cosecha_actualizar');
+    Route::post('post_cosecha_actualizar/{id}', 'FormEncuestasController@post_cosecha_actualizar')->name('post_cosecha_actualizar');
+    Route::post('secado_actualizar/{id}', 'FormEncuestasController@secado_actualizar')->name('secado_actualizar');
 
 
 
