@@ -8,8 +8,8 @@ use App\User;
 
 class ServiciosController extends Controller
 {
-    public function indexAPI()
 
+    public function indexAPI()
     {  
         $usuarios = User::orderBy('created_at', 'desc')->get();
         return $usuarios;

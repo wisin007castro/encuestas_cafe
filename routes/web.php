@@ -10,9 +10,14 @@
 | to using a Closure or controller method. Build something great!
 |
 */
+use GuzzleHttp\Client;
+
+
 Route::get('/', function () {
     return redirect('/login');
 });
+
+
 
 //REDIRECCIONA AL FORMULARIO DE CONSULTA DESDE UN INICIO
 
@@ -29,9 +34,37 @@ Route::get('test_page', 'ExcelController@test_page');
 Route::get('form_pruebas', 'PruebasController@form_pruebas');
 Route::get('log_conexiones', 'PruebasController@log_conexiones');
 
+// RUTAS DEL LADO DEL CLIENTE PARA SOLICITAR O GUARDAR INFORMACION
+Route::get('cliente_informacion_basica_datas', 'ClienteEncuestasController@cliente_informacion_basica_datas');
+Route::get('cliente_densidad_datas', 'ClienteEncuestasController@cliente_densidad_datas');
+Route::get('cliente_agroforestales_datas', 'ClienteEncuestasController@cliente_agroforestales_datas');
+Route::get('cliente_podas_datas', 'ClienteEncuestasController@cliente_podas_datas');
+Route::get('cliente_control_malezas_datas', 'ClienteEncuestasController@cliente_control_malezas_datas');
+
+Route::get('cliente_informacion_basica_guardar', 'ClienteEncuestasController@cliente_informacion_basica_guardar');
+Route::get('cliente_densidad_guardar', 'ClienteEncuestasController@cliente_densidad_guardar');
+Route::get('cliente_agroforestales_guardar', 'ClienteEncuestasController@cliente_agroforestales_guardar');
+Route::get('cliente_podas_guardar', 'ClienteEncuestasController@cliente_podas_guardar');
+Route::get('cliente_control_malezas_guardar', 'ClienteEncuestasController@cliente_control_malezas_guardar');
+
 Auth::routes();
 
 Route::group(["middleware" => "apikey.validate"], function () {
+
+    Route::get('datas_informacion_basica', 'ApiEncuestasController@datas_informacion_basica');
+    Route::get('datas_densidad', 'ApiEncuestasController@datas_densidad');
+    Route::get('datas_agroforestales', 'ApiEncuestasController@datas_agroforestales');
+    Route::get('datas_podas', 'ApiEncuestasController@datas_podas');
+    Route::get('datas_control_malezas', 'ApiEncuestasController@datas_control_malezas');
+
+    Route::post('servicio_informacion_basica_guardar', 'ApiEncuestasController@servicio_informacion_basica_guardar');
+    Route::post('servicio_densidad_guardar', 'ApiEncuestasController@servicio_densidad_guardar');
+    Route::post('servicio_agroforestales_guardar', 'ApiEncuestasController@servicio_agroforestales_guardar');
+    Route::post('servicio_podas_guardar', 'ApiEncuestasController@servicio_podas_guardar');
+    Route::post('servicio_control_malezas_guardar', 'ApiEncuestasController@servicio_control_malezas_guardar');
+    // Route::get('datas', 'ApiEncuestasController@datas');
+
+    // Route::post('servicio_densidad_guardar', 'ApiEncuestasController@servicio_densidad_guardar');
 
     //Rutas
     // Route::get("cursos", "Api\CursoController@getCursos");
@@ -50,6 +83,9 @@ Route::group(['middleware' => 'cors'], function () {
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('home_encuestas', 'FormEncuestasController@home_encuestas');
+    Route::get('form_cliente_cargar_datos', 'FormEncuestasController@form_cliente_cargar_datos');
+    Route::get('form_cliente_podas_control_opcion', 'FormEncuestasController@form_cliente_podas_control_opcion');
+    
     Route::get('form_enc_controles_maleza', 'FormEncuestasController@form_enc_controles_maleza');
     Route::post('form_densidad_tabla', 'FormEncuestasController@form_densidad_tabla');
     Route::get('form_densidad_agregar', 'FormEncuestasController@form_densidad_agregar');
@@ -57,6 +93,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::post('form_podas_control_opcion', 'FormEncuestasController@form_podas_control_opcion');
+
     Route::post('form_transformacion_opcion', 'FormEncuestasController@form_transformacion_opcion');
 
     Route::post('form_sist_agroforestales_tabla', 'FormEncuestasController@form_sist_agroforestales_tabla');
