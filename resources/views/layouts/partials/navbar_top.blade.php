@@ -9,6 +9,7 @@
               {{-- <li><a href="{{ url('listado_empresas') }}">Usuarios</a></li> --}}
           </ul>
       </li>
+      <li><a href="{{ url('form_cliente_cargar_datos') }}"><i class="fa fa-server"></i> Subir Datos</a></li>
       @endrole
       <li><a href="{{ url('quienes_somos') }}"><i class="fa fa-info-circle"></i> Quienes Somos</a></li>
       <li><a href="{{ url('contactos') }}"><i class="fa fa-phone-square"></i> Contactos</a></li>
