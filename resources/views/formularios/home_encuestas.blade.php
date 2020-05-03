@@ -19,6 +19,11 @@
 										{{ session()->get('mensaje_exito') }}
 										</div>
 									@endif
+									@if(session()->has('mensaje_error'))
+										<div class="alert alert-warning">
+										{{ session()->get('mensaje_error') }}
+										</div>
+									@endif
 
                  <div class="myform-top">
                     <div class="myform-top-left">

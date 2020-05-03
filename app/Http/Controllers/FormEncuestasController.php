@@ -13,6 +13,14 @@ class FormEncuestasController extends Controller
         return view("formularios.home_encuestas");
     }
 
+    public function form_cliente_cargar_datos(){
+      return view("formularios.encuestas.form_cliente_cargar_datos");
+    }
+    
+    public function form_cliente_podas_control_opcion(){
+      return view("formularios.encuestas.form_cliente_podas_control_opcion");
+    }
+
     public function quienes_somos(){
         return view("encuestas.quienes_somos");
     }
@@ -88,7 +96,7 @@ class FormEncuestasController extends Controller
 
         //FORMS GUARDAR
         public function densidad_guardar(Request $request){
-            //dd($request);
+            // dd($request);
             $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
             \DB::table('enc_densidad')->insert([
                 ['object_id' => Auth::user()->object_id,
