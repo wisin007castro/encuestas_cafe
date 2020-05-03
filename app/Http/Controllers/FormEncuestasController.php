@@ -37,19 +37,50 @@ class FormEncuestasController extends Controller
         return view("formularios.encuestas.form_podas_control_opcion");
     }
 
+    public function form_transformacion_opcion(){
+        return view("formularios.encuestas.form_transformacion_opcion");
+    }
+
     public function form_densidad_tabla(){
-        $datos = \DB::table('enc_densidad')->orderBy('id_densidad', 'desc')->where('object_id', Auth::user()->object_id)->get();
+        $datos = \DB::table('enc_densidad')->orderBy('id_densidad', 'desc')->where('object_id', Auth::user()->object_id)->where('activo', 1)->get();
         return view("listados.encuesta.listado_densidad", compact('datos'));
     }
 
     public function form_sist_agroforestales_tabla(){
-        $datos = \DB::table('enc_sist_agroforestales')->orderBy('id_sist_agroforestal', 'desc')->where('object_id', Auth::user()->object_id)->get();
+        $datos = \DB::table('enc_sist_agroforestales')->orderBy('id_sist_agroforestal', 'desc')->where('object_id', Auth::user()->object_id)->where('activo', 1)->get();
         return view("listados.encuesta.listado_sist_agroforestales", compact('datos'));
+    }
+
+    public function form_cosecha_tabla(){
+        $datos = \DB::table('enc_cosechas')->orderBy('id_cosecha', 'desc')->where('object_id', Auth::user()->object_id)->where('activo', 1)->get();
+        return view("listados.encuesta.form_cosecha_tabla", compact('datos'));
+    }
+
+    public function form_post_cosecha_tabla(){
+        $datos = \DB::table('enc_post_cosechas')->orderBy('id_post_cosecha', 'desc')->where('object_id', Auth::user()->object_id)->where('activo', 1)->get();
+        return view("listados.encuesta.form_post_cosecha_tabla", compact('datos'));
+    }
+
+    public function form_secado_tabla(){
+        $datos = \DB::table('enc_secados')->orderBy('id_secado', 'desc')->where('object_id', Auth::user()->object_id)->where('activo', 1)->get();
+        return view("listados.encuesta.form_secado_tabla", compact('datos'));
     }
 
 
     public function form_sist_agroforestales_agregar(){
         return view("formularios.encuestas.form_sist_agroforestales_agregar");
+    }
+
+    public function form_cosecha_agregar(){
+        return view("formularios.encuestas.form_cosecha_agregar");
+    }
+
+    public function form_post_cosecha_agregar(){
+        return view("formularios.encuestas.form_post_cosecha_agregar");
+    }
+
+    public function form_secado_agregar(){
+        return view("formularios.encuestas.form_secado_agregar");
     }
 
     public function listado_densidad(){
@@ -58,17 +89,17 @@ class FormEncuestasController extends Controller
     }
 
     public function form_preparacion_tabla(){
-        $datos = \DB::table('enc_preparaciones')->where('object_id', Auth::user()->object_id)->orderBy('id_preparacion', 'desc')->get();
+        $datos = \DB::table('enc_preparaciones')->where('object_id', Auth::user()->object_id)->where('activo', 1)->orderBy('id_preparacion', 'desc')->get();
         return view("listados.encuesta.form_preparacion_tabla", compact('datos'));
     }
 
     public function form_podas_tabla(){
-        $datos = \DB::table('enc_podas')->where('object_id', Auth::user()->object_id)->orderBy('id_poda', 'desc')->get();
+        $datos = \DB::table('enc_podas')->where('object_id', Auth::user()->object_id)->where('activo', 1)->orderBy('id_poda', 'desc')->get();
         return view("listados.encuesta.form_podas_tabla", compact('datos'));
     }
 
     public function form_controles_tabla(){
-        $datos = \DB::table('enc_controles_maleza')->where('object_id', Auth::user()->object_id)->orderBy('id_control_maleza', 'desc')->get();
+        $datos = \DB::table('enc_controles_maleza')->where('object_id', Auth::user()->object_id)->where('activo', 1)->orderBy('id_control_maleza', 'desc')->get();
         return view("listados.encuesta.form_controles_tabla", compact('datos'));
     }
 
@@ -283,114 +314,272 @@ class FormEncuestasController extends Controller
         return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Control de Malezas Guardada Exitosamente');
     }
 
-        public function sist_agroforestales_guardar(Request $request){
-            $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+    public function sist_agroforestales_guardar(Request $request){
+        $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
 
-            //Tomamos los valores y les asignamos valores según corresponda
-            if ($request->pacay == 1) {
-              $pacay_fecha_siembra = $request->pacay_fecha_siembra;
-              $pacay_cantidad = $request->pacay_cantidad;
-              $pacay_permanente = $request->pacay_permanente;
-            }
-            else {
-              $pacay_fecha_siembra = "0000-00-00";
-              $pacay_cantidad = 0;
-              $pacay_permanente = 0;
-            }
-
-            if ($request->platano == 1) {
-              $platano_fecha_siembra = $request->platano_fecha_siembra;
-              $platano_cantidad = $request->platano_cantidad;
-              $platano_permanente = $request->platano_permanente;
-            }
-            else {
-              $platano_fecha_siembra = "0000-00-00";
-              $platano_cantidad = 0;
-              $platano_permanente = 0;
-            }
-
-            if ($request->citricos == 1) {
-              $citricos_fecha_siembra = $request->citricos_fecha_siembra;
-              $citricos_cantidad = $request->citricos_cantidad;
-              $citricos_permanente = $request->citricos_permanente;
-            }
-            else {
-              $citricos_fecha_siembra = "0000-00-00";
-              $citricos_cantidad = 0;
-              $citricos_permanente = 0;
-            }
-
-            if ($request->maderables == 1) {
-              $maderables_fecha_siembra = $request->maderables_fecha_siembra;
-              $maderables_cantidad = $request->maderables_cantidad;
-              $maderables_permanente = $request->maderables_permanente;
-            }
-            else {
-              $maderables_fecha_siembra = "0000-00-00";
-              $maderables_cantidad = 0;
-              $maderables_permanente = 0;
-            }
-
-            if ($request->frutas_amazonicas == 1) {
-              $frutas_amazonicas_fecha_siembra = $request->frutas_amazonicas_fecha_siembra;
-              $frutas_amazonicas_cantidad = $request->frutas_amazonicas_cantidad;
-              $frutas_amazonicas_permanente = $request->frutas_amazonicas_permanente;
-            }
-            else {
-              $frutas_amazonicas_fecha_siembra = "0000-00-00";
-              $frutas_amazonicas_cantidad = 0;
-              $frutas_amazonicas_permanente = 0;
-            }
-
-            if ($request->otros == 1) {
-              $otros_descripcion = $request->otros_descripcion;
-              $otros_fecha_siembra = $request->otros_fecha_siembra;
-              $otros_cantidad = $request->otros_cantidad;
-              $otros_permanente = $request->otros_permanente;
-            }
-            else {
-              $otros_descripcion = "";
-              $otros_fecha_siembra = "0000-00-00";
-              $otros_cantidad = 0;
-              $otros_permanente = 0;
-            }
-
-            \DB::table('enc_sist_agroforestales')->insert([
-                ['object_id' => Auth::user()->object_id,
-                 'ano' => $request->ano,
-                 'pacay' => $request->pacay,
-                 'pacay_fecha_siembra' => $pacay_fecha_siembra,
-                 'pacay_cantidad' => $pacay_cantidad,
-                 'pacay_permanente' => $pacay_permanente,
-                 'platano' => $request->platano,
-                 'platano_fecha_siembra' => $platano_fecha_siembra,
-                 'platano_cantidad' => $platano_cantidad,
-                 'platano_permanente' => $platano_permanente,
-                 'citricos' => $request->citricos,
-                 'citricos_fecha_siembra' => $citricos_fecha_siembra,
-                 'citricos_cantidad' => $citricos_cantidad,
-                 'citricos_permanente' => $citricos_permanente,
-                 'maderables' => $request->maderables,
-                 'maderables_fecha_siembra' => $maderables_fecha_siembra,
-                 'maderables_cantidad' => $maderables_cantidad,
-                 'maderables_permanente' => $maderables_permanente,
-                 'frutas_amazonicas' => $request->frutas_amazonicas,
-                 'frutas_amazonicas_fecha_siembra' => $frutas_amazonicas_fecha_siembra,
-                 'frutas_amazonicas_cantidad' => $frutas_amazonicas_cantidad,
-                 'frutas_amazonicas_permanente' => $frutas_amazonicas_permanente,
-                 'otros' => $request->otros,
-                 'otros_descripcion' => $otros_descripcion,
-                 'otros_fecha_siembra' => $otros_fecha_siembra,
-                 'otros_cantidad' => $otros_cantidad,
-                 'otros_permanente' => $otros_permanente,
-                 'created_at' => $tiempo_actual,
-                 'updated_at' => $tiempo_actual,
-                 'activo' => 1]
-            ]);
-            return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Sistemas Agroforestales Guardada Exitosamente');
+        //Tomamos los valores y les asignamos valores según corresponda
+        if ($request->pacay == 1) {
+          $pacay_fecha_siembra = $request->pacay_fecha_siembra;
+          $pacay_cantidad = $request->pacay_cantidad;
+          $pacay_permanente = $request->pacay_permanente;
+        }
+        else {
+          $pacay_fecha_siembra = "0000-00-00";
+          $pacay_cantidad = 0;
+          $pacay_permanente = 0;
         }
 
+        if ($request->platano == 1) {
+          $platano_fecha_siembra = $request->platano_fecha_siembra;
+          $platano_cantidad = $request->platano_cantidad;
+          $platano_permanente = $request->platano_permanente;
+        }
+        else {
+          $platano_fecha_siembra = "0000-00-00";
+          $platano_cantidad = 0;
+          $platano_permanente = 0;
+        }
 
+        if ($request->citricos == 1) {
+          $citricos_fecha_siembra = $request->citricos_fecha_siembra;
+          $citricos_cantidad = $request->citricos_cantidad;
+          $citricos_permanente = $request->citricos_permanente;
+        }
+        else {
+          $citricos_fecha_siembra = "0000-00-00";
+          $citricos_cantidad = 0;
+          $citricos_permanente = 0;
+        }
+
+        if ($request->maderables == 1) {
+          $maderables_fecha_siembra = $request->maderables_fecha_siembra;
+          $maderables_cantidad = $request->maderables_cantidad;
+          $maderables_permanente = $request->maderables_permanente;
+        }
+        else {
+          $maderables_fecha_siembra = "0000-00-00";
+          $maderables_cantidad = 0;
+          $maderables_permanente = 0;
+        }
+
+        if ($request->frutas_amazonicas == 1) {
+          $frutas_amazonicas_fecha_siembra = $request->frutas_amazonicas_fecha_siembra;
+          $frutas_amazonicas_cantidad = $request->frutas_amazonicas_cantidad;
+          $frutas_amazonicas_permanente = $request->frutas_amazonicas_permanente;
+        }
+        else {
+          $frutas_amazonicas_fecha_siembra = "0000-00-00";
+          $frutas_amazonicas_cantidad = 0;
+          $frutas_amazonicas_permanente = 0;
+        }
+
+        if ($request->otros == 1) {
+          $otros_descripcion = $request->otros_descripcion;
+          $otros_fecha_siembra = $request->otros_fecha_siembra;
+          $otros_cantidad = $request->otros_cantidad;
+          $otros_permanente = $request->otros_permanente;
+        }
+        else {
+          $otros_descripcion = "";
+          $otros_fecha_siembra = "0000-00-00";
+          $otros_cantidad = 0;
+          $otros_permanente = 0;
+        }
+
+        \DB::table('enc_sist_agroforestales')->insert([
+            ['object_id' => Auth::user()->object_id,
+             'ano' => $request->ano,
+             'pacay' => $request->pacay,
+             'pacay_fecha_siembra' => $pacay_fecha_siembra,
+             'pacay_cantidad' => $pacay_cantidad,
+             'pacay_permanente' => $pacay_permanente,
+             'platano' => $request->platano,
+             'platano_fecha_siembra' => $platano_fecha_siembra,
+             'platano_cantidad' => $platano_cantidad,
+             'platano_permanente' => $platano_permanente,
+             'citricos' => $request->citricos,
+             'citricos_fecha_siembra' => $citricos_fecha_siembra,
+             'citricos_cantidad' => $citricos_cantidad,
+             'citricos_permanente' => $citricos_permanente,
+             'maderables' => $request->maderables,
+             'maderables_fecha_siembra' => $maderables_fecha_siembra,
+             'maderables_cantidad' => $maderables_cantidad,
+             'maderables_permanente' => $maderables_permanente,
+             'frutas_amazonicas' => $request->frutas_amazonicas,
+             'frutas_amazonicas_fecha_siembra' => $frutas_amazonicas_fecha_siembra,
+             'frutas_amazonicas_cantidad' => $frutas_amazonicas_cantidad,
+             'frutas_amazonicas_permanente' => $frutas_amazonicas_permanente,
+             'otros' => $request->otros,
+             'otros_descripcion' => $otros_descripcion,
+             'otros_fecha_siembra' => $otros_fecha_siembra,
+             'otros_cantidad' => $otros_cantidad,
+             'otros_permanente' => $otros_permanente,
+             'created_at' => $tiempo_actual,
+             'updated_at' => $tiempo_actual,
+             'activo' => 1]
+        ]);
+        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Sistemas Agroforestales Guardada Exitosamente');
+    }
+
+    public function cosecha_guardar(Request $request){
+        $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+        //Tomamos los valores y les asignamos valores según corresponda
+        if ($request->metodo == 1) {
+          $manual = 1;
+          $mecanica = 0;
+        }
+        else {
+          $manual = 0;
+          $mecanica = 1;
+        }
+
+        \DB::table('enc_cosechas')->insert([
+            ['object_id' => Auth::user()->object_id,
+             'fecha' => $request->fecha,
+             'manual' => $manual,
+             'mecanica' => $mecanica,
+             'created_at' => $tiempo_actual,
+             'updated_at' => $tiempo_actual,
+             'activo' => 1]
+        ]);
+        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Cosecha Guardada Exitosamente');
+    }
+
+    public function post_cosecha_guardar(Request $request){
+        $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+        //Tomamos los valores y les asignamos valores según corresponda
+        if ($request->cosecha == 1) {
+          $cosecha_fecha = $request->cosecha_fecha;
+          $cosecha_p_bruto = $request->cosecha_p_bruto;
+          $cosecha_p_descarte = $request->cosecha_p_descarte;
+          $cosecha_p_efecivo = $request->cosecha_p_efectivo;
+        }
+        else {
+          $cosecha_fecha = "0000-00-00";
+          $cosecha_p_bruto = 0;
+          $cosecha_p_descarte = 0;
+          $cosecha_p_efecivo = 0;
+        }
+
+        if ($request->limpieza == 1) {
+          $limpieza_fecha = $request->limpieza_fecha;
+          $limpieza_p_bruto = $request->limpieza_p_bruto;
+          $limpieza_p_descarte = $request->limpieza_p_descarte;
+          $limpieza_p_efecivo = $request->limpieza_p_efectivo;
+        }
+        else {
+          $limpieza_fecha = "0000-00-00";
+          $limpieza_p_bruto = 0;
+          $limpieza_p_descarte = 0;
+          $limpieza_p_efecivo = 0;
+        }
+
+        if ($request->despulpado == 1) {
+          $despulpado_fecha = $request->despulpado_fecha;
+          $despulpado_p_bruto = $request->despulpado_p_bruto;
+          $despulpado_p_descarte = $request->despulpado_p_descarte;
+          $despulpado_p_efecivo = $request->despulpado_p_efectivo;
+        }
+        else {
+          $despulpado_fecha = "0000-00-00";
+          $despulpado_p_bruto = 0;
+          $despulpado_p_descarte = 0;
+          $despulpado_p_efecivo = 0;
+        }
+
+        \DB::table('enc_post_cosechas')->insert([
+                  ['object_id' => Auth::user()->object_id,
+                  'cosecha' => $request->cosecha,
+                  'cosecha_fecha' => $cosecha_fecha,
+                  'cosecha_p_bruto' => $cosecha_p_bruto,
+                  'cosecha_p_descarte' => $cosecha_p_descarte,
+                  'cosecha_p_efectivo' => $cosecha_p_efecivo,
+                  'limpieza' => $request->limpieza,
+                  'limpieza_fecha' => $limpieza_fecha,
+                  'limpieza_p_bruto' => $limpieza_p_bruto,
+                  'limpieza_p_descarte' => $limpieza_p_descarte,
+                  'limpieza_p_efectivo' => $limpieza_p_efecivo,
+                  'despulpado' => $request->despulpado,
+                  'despulpado_fecha' => $despulpado_fecha,
+                  'despulpado_p_bruto' => $despulpado_p_bruto,
+                  'despulpado_p_descarte' => $despulpado_p_descarte,
+                  'despulpado_p_efectivo' => $despulpado_p_efecivo,
+                  'created_at' => $tiempo_actual,
+                  'updated_at' => $tiempo_actual,
+                  'activo' => 1]
+        ]);
+        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Post Cosecha Guardada Exitosamente');
+    }
+
+    public function secado_guardar(Request $request){
+        $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+        //Tomamos los valores y les asignamos valores según corresponda
+        if ($request->secado == 1) {
+          $secado_fecha = $request->secado_fecha;
+          $secado_p_total = $request->secado_p_total;
+          $secado_humedad = $request->secado_humedad;
+          $secado_p_efectivo = $request->secado_p_efectivo;
+        }
+        else {
+          $secado_fecha = "0000-00-00";
+          $secado_p_total = 0;
+          $secado_humedad = 0;
+          $secado_p_efectivo = 0;
+        }
+
+        if ($request->lavado == 1) {
+          $lavado_fecha = $request->lavado_fecha;
+          $lavado_p_total = $request->lavado_p_total;
+          $lavado_humedad = $request->lavado_humedad;
+          $lavado_p_efectivo = $request->lavado_p_efectivo;
+        }
+        else {
+          $lavado_fecha = "0000-00-00";
+          $lavado_p_total = 0;
+          $lavado_humedad = 0;
+          $lavado_p_efectivo = 0;
+        }
+
+        if ($request->miel == 1) {
+          $miel_fecha = $request->miel_fecha;
+          $miel_p_total = $request->miel_p_total;
+          $miel_humedad = $request->miel_humedad;
+          $miel_p_efectivo = $request->miel_p_efectivo;
+        }
+        else {
+          $miel_fecha = "0000-00-00";
+          $miel_p_total = 0;
+          $miel_humedad = 0;
+          $miel_p_efectivo = 0;
+        }
+
+        \DB::table('enc_secados')->insert([
+                  ['object_id' => Auth::user()->object_id,
+
+                  'secado' => $request->secado,
+                  'secado_fecha' => $secado_fecha,
+                  'secado_p_total' => $secado_p_total,
+                  'secado_humedad' => $secado_humedad,
+                  'secado_p_efectivo' => $secado_p_efectivo,
+                  'lavado' => $request->lavado,
+                  'lavado_fecha' => $lavado_fecha,
+                  'lavado_p_total' => $lavado_p_total,
+                  'lavado_humedad' => $lavado_humedad,
+                  'lavado_p_efectivo' => $lavado_p_efectivo,
+                  'miel' => $request->miel,
+                  'miel_fecha' => $miel_fecha,
+                  'miel_p_total' => $miel_p_total,
+                  'miel_humedad' => $miel_humedad,
+                  'miel_p_efectivo' => $miel_p_efectivo,
+                  'created_at' => $tiempo_actual,
+                  'updated_at' => $tiempo_actual,
+                  'activo' => 1]
+        ]);
+        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Secado Guardada Exitosamente');
+    }
 
     //FORMS EDITAR
     public function form_densidad_editar($id){
@@ -420,6 +609,24 @@ class FormEncuestasController extends Controller
         $id = base64_decode($id);
         $dato = \DB::table('enc_controles_maleza')->where('id_control_maleza', $id)->first();
         return view("formularios.encuestas.form_controles_editar", compact('dato'));
+    }
+
+    public function form_cosecha_editar($id){
+      $id_cosecha = base64_decode($id);
+      $dato = \DB::table('enc_cosechas')->where('id_cosecha', $id_cosecha)->first();
+      return view("formularios.encuestas.form_cosecha_editar", compact('dato'));
+    }
+
+    public function form_post_cosecha_editar($id){
+      $id_post_cosecha = base64_decode($id);
+      $dato = \DB::table('enc_post_cosechas')->where('id_post_cosecha', $id_post_cosecha)->first();
+      return view("formularios.encuestas.form_post_cosecha_editar", compact('dato'));
+    }
+
+    public function form_secado_editar($id){
+      $id_secado = base64_decode($id);
+      $dato = \DB::table('enc_secados')->where('id_secado', $id_secado)->first();
+      return view("formularios.encuestas.form_secado_editar", compact('dato'));
     }
 
 
@@ -515,41 +722,8 @@ class FormEncuestasController extends Controller
         $otros_permanente = 0;
       }
 
-      \DB::table('enc_sist_agroforestales')->insert([
-          ['object_id' => Auth::user()->object_id,
-           'ano' => $request->ano,
-           'pacay' => $request->pacay,
-           'pacay_fecha_siembra' => $pacay_fecha_siembra,
-           'pacay_cantidad' => $pacay_cantidad,
-           'pacay_permanente' => $pacay_permanente,
-           'platano' => $request->platano,
-           'platano_fecha_siembra' => $platano_fecha_siembra,
-           'platano_cantidad' => $platano_cantidad,
-           'platano_permanente' => $platano_permanente,
-           'citricos' => $request->citricos,
-           'citricos_fecha_siembra' => $citricos_fecha_siembra,
-           'citricos_cantidad' => $citricos_cantidad,
-           'citricos_permanente' => $citricos_permanente,
-           'maderables' => $request->maderables,
-           'maderables_fecha_siembra' => $maderables_fecha_siembra,
-           'maderables_cantidad' => $maderables_cantidad,
-           'maderables_permanente' => $maderables_permanente,
-           'frutas_amazonicas' => $request->frutas_amazonicas,
-           'frutas_amazonicas_fecha_siembra' => $frutas_amazonicas_fecha_siembra,
-           'frutas_amazonicas_cantidad' => $frutas_amazonicas_cantidad,
-           'frutas_amazonicas_permanente' => $frutas_amazonicas_permanente,
-           'otros' => $request->otros,
-           'otros_descripcion' => $otros_descripcion,
-           'otros_fecha_siembra' => $otros_fecha_siembra,
-           'otros_cantidad' => $otros_cantidad,
-           'otros_permanente' => $otros_permanente,
-           'created_at' => $tiempo_actual,
-           'updated_at' => $tiempo_actual,
-           'activo' => 1]
-      ]);
-
-      \DB::table('enc_densidad')
-            ->where('id_densidad', $id)
+      \DB::table('enc_sist_agroforestales')
+            ->where('id_sist_agroforestal', $id)
             ->update(['ano' => $request->ano,
                       'pacay' => $request->pacay,
                       'pacay_fecha_siembra' => $pacay_fecha_siembra,
@@ -691,6 +865,7 @@ class FormEncuestasController extends Controller
             return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Podas Actualizada Exitosamente');
 
     }
+
     public function controles_actualizar(Request $request, $id){
 
         $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
@@ -738,7 +913,165 @@ class FormEncuestasController extends Controller
             'updated_at' => $tiempo_actual
         ]);
         return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Control de Malezas Actualizada Exitosamente');
+    }
 
+    public function cosecha_actualizar(Request $request, $id){
+        $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+        //Tomamos los valores y les asignamos valores según corresponda
+        if ($request->metodo == 1) {
+          $manual = 1;
+          $mecanica = 0;
+        }
+        else {
+          $manual = 0;
+          $mecanica = 1;
+        }
+
+        $dato = \DB::table('enc_cosechas')
+                ->where('id_cosecha', $id)
+                ->update([
+                   'fecha' => $request->fecha,
+                   'manual' => $manual,
+                   'mecanica' => $mecanica,
+                   'updated_at' => $tiempo_actual
+        ]);
+
+        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Cosecha Actualizada Exitosamente');
+    }
+
+    public function post_cosecha_actualizar(Request $request, $id){
+      $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+      //Tomamos los valores y les asignamos valores según corresponda
+      if ($request->cosecha == 1) {
+        $cosecha_fecha = $request->cosecha_fecha;
+        $cosecha_p_bruto = $request->cosecha_p_bruto;
+        $cosecha_p_descarte = $request->cosecha_p_descarte;
+        $cosecha_p_efecivo = $request->cosecha_p_efectivo;
+      }
+      else {
+        $cosecha_fecha = "0000-00-00";
+        $cosecha_p_bruto = 0;
+        $cosecha_p_descarte = 0;
+        $cosecha_p_efecivo = 0;
+      }
+
+      if ($request->limpieza == 1) {
+        $limpieza_fecha = $request->limpieza_fecha;
+        $limpieza_p_bruto = $request->limpieza_p_bruto;
+        $limpieza_p_descarte = $request->limpieza_p_descarte;
+        $limpieza_p_efecivo = $request->limpieza_p_efectivo;
+      }
+      else {
+        $limpieza_fecha = "0000-00-00";
+        $limpieza_p_bruto = 0;
+        $limpieza_p_descarte = 0;
+        $limpieza_p_efecivo = 0;
+      }
+
+      if ($request->despulpado == 1) {
+        $despulpado_fecha = $request->despulpado_fecha;
+        $despulpado_p_bruto = $request->despulpado_p_bruto;
+        $despulpado_p_descarte = $request->despulpado_p_descarte;
+        $despulpado_p_efecivo = $request->despulpado_p_efectivo;
+      }
+      else {
+        $despulpado_fecha = "0000-00-00";
+        $despulpado_p_bruto = 0;
+        $despulpado_p_descarte = 0;
+        $despulpado_p_efecivo = 0;
+      }
+
+      $dato = \DB::table('enc_post_cosechas')
+              ->where('id_post_cosecha', $id)
+              ->update([
+                'cosecha' => $request->cosecha,
+                'cosecha_fecha' => $cosecha_fecha,
+                'cosecha_p_bruto' => $cosecha_p_bruto,
+                'cosecha_p_descarte' => $cosecha_p_descarte,
+                'cosecha_p_efectivo' => $cosecha_p_efecivo,
+                'limpieza' => $request->limpieza,
+                'limpieza_fecha' => $limpieza_fecha,
+                'limpieza_p_bruto' => $limpieza_p_bruto,
+                'limpieza_p_descarte' => $limpieza_p_descarte,
+                'limpieza_p_efectivo' => $limpieza_p_efecivo,
+                'despulpado' => $request->despulpado,
+                'despulpado_fecha' => $despulpado_fecha,
+                'despulpado_p_bruto' => $despulpado_p_bruto,
+                'despulpado_p_descarte' => $despulpado_p_descarte,
+                'despulpado_p_efectivo' => $despulpado_p_efecivo,
+                'updated_at' => $tiempo_actual
+      ]);
+
+      return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Post Cosecha Actualizada Exitosamente');
+    }
+
+    public function secado_actualizar(Request $request, $id){
+      $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+      //Tomamos los valores y les asignamos valores según corresponda
+      if ($request->secado == 1) {
+        $secado_fecha = $request->secado_fecha;
+        $secado_p_total = $request->secado_p_total;
+        $secado_humedad = $request->secado_humedad;
+        $secado_p_efectivo = $request->secado_p_efectivo;
+      }
+      else {
+        $secado_fecha = "0000-00-00";
+        $secado_p_total = 0;
+        $secado_humedad = 0;
+        $secado_p_efectivo = 0;
+      }
+
+      if ($request->lavado == 1) {
+        $lavado_fecha = $request->lavado_fecha;
+        $lavado_p_total = $request->lavado_p_total;
+        $lavado_humedad = $request->lavado_humedad;
+        $lavado_p_efectivo = $request->lavado_p_efectivo;
+      }
+      else {
+        $lavado_fecha = "0000-00-00";
+        $lavado_p_total = 0;
+        $lavado_humedad = 0;
+        $lavado_p_efectivo = 0;
+      }
+
+      if ($request->miel == 1) {
+        $miel_fecha = $request->miel_fecha;
+        $miel_p_total = $request->miel_p_total;
+        $miel_humedad = $request->miel_humedad;
+        $miel_p_efectivo = $request->miel_p_efectivo;
+      }
+      else {
+        $miel_fecha = "0000-00-00";
+        $miel_p_total = 0;
+        $miel_humedad = 0;
+        $miel_p_efectivo = 0;
+      }
+
+      $dato = \DB::table('enc_secados')
+              ->where('id_secado', $id)
+              ->update([
+                'secado' => $request->secado,
+                'secado_fecha' => $secado_fecha,
+                'secado_p_total' => $secado_p_total,
+                'secado_humedad' => $secado_humedad,
+                'secado_p_efectivo' => $secado_p_efectivo,
+                'lavado' => $request->lavado,
+                'lavado_fecha' => $lavado_fecha,
+                'lavado_p_total' => $lavado_p_total,
+                'lavado_humedad' => $lavado_humedad,
+                'lavado_p_efectivo' => $lavado_p_efectivo,
+                'miel' => $request->miel,
+                'miel_fecha' => $miel_fecha,
+                'miel_p_total' => $miel_p_total,
+                'miel_humedad' => $miel_humedad,
+                'miel_p_efectivo' => $miel_p_efectivo,
+                'updated_at' => $tiempo_actual
+      ]);
+
+      return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Secado Actualizada Exitosamente');
     }
 
 
