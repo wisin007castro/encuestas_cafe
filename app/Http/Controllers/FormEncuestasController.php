@@ -16,7 +16,7 @@ class FormEncuestasController extends Controller
     public function form_cliente_cargar_datos(){
       return view("formularios.encuestas.form_cliente_cargar_datos");
     }
-    
+
     public function form_cliente_podas_control_opcion(){
       return view("formularios.encuestas.form_cliente_podas_control_opcion");
     }
@@ -103,6 +103,11 @@ class FormEncuestasController extends Controller
         return view("listados.encuesta.form_controles_tabla", compact('datos'));
     }
 
+    public function form_deficiencias_tabla(){
+        $datos = \DB::table('enc_controles_maleza')->where('object_id', Auth::user()->object_id)->where('activo', 1)->orderBy('id_control_maleza', 'desc')->get();
+        return view("listados.encuesta.form_deficiencias_tabla", compact('datos'));
+    }
+
     //FORMS AGREGAR
     public function form_densidad_agregar(){
         return view("formularios.encuestas.form_densidad_agregar");
@@ -114,8 +119,13 @@ class FormEncuestasController extends Controller
     public function form_podas_agregar(){
         return view("formularios.encuestas.form_podas_agregar");
     }
+
     public function form_controles_agregar(){
         return view("formularios.encuestas.form_controles_agregar");
+    }
+
+    public function form_deficiencias_agregar(){
+        return view("formularios.encuestas.form_deficiencias_agregar");
     }
 
 
@@ -580,6 +590,79 @@ class FormEncuestasController extends Controller
         ]);
         return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Secado Guardada Exitosamente');
     }
+
+    public function deficiencias_guardar(Request $request){
+      $a="California&Delaware";
+      echo strpos($a, 'Alabama');
+      echo strpos($a, 'Delaware');
+      //echo $campo= $request->multiple[1]."&".$request->multiple[2];
+        /*$tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+        //Tomamos los valores y les asignamos valores según corresponda
+        if ($request->secado == 1) {
+          $secado_fecha = $request->secado_fecha;
+          $secado_p_total = $request->secado_p_total;
+          $secado_humedad = $request->secado_humedad;
+          $secado_p_efectivo = $request->secado_p_efectivo;
+        }
+        else {
+          $secado_fecha = "0000-00-00";
+          $secado_p_total = 0;
+          $secado_humedad = 0;
+          $secado_p_efectivo = 0;
+        }
+
+        if ($request->lavado == 1) {
+          $lavado_fecha = $request->lavado_fecha;
+          $lavado_p_total = $request->lavado_p_total;
+          $lavado_humedad = $request->lavado_humedad;
+          $lavado_p_efectivo = $request->lavado_p_efectivo;
+        }
+        else {
+          $lavado_fecha = "0000-00-00";
+          $lavado_p_total = 0;
+          $lavado_humedad = 0;
+          $lavado_p_efectivo = 0;
+        }
+
+        if ($request->miel == 1) {
+          $miel_fecha = $request->miel_fecha;
+          $miel_p_total = $request->miel_p_total;
+          $miel_humedad = $request->miel_humedad;
+          $miel_p_efectivo = $request->miel_p_efectivo;
+        }
+        else {
+          $miel_fecha = "0000-00-00";
+          $miel_p_total = 0;
+          $miel_humedad = 0;
+          $miel_p_efectivo = 0;
+        }
+
+        \DB::table('enc_secados')->insert([
+                  ['object_id' => Auth::user()->object_id,
+
+                  'secado' => $request->secado,
+                  'secado_fecha' => $secado_fecha,
+                  'secado_p_total' => $secado_p_total,
+                  'secado_humedad' => $secado_humedad,
+                  'secado_p_efectivo' => $secado_p_efectivo,
+                  'lavado' => $request->lavado,
+                  'lavado_fecha' => $lavado_fecha,
+                  'lavado_p_total' => $lavado_p_total,
+                  'lavado_humedad' => $lavado_humedad,
+                  'lavado_p_efectivo' => $lavado_p_efectivo,
+                  'miel' => $request->miel,
+                  'miel_fecha' => $miel_fecha,
+                  'miel_p_total' => $miel_p_total,
+                  'miel_humedad' => $miel_humedad,
+                  'miel_p_efectivo' => $miel_p_efectivo,
+                  'created_at' => $tiempo_actual,
+                  'updated_at' => $tiempo_actual,
+                  'activo' => 1]
+        ]);
+        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Secado Guardada Exitosamente');*/
+    }
+
 
     //FORMS EDITAR
     public function form_densidad_editar($id){
