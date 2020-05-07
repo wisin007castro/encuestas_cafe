@@ -3,6 +3,7 @@
 namespace App\Repositorios;
 
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\RequestException;
 
 class EncuestasCafe
 {
@@ -11,6 +12,7 @@ class EncuestasCafe
 
     public function __construct()
     {
+        // $base_uri = 'http://encuestas.cafe.minculturas.com/public/';
         $base_uri = 'http://encuestas_cafe_server.test:8080';
 
         $this->client = new Client([
@@ -22,6 +24,30 @@ class EncuestasCafe
 
         $this->api_key = 'api_key=$2y$10$ijgHm6PCsN2/G7bH0/6tzelzeas3t.2wlGTJWgDGwHJvJ.U49hH4i';
     }
+
+    public function test_server(){
+        $url = 'datas_informacion_basica';
+
+        try {
+            $response = $this->client->request('GET', '/', array(
+           'headers' => null,
+           'body' => null
+            ));
+
+            if($response->getStatusCode() == 200){
+                return true;
+            }else{
+                return false;
+            }
+           
+        }
+        catch (RequestException $e) {
+            // $response = $e->getResponse();
+            // return $response->getBody();
+            return false;
+        }
+    }
+
     public function datas($url){
         
         $response = $this->client->request('GET', $url . '?' . $this->api_key);
@@ -36,9 +62,13 @@ class EncuestasCafe
             'json'=>$datas
         );
         
-        $response = $this->client->post($url . '?' . $this->api_key , $data);
+        if($response = $this->client->post($url . '?' . $this->api_key , $data)){
+            return true;
+        }else{
+            return false;
+        }
         // return $response->getBody()->getContents();
-        return (string) $response->getBody();
+        // return (string) $response->getBody();
 
     }   
 }

@@ -41,6 +41,8 @@ Route::get('cliente_agroforestales_datas', 'ClienteEncuestasController@cliente_a
 Route::get('cliente_podas_datas', 'ClienteEncuestasController@cliente_podas_datas');
 Route::get('cliente_control_malezas_datas', 'ClienteEncuestasController@cliente_control_malezas_datas');
 
+Route::get('cliente_cargar_datos', 'ClienteEncuestasController@cliente_cargar_datos');
+
 Route::get('cliente_informacion_basica_guardar', 'ClienteEncuestasController@cliente_informacion_basica_guardar');
 Route::get('cliente_densidad_guardar', 'ClienteEncuestasController@cliente_densidad_guardar');
 Route::get('cliente_agroforestales_guardar', 'ClienteEncuestasController@cliente_agroforestales_guardar');
