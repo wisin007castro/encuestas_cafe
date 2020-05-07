@@ -12,9 +12,8 @@ class EncuestasCafe
 
     public function __construct()
     {
-        // $base_uri = 'http://encuestas.cafe.minculturas.com/public/';
-        $base_uri = 'http://encuestas_cafe_server.test:8080';
-
+        $base_uri = 'http://encuestas.cafe.minculturas.com/public/';
+      
         $this->client = new Client([
             // Base URI is used with relative requests
             'base_uri' => $base_uri,
@@ -49,7 +48,7 @@ class EncuestasCafe
     }
 
     public function datas($url){
-        
+
         $response = $this->client->request('GET', $url . '?' . $this->api_key);
         // dd($response->getBody());
         return json_decode($response->getBody()->getContents());
@@ -61,14 +60,14 @@ class EncuestasCafe
             'headers'=>array('Content-Type'=>'application/json'),
             'json'=>$datas
         );
-        
+       
         if($response = $this->client->post($url . '?' . $this->api_key , $data)){
             return true;
         }else{
             return false;
         }
+
         // return $response->getBody()->getContents();
         // return (string) $response->getBody();
-
-    }   
+    }
 }

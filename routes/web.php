@@ -87,7 +87,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('home_encuestas', 'FormEncuestasController@home_encuestas');
     Route::get('form_cliente_cargar_datos', 'FormEncuestasController@form_cliente_cargar_datos');
     Route::get('form_cliente_podas_control_opcion', 'FormEncuestasController@form_cliente_podas_control_opcion');
-    
+
     Route::get('form_enc_controles_maleza', 'FormEncuestasController@form_enc_controles_maleza');
     Route::post('form_densidad_tabla', 'FormEncuestasController@form_densidad_tabla');
     Route::get('form_densidad_agregar', 'FormEncuestasController@form_densidad_agregar');
@@ -111,6 +111,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('form_cosecha_tabla', 'FormEncuestasController@form_cosecha_tabla');
     Route::post('form_post_cosecha_tabla', 'FormEncuestasController@form_post_cosecha_tabla');
     Route::post('form_secado_tabla', 'FormEncuestasController@form_secado_tabla');
+    Route::post('form_deficiencias_tabla', 'FormEncuestasController@form_deficiencias_tabla');
 
     //MENU PRINCIPAL
     Route::get('quienes_somos', 'FormEncuestasController@quienes_somos');
@@ -127,6 +128,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('form_cosecha_agregar', 'FormEncuestasController@form_cosecha_agregar')->name('form_cosecha_agregar');
     Route::get('form_post_cosecha_agregar', 'FormEncuestasController@form_post_cosecha_agregar')->name('form_post_cosecha_agregar');
     Route::get('form_secado_agregar', 'FormEncuestasController@form_secado_agregar')->name('form_secado_agregar');
+    Route::get('form_deficiencias_agregar', 'FormEncuestasController@form_deficiencias_agregar')->name('form_deficiencias_agregar');
 
 
 
@@ -143,6 +145,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('cosecha_guardar', 'FormEncuestasController@cosecha_guardar')->name('cosecha_guardar');
     Route::post('post_cosecha_guardar', 'FormEncuestasController@post_cosecha_guardar')->name('post_cosecha_guardar');
     Route::post('secado_guardar', 'FormEncuestasController@secado_guardar')->name('secado_guardar');
+    Route::post('deficiencias_guardar', 'FormEncuestasController@deficiencias_guardar')->name('deficiencias_guardar');
 
 
 
@@ -159,6 +162,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('form_cosecha_editar/{id}', 'FormEncuestasController@form_cosecha_editar')->name('form_cosecha_editar');
     Route::get('form_post_cosecha_editar/{id}', 'FormEncuestasController@form_post_cosecha_editar')->name('form_post_cosecha_editar');
     Route::get('form_secado_editar/{id}', 'FormEncuestasController@form_secado_editar')->name('form_secado_editar');
+    Route::get('form_deficiencias_editar/{id}', 'FormEncuestasController@form_deficiencias_editar')->name('form_deficiencias_editar');
 
 
 
@@ -174,6 +178,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('cosecha_actualizar/{id}', 'FormEncuestasController@cosecha_actualizar')->name('cosecha_actualizar');
     Route::post('post_cosecha_actualizar/{id}', 'FormEncuestasController@post_cosecha_actualizar')->name('post_cosecha_actualizar');
     Route::post('secado_actualizar/{id}', 'FormEncuestasController@secado_actualizar')->name('secado_actualizar');
+    Route::post('deficiencias_actualizar/{id}', 'FormEncuestasController@deficiencias_actualizar')->name('deficiencias_actualizar');
 
 
 
