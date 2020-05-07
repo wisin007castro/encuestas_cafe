@@ -98,6 +98,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::post('form_transformacion_opcion', 'FormEncuestasController@form_transformacion_opcion');
 
+    Route::post('form_enfermedades_plagas_opcion', 'FormEncuestasController@form_enfermedades_plagas_opcion');
+
     Route::post('form_sist_agroforestales_tabla', 'FormEncuestasController@form_sist_agroforestales_tabla');
 
 
@@ -112,6 +114,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('form_post_cosecha_tabla', 'FormEncuestasController@form_post_cosecha_tabla');
     Route::post('form_secado_tabla', 'FormEncuestasController@form_secado_tabla');
     Route::post('form_deficiencias_tabla', 'FormEncuestasController@form_deficiencias_tabla');
+    Route::post('form_enfermedades_tabla', 'FormEncuestasController@form_enfermedades_tabla');
 
     //MENU PRINCIPAL
     Route::get('quienes_somos', 'FormEncuestasController@quienes_somos');
@@ -129,6 +132,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('form_post_cosecha_agregar', 'FormEncuestasController@form_post_cosecha_agregar')->name('form_post_cosecha_agregar');
     Route::get('form_secado_agregar', 'FormEncuestasController@form_secado_agregar')->name('form_secado_agregar');
     Route::get('form_deficiencias_agregar', 'FormEncuestasController@form_deficiencias_agregar')->name('form_deficiencias_agregar');
+    Route::get('form_enfermedades_agregar', 'FormEncuestasController@form_enfermedades_agregar')->name('form_enfermedades_agregar');
 
 
 
@@ -146,6 +150,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('post_cosecha_guardar', 'FormEncuestasController@post_cosecha_guardar')->name('post_cosecha_guardar');
     Route::post('secado_guardar', 'FormEncuestasController@secado_guardar')->name('secado_guardar');
     Route::post('deficiencias_guardar', 'FormEncuestasController@deficiencias_guardar')->name('deficiencias_guardar');
+    Route::post('enfermedades_guardar', 'FormEncuestasController@enfermedades_guardar')->name('enfermedades_guardar');
 
 
 
@@ -163,6 +168,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('form_post_cosecha_editar/{id}', 'FormEncuestasController@form_post_cosecha_editar')->name('form_post_cosecha_editar');
     Route::get('form_secado_editar/{id}', 'FormEncuestasController@form_secado_editar')->name('form_secado_editar');
     Route::get('form_deficiencias_editar/{id}', 'FormEncuestasController@form_deficiencias_editar')->name('form_deficiencias_editar');
+    Route::get('form_enfermedades_editar/{id}', 'FormEncuestasController@form_enfermedades_editar')->name('form_enfermedades_editar');
 
 
 
@@ -179,6 +185,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('post_cosecha_actualizar/{id}', 'FormEncuestasController@post_cosecha_actualizar')->name('post_cosecha_actualizar');
     Route::post('secado_actualizar/{id}', 'FormEncuestasController@secado_actualizar')->name('secado_actualizar');
     Route::post('deficiencias_actualizar/{id}', 'FormEncuestasController@deficiencias_actualizar')->name('deficiencias_actualizar');
+    Route::post('enfermedades_actualizar/{id}', 'FormEncuestasController@enfermedades_actualizar')->name('enfermedades_actualizar');
 
 
 

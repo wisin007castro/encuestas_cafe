@@ -41,6 +41,10 @@ class FormEncuestasController extends Controller
         return view("formularios.encuestas.form_transformacion_opcion");
     }
 
+    public function form_enfermedades_plagas_opcion(){
+        return view("formularios.encuestas.form_enfermedades_plagas_opcion");
+    }
+
     public function form_densidad_tabla(){
         $datos = \DB::table('enc_densidad')->orderBy('id_densidad', 'desc')->where('object_id', Auth::user()->object_id)->where('activo', 1)->get();
         return view("listados.encuesta.listado_densidad", compact('datos'));
@@ -108,6 +112,11 @@ class FormEncuestasController extends Controller
         return view("listados.encuesta.form_deficiencias_tabla", compact('datos'));
     }
 
+    public function form_enfermedades_tabla(){
+        $datos = \DB::table('enc_enfermedades')->where('object_id', Auth::user()->object_id)->where('activo', 1)->orderBy('id_enfermedad', 'desc')->get();
+        return view("listados.encuesta.form_enfermedades_tabla", compact('datos'));
+    }
+
     //FORMS AGREGAR
     public function form_densidad_agregar(){
         return view("formularios.encuestas.form_densidad_agregar");
@@ -126,6 +135,10 @@ class FormEncuestasController extends Controller
 
     public function form_deficiencias_agregar(){
         return view("formularios.encuestas.form_deficiencias_agregar");
+    }
+
+    public function form_enfermedades_agregar(){
+        return view("formularios.encuestas.form_enfermedades_agregar");
     }
 
 
@@ -881,51 +894,300 @@ class FormEncuestasController extends Controller
                 'activo' => 1]
       ]);
       return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Deficiencia Guardada Exitosamente');
+    }
 
-      //echo $campo= $request->multiple[1]."&".$request->multiple[2];
-        /*$tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+    public function enfermedades_guardar(Request $request){
+      $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
 
-        //Tomamos los valores y les asignamos valores según corresponda
-        if ($request->secado == 1) {
-          $secado_fecha = $request->secado_fecha;
-          $secado_p_total = $request->secado_p_total;
-          $secado_humedad = $request->secado_humedad;
-          $secado_p_efectivo = $request->secado_p_efectivo;
+      //Tomamos los valores y les asignamos valores según corresponda
+      if ($request->cercospora == 1) {
+        $cercospora_fecha = $request->cercospora_fecha;
+        $cercospora_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->cercospora_area_afectada);$i++){
+          if ($cercospora_area_afectada == "") {
+            $cercospora_area_afectada = $request->cercospora_area_afectada[$i];
+          }
+          else {
+            $cercospora_area_afectada = $cercospora_area_afectada." & ".$request->cercospora_area_afectada[$i];
+          }
         }
-        else {
-          $secado_fecha = "0000-00-00";
-          $secado_p_total = 0;
-          $secado_humedad = 0;
-          $secado_p_efectivo = 0;
-        }
+        $cercospora_incidencia = $request->cercospora_incidencia;
+        $cercospora_recomendacion = $request->cercospora_recomendacion;
+      }
+      else {
+        $cercospora_fecha = "0000-00-00";
+        $cercospora_area_afectada = "";
+        $cercospora_incidencia = 0;
+        $cercospora_recomendacion = "";
+      }
 
-        if ($request->lavado == 1) {
-          $lavado_fecha = $request->lavado_fecha;
-          $lavado_p_total = $request->lavado_p_total;
-          $lavado_humedad = $request->lavado_humedad;
-          $lavado_p_efectivo = $request->lavado_p_efectivo;
+      if ($request->roya == 1) {
+        $roya_fecha = $request->roya_fecha;
+        $roya_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->roya_area_afectada);$i++){
+          if ($roya_area_afectada == "") {
+            $roya_area_afectada = $request->roya_area_afectada[$i];
+          }
+          else {
+            $roya_area_afectada = $roya_area_afectada." & ".$request->roya_area_afectada[$i];
+          }
         }
-        else {
-          $lavado_fecha = "0000-00-00";
-          $lavado_p_total = 0;
-          $lavado_humedad = 0;
-          $lavado_p_efectivo = 0;
-        }
+        $roya_incidencia = $request->roya_incidencia;
+        $roya_recomendacion = $request->roya_recomendacion;
+      }
+      else {
+        $roya_fecha = "0000-00-00";
+        $roya_area_afectada = "";
+        $roya_incidencia = 0;
+        $roya_recomendacion = "";
+      }
 
-        if ($request->miel == 1) {
-          $miel_fecha = $request->miel_fecha;
-          $miel_p_total = $request->miel_p_total;
-          $miel_humedad = $request->miel_humedad;
-          $miel_p_efectivo = $request->miel_p_efectivo;
+      if ($request->gallo == 1) {
+        $gallo_fecha = $request->gallo_fecha;
+        $gallo_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->gallo_area_afectada);$i++){
+          if ($gallo_area_afectada == "") {
+            $gallo_area_afectada = $request->gallo_area_afectada[$i];
+          }
+          else {
+            $gallo_area_afectada = $gallo_area_afectada." & ".$request->gallo_area_afectada[$i];
+          }
         }
-        else {
-          $miel_fecha = "0000-00-00";
-          $miel_p_total = 0;
-          $miel_humedad = 0;
-          $miel_p_efectivo = 0;
-        }
+        $gallo_incidencia = $request->gallo_incidencia;
+        $gallo_recomendacion = $request->gallo_recomendacion;
+      }
+      else {
+        $gallo_fecha = "0000-00-00";
+        $gallo_area_afectada = "";
+        $gallo_incidencia = 0;
+        $gallo_recomendacion = "";
+      }
 
-*/
+      if ($request->antracnosis == 1) {
+        $antracnosis_fecha = $request->antracnosis_fecha;
+        $antracnosis_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->antracnosis_area_afectada);$i++){
+          if ($antracnosis_area_afectada == "") {
+            $antracnosis_area_afectada = $request->antracnosis_area_afectada[$i];
+          }
+          else {
+            $antracnosis_area_afectada = $antracnosis_area_afectada." & ".$request->antracnosis_area_afectada[$i];
+          }
+        }
+        $antracnosis_incidencia = $request->antracnosis_incidencia;
+        $antracnosis_recomendacion = $request->antracnosis_recomendacion;
+      }
+      else {
+        $antracnosis_fecha = "0000-00-00";
+        $antracnosis_area_afectada = "";
+        $antracnosis_incidencia = 0;
+        $antracnosis_recomendacion = "";
+      }
+
+      if ($request->marchites == 1) {
+        $marchites_fecha = $request->marchites_fecha;
+        $marchites_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->marchites_area_afectada);$i++){
+          if ($marchites_area_afectada == "") {
+            $marchites_area_afectada = $request->marchites_area_afectada[$i];
+          }
+          else {
+            $marchites_area_afectada = $marchites_area_afectada." & ".$request->marchites_area_afectada[$i];
+          }
+        }
+        $marchites_incidencia = $request->marchites_incidencia;
+        $marchites_recomendacion = $request->marchites_recomendacion;
+      }
+      else {
+        $marchites_fecha = "0000-00-00";
+        $marchites_area_afectada = "";
+        $marchites_incidencia = 0;
+        $marchites_recomendacion = "";
+      }
+
+      if ($request->gotera == 1) {
+        $gotera_fecha = $request->gotera_fecha;
+        $gotera_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->gotera_area_afectada);$i++){
+          if ($gotera_area_afectada == "") {
+            $gotera_area_afectada = $request->gotera_area_afectada[$i];
+          }
+          else {
+            $gotera_area_afectada = $gotera_area_afectada." & ".$request->gotera_area_afectada[$i];
+          }
+        }
+        $gotera_incidencia = $request->gotera_incidencia;
+        $gotera_recomendacion = $request->gotera_recomendacion;
+      }
+      else {
+        $gotera_fecha = "0000-00-00";
+        $gotera_area_afectada = "";
+        $gotera_incidencia = 0;
+        $gotera_recomendacion = "";
+      }
+
+      if ($request->mancha == 1) {
+        $mancha_fecha = $request->mancha_fecha;
+        $mancha_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->mancha_area_afectada);$i++){
+          if ($mancha_area_afectada == "") {
+            $mancha_area_afectada = $request->mancha_area_afectada[$i];
+          }
+          else {
+            $mancha_area_afectada = $mancha_area_afectada." & ".$request->mancha_area_afectada[$i];
+          }
+        }
+        $mancha_incidencia = $request->mancha_incidencia;
+        $mancha_recomendacion = $request->mancha_recomendacion;
+      }
+      else {
+        $mancha_fecha = "0000-00-00";
+        $mancha_area_afectada = "";
+        $mancha_incidencia = 0;
+        $mancha_recomendacion = "";
+      }
+
+      if ($request->pudricion == 1) {
+        $pudricion_fecha = $request->pudricion_fecha;
+        $pudricion_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->pudricion_area_afectada);$i++){
+          if ($pudricion_area_afectada == "") {
+            $pudricion_area_afectada = $request->pudricion_area_afectada[$i];
+          }
+          else {
+            $pudricion_area_afectada = $pudricion_area_afectada." & ".$request->pudricion_area_afectada[$i];
+          }
+        }
+        $pudricion_incidencia = $request->pudricion_incidencia;
+        $pudricion_recomendacion = $request->pudricion_recomendacion;
+      }
+      else {
+        $pudricion_fecha = "0000-00-00";
+        $pudricion_area_afectada = "";
+        $pudricion_incidencia = 0;
+        $pudricion_recomendacion = "";
+      }
+
+      if ($request->rosado == 1) {
+        $rosado_fecha = $request->rosado_fecha;
+        $rosado_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->rosado_area_afectada);$i++){
+          if ($rosado_area_afectada == "") {
+            $rosado_area_afectada = $request->rosado_area_afectada[$i];
+          }
+          else {
+            $rosado_area_afectada = $rosado_area_afectada." & ".$request->rosado_area_afectada[$i];
+          }
+        }
+        $rosado_incidencia = $request->rosado_incidencia;
+        $rosado_recomendacion = $request->rosado_recomendacion;
+      }
+      else {
+        $rosado_fecha = "0000-00-00";
+        $rosado_area_afectada = "";
+        $rosado_incidencia = 0;
+        $rosado_recomendacion = "";
+      }
+
+      if ($request->moho == 1) {
+        $moho_fecha = $request->moho_fecha;
+        $moho_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->moho_area_afectada);$i++){
+          if ($moho_area_afectada == "") {
+            $moho_area_afectada = $request->moho_area_afectada[$i];
+          }
+          else {
+            $moho_area_afectada = $moho_area_afectada." & ".$request->moho_area_afectada[$i];
+          }
+        }
+        $moho_incidencia = $request->moho_incidencia;
+        $moho_recomendacion = $request->moho_recomendacion;
+      }
+      else {
+        $moho_fecha = "0000-00-00";
+        $moho_area_afectada = "";
+        $moho_incidencia = 0;
+        $moho_recomendacion = "";
+      }
+
+
+     \DB::table('enc_enfermedades')->insert([
+                ['object_id' => Auth::user()->object_id,
+                'cercospora' => $request->cercospora,
+                'cercospora_fecha' => $cercospora_fecha,
+                'cercospora_area_afectada' => $cercospora_area_afectada,
+                'cercospora_incidencia' => $cercospora_incidencia,
+                'cercospora_recomendacion' => $cercospora_recomendacion,
+
+                'roya' => $request->roya,
+                'roya_fecha' => $roya_fecha,
+                'roya_area_afectada' => $roya_area_afectada,
+                'roya_incidencia' => $roya_incidencia,
+                'roya_recomendacion' => $roya_recomendacion,
+
+                'gallo' => $request->gallo,
+                'gallo_fecha' => $gallo_fecha,
+                'gallo_area_afectada' => $gallo_area_afectada,
+                'gallo_incidencia' => $gallo_incidencia,
+                'gallo_recomendacion' => $gallo_recomendacion,
+
+                'antracnosis' => $request->antracnosis,
+                'antracnosis_fecha' => $antracnosis_fecha,
+                'antracnosis_area_afectada' => $antracnosis_area_afectada,
+                'antracnosis_incidencia' => $antracnosis_incidencia,
+                'antracnosis_recomendacion' => $antracnosis_recomendacion,
+
+                'marchites' => $request->marchites,
+                'marchites_fecha' => $marchites_fecha,
+                'marchites_area_afectada' => $marchites_area_afectada,
+                'marchites_incidencia' => $marchites_incidencia,
+                'marchites_recomendacion' => $marchites_recomendacion,
+
+                'gotera' => $request->gotera,
+                'gotera_fecha' => $gotera_fecha,
+                'gotera_area_afectada' => $gotera_area_afectada,
+                'gotera_incidencia' => $gotera_incidencia,
+                'gotera_recomendacion' => $gotera_recomendacion,
+
+                'mancha' => $request->mancha,
+                'mancha_fecha' => $mancha_fecha,
+                'mancha_area_afectada' => $mancha_area_afectada,
+                'mancha_incidencia' => $mancha_incidencia,
+                'mancha_recomendacion' => $mancha_recomendacion,
+
+                'pudricion' => $request->pudricion,
+                'pudricion_fecha' => $pudricion_fecha,
+                'pudricion_area_afectada' => $pudricion_area_afectada,
+                'pudricion_incidencia' => $pudricion_incidencia,
+                'pudricion_recomendacion' => $pudricion_recomendacion,
+
+                'rosado' => $request->rosado,
+                'rosado_fecha' => $rosado_fecha,
+                'rosado_area_afectada' => $rosado_area_afectada,
+                'rosado_incidencia' => $rosado_incidencia,
+                'rosado_recomendacion' => $rosado_recomendacion,
+
+                'moho' => $request->moho,
+                'moho_fecha' => $moho_fecha,
+                'moho_area_afectada' => $moho_area_afectada,
+                'moho_incidencia' => $moho_incidencia,
+                'moho_recomendacion' => $moho_recomendacion,
+
+                'created_at' => $tiempo_actual,
+                'updated_at' => $tiempo_actual,
+                'activo' => 1]
+      ]);
+      return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Enfermedades Guardada Exitosamente');
     }
 
 
@@ -981,6 +1243,12 @@ class FormEncuestasController extends Controller
       $id_deficiencia = base64_decode($id);
       $dato = \DB::table('enc_deficiencias')->where('id_deficiencia', $id_deficiencia)->first();
       return view("formularios.encuestas.form_deficiencias_editar", compact('dato'));
+    }
+
+    public function form_enfermedades_editar($id){
+      $id_enfermedad = base64_decode($id);
+      $dato = \DB::table('enc_enfermedades')->where('id_enfermedad', $id_enfermedad)->first();
+      return view("formularios.encuestas.form_enfermedades_editar", compact('dato'));
     }
 
 
@@ -1718,6 +1986,300 @@ class FormEncuestasController extends Controller
       ]);
 
       return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Deficiencias Actualizada Exitosamente');
+    }
+
+
+    public function enfermedades_actualizar(Request $request, $id){
+      $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+      //Tomamos los valores y les asignamos valores según corresponda
+      if ($request->cercospora == 1) {
+        $cercospora_fecha = $request->cercospora_fecha;
+        $cercospora_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->cercospora_area_afectada);$i++){
+          if ($cercospora_area_afectada == "") {
+            $cercospora_area_afectada = $request->cercospora_area_afectada[$i];
+          }
+          else {
+            $cercospora_area_afectada = $cercospora_area_afectada." & ".$request->cercospora_area_afectada[$i];
+          }
+        }
+        $cercospora_incidencia = $request->cercospora_incidencia;
+        $cercospora_recomendacion = $request->cercospora_recomendacion;
+      }
+      else {
+        $cercospora_fecha = "0000-00-00";
+        $cercospora_area_afectada = "";
+        $cercospora_incidencia = 0;
+        $cercospora_recomendacion = "";
+      }
+
+      if ($request->roya == 1) {
+        $roya_fecha = $request->roya_fecha;
+        $roya_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->roya_area_afectada);$i++){
+          if ($roya_area_afectada == "") {
+            $roya_area_afectada = $request->roya_area_afectada[$i];
+          }
+          else {
+            $roya_area_afectada = $roya_area_afectada." & ".$request->roya_area_afectada[$i];
+          }
+        }
+        $roya_incidencia = $request->roya_incidencia;
+        $roya_recomendacion = $request->roya_recomendacion;
+      }
+      else {
+        $roya_fecha = "0000-00-00";
+        $roya_area_afectada = "";
+        $roya_incidencia = 0;
+        $roya_recomendacion = "";
+      }
+
+      if ($request->gallo == 1) {
+        $gallo_fecha = $request->gallo_fecha;
+        $gallo_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->gallo_area_afectada);$i++){
+          if ($gallo_area_afectada == "") {
+            $gallo_area_afectada = $request->gallo_area_afectada[$i];
+          }
+          else {
+            $gallo_area_afectada = $gallo_area_afectada." & ".$request->gallo_area_afectada[$i];
+          }
+        }
+        $gallo_incidencia = $request->gallo_incidencia;
+        $gallo_recomendacion = $request->gallo_recomendacion;
+      }
+      else {
+        $gallo_fecha = "0000-00-00";
+        $gallo_area_afectada = "";
+        $gallo_incidencia = 0;
+        $gallo_recomendacion = "";
+      }
+
+      if ($request->antracnosis == 1) {
+        $antracnosis_fecha = $request->antracnosis_fecha;
+        $antracnosis_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->antracnosis_area_afectada);$i++){
+          if ($antracnosis_area_afectada == "") {
+            $antracnosis_area_afectada = $request->antracnosis_area_afectada[$i];
+          }
+          else {
+            $antracnosis_area_afectada = $antracnosis_area_afectada." & ".$request->antracnosis_area_afectada[$i];
+          }
+        }
+        $antracnosis_incidencia = $request->antracnosis_incidencia;
+        $antracnosis_recomendacion = $request->antracnosis_recomendacion;
+      }
+      else {
+        $antracnosis_fecha = "0000-00-00";
+        $antracnosis_area_afectada = "";
+        $antracnosis_incidencia = 0;
+        $antracnosis_recomendacion = "";
+      }
+
+      if ($request->marchites == 1) {
+        $marchites_fecha = $request->marchites_fecha;
+        $marchites_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->marchites_area_afectada);$i++){
+          if ($marchites_area_afectada == "") {
+            $marchites_area_afectada = $request->marchites_area_afectada[$i];
+          }
+          else {
+            $marchites_area_afectada = $marchites_area_afectada." & ".$request->marchites_area_afectada[$i];
+          }
+        }
+        $marchites_incidencia = $request->marchites_incidencia;
+        $marchites_recomendacion = $request->marchites_recomendacion;
+      }
+      else {
+        $marchites_fecha = "0000-00-00";
+        $marchites_area_afectada = "";
+        $marchites_incidencia = 0;
+        $marchites_recomendacion = "";
+      }
+
+      if ($request->gotera == 1) {
+        $gotera_fecha = $request->gotera_fecha;
+        $gotera_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->gotera_area_afectada);$i++){
+          if ($gotera_area_afectada == "") {
+            $gotera_area_afectada = $request->gotera_area_afectada[$i];
+          }
+          else {
+            $gotera_area_afectada = $gotera_area_afectada." & ".$request->gotera_area_afectada[$i];
+          }
+        }
+        $gotera_incidencia = $request->gotera_incidencia;
+        $gotera_recomendacion = $request->gotera_recomendacion;
+      }
+      else {
+        $gotera_fecha = "0000-00-00";
+        $gotera_area_afectada = "";
+        $gotera_incidencia = 0;
+        $gotera_recomendacion = "";
+      }
+
+      if ($request->mancha == 1) {
+        $mancha_fecha = $request->mancha_fecha;
+        $mancha_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->mancha_area_afectada);$i++){
+          if ($mancha_area_afectada == "") {
+            $mancha_area_afectada = $request->mancha_area_afectada[$i];
+          }
+          else {
+            $mancha_area_afectada = $mancha_area_afectada." & ".$request->mancha_area_afectada[$i];
+          }
+        }
+        $mancha_incidencia = $request->mancha_incidencia;
+        $mancha_recomendacion = $request->mancha_recomendacion;
+      }
+      else {
+        $mancha_fecha = "0000-00-00";
+        $mancha_area_afectada = "";
+        $mancha_incidencia = 0;
+        $mancha_recomendacion = "";
+      }
+
+      if ($request->pudricion == 1) {
+        $pudricion_fecha = $request->pudricion_fecha;
+        $pudricion_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->pudricion_area_afectada);$i++){
+          if ($pudricion_area_afectada == "") {
+            $pudricion_area_afectada = $request->pudricion_area_afectada[$i];
+          }
+          else {
+            $pudricion_area_afectada = $pudricion_area_afectada." & ".$request->pudricion_area_afectada[$i];
+          }
+        }
+        $pudricion_incidencia = $request->pudricion_incidencia;
+        $pudricion_recomendacion = $request->pudricion_recomendacion;
+      }
+      else {
+        $pudricion_fecha = "0000-00-00";
+        $pudricion_area_afectada = "";
+        $pudricion_incidencia = 0;
+        $pudricion_recomendacion = "";
+      }
+
+      if ($request->rosado == 1) {
+        $rosado_fecha = $request->rosado_fecha;
+        $rosado_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->rosado_area_afectada);$i++){
+          if ($rosado_area_afectada == "") {
+            $rosado_area_afectada = $request->rosado_area_afectada[$i];
+          }
+          else {
+            $rosado_area_afectada = $rosado_area_afectada." & ".$request->rosado_area_afectada[$i];
+          }
+        }
+        $rosado_incidencia = $request->rosado_incidencia;
+        $rosado_recomendacion = $request->rosado_recomendacion;
+      }
+      else {
+        $rosado_fecha = "0000-00-00";
+        $rosado_area_afectada = "";
+        $rosado_incidencia = 0;
+        $rosado_recomendacion = "";
+      }
+
+      if ($request->moho == 1) {
+        $moho_fecha = $request->moho_fecha;
+        $moho_area_afectada = "";
+        //Concatenamos todas las areas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->moho_area_afectada);$i++){
+          if ($moho_area_afectada == "") {
+            $moho_area_afectada = $request->moho_area_afectada[$i];
+          }
+          else {
+            $moho_area_afectada = $moho_area_afectada." & ".$request->moho_area_afectada[$i];
+          }
+        }
+        $moho_incidencia = $request->moho_incidencia;
+        $moho_recomendacion = $request->moho_recomendacion;
+      }
+      else {
+        $moho_fecha = "0000-00-00";
+        $moho_area_afectada = "";
+        $moho_incidencia = 0;
+        $moho_recomendacion = "";
+      }
+
+      $dato = \DB::table('enc_enfermedades')
+              ->where('id_enfermedad', $id)
+              ->update([
+                'cercospora' => $request->cercospora,
+                'cercospora_fecha' => $cercospora_fecha,
+                'cercospora_area_afectada' => $cercospora_area_afectada,
+                'cercospora_incidencia' => $cercospora_incidencia,
+                'cercospora_recomendacion' => $cercospora_recomendacion,
+
+                'roya' => $request->roya,
+                'roya_fecha' => $roya_fecha,
+                'roya_area_afectada' => $roya_area_afectada,
+                'roya_incidencia' => $roya_incidencia,
+                'roya_recomendacion' => $roya_recomendacion,
+
+                'gallo' => $request->gallo,
+                'gallo_fecha' => $gallo_fecha,
+                'gallo_area_afectada' => $gallo_area_afectada,
+                'gallo_incidencia' => $gallo_incidencia,
+                'gallo_recomendacion' => $gallo_recomendacion,
+
+                'antracnosis' => $request->antracnosis,
+                'antracnosis_fecha' => $antracnosis_fecha,
+                'antracnosis_area_afectada' => $antracnosis_area_afectada,
+                'antracnosis_incidencia' => $antracnosis_incidencia,
+                'antracnosis_recomendacion' => $antracnosis_recomendacion,
+
+                'marchites' => $request->marchites,
+                'marchites_fecha' => $marchites_fecha,
+                'marchites_area_afectada' => $marchites_area_afectada,
+                'marchites_incidencia' => $marchites_incidencia,
+                'marchites_recomendacion' => $marchites_recomendacion,
+
+                'gotera' => $request->gotera,
+                'gotera_fecha' => $gotera_fecha,
+                'gotera_area_afectada' => $gotera_area_afectada,
+                'gotera_incidencia' => $gotera_incidencia,
+                'gotera_recomendacion' => $gotera_recomendacion,
+
+                'mancha' => $request->mancha,
+                'mancha_fecha' => $mancha_fecha,
+                'mancha_area_afectada' => $mancha_area_afectada,
+                'mancha_incidencia' => $mancha_incidencia,
+                'mancha_recomendacion' => $mancha_recomendacion,
+
+                'pudricion' => $request->pudricion,
+                'pudricion_fecha' => $pudricion_fecha,
+                'pudricion_area_afectada' => $pudricion_area_afectada,
+                'pudricion_incidencia' => $pudricion_incidencia,
+                'pudricion_recomendacion' => $pudricion_recomendacion,
+
+                'rosado' => $request->rosado,
+                'rosado_fecha' => $rosado_fecha,
+                'rosado_area_afectada' => $rosado_area_afectada,
+                'rosado_incidencia' => $rosado_incidencia,
+                'rosado_recomendacion' => $rosado_recomendacion,
+
+                'moho' => $request->moho,
+                'moho_fecha' => $moho_fecha,
+                'moho_area_afectada' => $moho_area_afectada,
+                'moho_incidencia' => $moho_incidencia,
+                'moho_recomendacion' => $moho_recomendacion,
+
+                'updated_at' => $tiempo_actual
+      ]);
+
+      return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Enfermedades Actualizada Exitosamente');
     }
 
 
