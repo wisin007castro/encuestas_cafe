@@ -117,6 +117,11 @@ class FormEncuestasController extends Controller
         return view("listados.encuesta.form_enfermedades_tabla", compact('datos'));
     }
 
+    public function form_plagas_tabla(){
+        $datos = \DB::table('enc_plagas')->where('object_id', Auth::user()->object_id)->where('activo', 1)->orderBy('id_plaga', 'desc')->get();
+        return view("listados.encuesta.form_plagas_tabla", compact('datos'));
+    }
+
     //FORMS AGREGAR
     public function form_densidad_agregar(){
         return view("formularios.encuestas.form_densidad_agregar");
@@ -139,6 +144,10 @@ class FormEncuestasController extends Controller
 
     public function form_enfermedades_agregar(){
         return view("formularios.encuestas.form_enfermedades_agregar");
+    }
+
+    public function form_plagas_agregar(){
+        return view("formularios.encuestas.form_plagas_agregar");
     }
 
 
@@ -1190,6 +1199,244 @@ class FormEncuestasController extends Controller
       return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Enfermedades Guardada Exitosamente');
     }
 
+    public function plagas_guardar(Request $request){
+      $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+      //Tomamos los valores y les asignamos valores según corresponda
+      if ($request->broca == 1) {
+        $broca_fecha = $request->broca_fecha;
+        $broca_zona_afectada = "";
+        //Concatenamos todas las zonas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->broca_zona_afectada);$i++){
+          if ($broca_zona_afectada == "") {
+            $broca_zona_afectada = $request->broca_zona_afectada[$i];
+          }
+          else {
+            $broca_zona_afectada = $broca_zona_afectada." & ".$request->broca_zona_afectada[$i];
+          }
+        }
+        $broca_incidencia = $request->broca_incidencia;
+        $broca_control = $request->broca_control;
+      }
+      else {
+        $broca_fecha = "0000-00-00";
+        $broca_zona_afectada = "";
+        $broca_incidencia = 0;
+        $broca_control = "";
+      }
+
+      if ($request->cepe == 1) {
+        $cepe_fecha = $request->cepe_fecha;
+        $cepe_zona_afectada = "";
+        //Concatenamos todas las zonas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->cepe_zona_afectada);$i++){
+          if ($cepe_zona_afectada == "") {
+            $cepe_zona_afectada = $request->cepe_zona_afectada[$i];
+          }
+          else {
+            $cepe_zona_afectada = $cepe_zona_afectada." & ".$request->cepe_zona_afectada[$i];
+          }
+        }
+        $cepe_incidencia = $request->cepe_incidencia;
+        $cepe_control = $request->cepe_control;
+      }
+      else {
+        $cepe_fecha = "0000-00-00";
+        $cepe_zona_afectada = "";
+        $cepe_incidencia = 0;
+        $cepe_control = "";
+      }
+
+      if ($request->grillo == 1) {
+        $grillo_fecha = $request->grillo_fecha;
+        $grillo_zona_afectada = "";
+        //Concatenamos todas las zonas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->grillo_zona_afectada);$i++){
+          if ($grillo_zona_afectada == "") {
+            $grillo_zona_afectada = $request->grillo_zona_afectada[$i];
+          }
+          else {
+            $grillo_zona_afectada = $grillo_zona_afectada." & ".$request->grillo_zona_afectada[$i];
+          }
+        }
+        $grillo_incidencia = $request->grillo_incidencia;
+        $grillo_control = $request->grillo_control;
+      }
+      else {
+        $grillo_fecha = "0000-00-00";
+        $grillo_zona_afectada = "";
+        $grillo_incidencia = 0;
+        $grillo_control = "";
+      }
+
+      if ($request->cochinilla == 1) {
+        $cochinilla_fecha = $request->cochinilla_fecha;
+        $cochinilla_zona_afectada = "";
+        //Concatenamos todas las zonas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->cochinilla_zona_afectada);$i++){
+          if ($cochinilla_zona_afectada == "") {
+            $cochinilla_zona_afectada = $request->cochinilla_zona_afectada[$i];
+          }
+          else {
+            $cochinilla_zona_afectada = $cochinilla_zona_afectada." & ".$request->cochinilla_zona_afectada[$i];
+          }
+        }
+        $cochinilla_incidencia = $request->cochinilla_incidencia;
+        $cochinilla_control = $request->cochinilla_control;
+      }
+      else {
+        $cochinilla_fecha = "0000-00-00";
+        $cochinilla_zona_afectada = "";
+        $cochinilla_incidencia = 0;
+        $cochinilla_control = "";
+      }
+
+      if ($request->escamas == 1) {
+        $escamas_fecha = $request->escamas_fecha;
+        $escamas_zona_afectada = "";
+        //Concatenamos todas las zonas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->escamas_zona_afectada);$i++){
+          if ($escamas_zona_afectada == "") {
+            $escamas_zona_afectada = $request->escamas_zona_afectada[$i];
+          }
+          else {
+            $escamas_zona_afectada = $escamas_zona_afectada." & ".$request->escamas_zona_afectada[$i];
+          }
+        }
+        $escamas_incidencia = $request->escamas_incidencia;
+        $escamas_control = $request->escamas_control;
+      }
+      else {
+        $escamas_fecha = "0000-00-00";
+        $escamas_zona_afectada = "";
+        $escamas_incidencia = 0;
+        $escamas_control = "";
+      }
+
+      if ($request->minador == 1) {
+        $minador_fecha = $request->minador_fecha;
+        $minador_zona_afectada = "";
+        //Concatenamos todas las zonas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->minador_zona_afectada);$i++){
+          if ($minador_zona_afectada == "") {
+            $minador_zona_afectada = $request->minador_zona_afectada[$i];
+          }
+          else {
+            $minador_zona_afectada = $minador_zona_afectada." & ".$request->minador_zona_afectada[$i];
+          }
+        }
+        $minador_incidencia = $request->minador_incidencia;
+        $minador_control = $request->minador_control;
+      }
+      else {
+        $minador_fecha = "0000-00-00";
+        $minador_zona_afectada = "";
+        $minador_incidencia = 0;
+        $minador_control = "";
+      }
+
+      if ($request->barrenador == 1) {
+        $barrenador_fecha = $request->barrenador_fecha;
+        $barrenador_zona_afectada = "";
+        //Concatenamos todas las zonas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->barrenador_zona_afectada);$i++){
+          if ($barrenador_zona_afectada == "") {
+            $barrenador_zona_afectada = $request->barrenador_zona_afectada[$i];
+          }
+          else {
+            $barrenador_zona_afectada = $barrenador_zona_afectada." & ".$request->barrenador_zona_afectada[$i];
+          }
+        }
+        $barrenador_incidencia = $request->barrenador_incidencia;
+        $barrenador_control = $request->barrenador_control;
+      }
+      else {
+        $nematodos_fecha = "0000-00-00";
+        $nematodos_zona_afectada = "";
+        $nematodos_incidencia = 0;
+        $nematodos_control = "";
+      }
+
+      if ($request->nematodos == 1) {
+        $nematodos_fecha = $request->nematodos_fecha;
+        $nematodos_zona_afectada = "";
+        //Concatenamos todas las zonas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->nematodos_zona_afectada);$i++){
+          if ($nematodos_zona_afectada == "") {
+            $nematodos_zona_afectada = $request->nematodos_zona_afectada[$i];
+          }
+          else {
+            $nematodos_zona_afectada = $nematodos_zona_afectada." & ".$request->nematodos_zona_afectada[$i];
+          }
+        }
+        $nematodos_incidencia = $request->nematodos_incidencia;
+        $nematodos_control = $request->nematodos_control;
+      }
+      else {
+        $nematodos_fecha = "0000-00-00";
+        $nematodos_zona_afectada = "";
+        $nematodos_incidencia = 0;
+        $nematodos_control = "";
+      }
+
+
+     \DB::table('enc_plagas')->insert([
+                ['object_id' => Auth::user()->object_id,
+                'broca' => $request->broca,
+                'broca_fecha' => $broca_fecha,
+                'broca_zona_afectada' => $broca_zona_afectada,
+                'broca_incidencia' => $broca_incidencia,
+                'broca_control' => $broca_control,
+
+                'cepe' => $request->cepe,
+                'cepe_fecha' => $cepe_fecha,
+                'cepe_zona_afectada' => $cepe_zona_afectada,
+                'cepe_incidencia' => $cepe_incidencia,
+                'cepe_control' => $cepe_control,
+
+                'grillo' => $request->grillo,
+                'grillo_fecha' => $grillo_fecha,
+                'grillo_zona_afectada' => $grillo_zona_afectada,
+                'grillo_incidencia' => $grillo_incidencia,
+                'grillo_control' => $grillo_control,
+
+                'cochinilla' => $request->cochinilla,
+                'cochinilla_fecha' => $cochinilla_fecha,
+                'cochinilla_zona_afectada' => $cochinilla_zona_afectada,
+                'cochinilla_incidencia' => $cochinilla_incidencia,
+                'cochinilla_control' => $cochinilla_control,
+
+                'escamas' => $request->escamas,
+                'escamas_fecha' => $escamas_fecha,
+                'escamas_zona_afectada' => $escamas_zona_afectada,
+                'escamas_incidencia' => $escamas_incidencia,
+                'escamas_control' => $escamas_control,
+
+                'minador' => $request->minador,
+                'minador_fecha' => $minador_fecha,
+                'minador_zona_afectada' => $minador_zona_afectada,
+                'minador_incidencia' => $minador_incidencia,
+                'minador_control' => $minador_control,
+
+                'barrenador' => $request->barrenador,
+                'barrenador_fecha' => $barrenador_fecha,
+                'barrenador_zona_afectada' => $barrenador_zona_afectada,
+                'barrenador_incidencia' => $barrenador_incidencia,
+                'barrenador_control' => $barrenador_control,
+
+                'nematodos' => $request->nematodos,
+                'nematodos_fecha' => $nematodos_fecha,
+                'nematodos_zona_afectada' => $nematodos_zona_afectada,
+                'nematodos_incidencia' => $nematodos_incidencia,
+                'nematodos_control' => $nematodos_control,
+
+                'created_at' => $tiempo_actual,
+                'updated_at' => $tiempo_actual,
+                'activo' => 1]
+      ]);
+      return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Plagas Guardada Exitosamente');
+    }
+
 
     //FORMS EDITAR
     public function form_densidad_editar($id){
@@ -1249,6 +1496,12 @@ class FormEncuestasController extends Controller
       $id_enfermedad = base64_decode($id);
       $dato = \DB::table('enc_enfermedades')->where('id_enfermedad', $id_enfermedad)->first();
       return view("formularios.encuestas.form_enfermedades_editar", compact('dato'));
+    }
+
+    public function form_plagas_editar($id){
+      $id_plaga = base64_decode($id);
+      $dato = \DB::table('enc_plagas')->where('id_plaga', $id_plaga)->first();
+      return view("formularios.encuestas.form_plagas_editar", compact('dato'));
     }
 
 
@@ -2280,6 +2533,243 @@ class FormEncuestasController extends Controller
       ]);
 
       return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Enfermedades Actualizada Exitosamente');
+    }
+
+    public function plagas_actualizar(Request $request, $id){
+      $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+      //Tomamos los valores y les asignamos valores según corresponda
+      if ($request->broca == 1) {
+        $broca_fecha = $request->broca_fecha;
+        $broca_zona_afectada = "";
+        //Concatenamos todas las zonas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->broca_zona_afectada);$i++){
+          if ($broca_zona_afectada == "") {
+            $broca_zona_afectada = $request->broca_zona_afectada[$i];
+          }
+          else {
+            $broca_zona_afectada = $broca_zona_afectada." & ".$request->broca_zona_afectada[$i];
+          }
+        }
+        $broca_incidencia = $request->broca_incidencia;
+        $broca_control = $request->broca_control;
+      }
+      else {
+        $broca_fecha = "0000-00-00";
+        $broca_zona_afectada = "";
+        $broca_incidencia = 0;
+        $broca_control = "";
+      }
+
+      if ($request->cepe == 1) {
+        $cepe_fecha = $request->cepe_fecha;
+        $cepe_zona_afectada = "";
+        //Concatenamos todas las zonas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->cepe_zona_afectada);$i++){
+          if ($cepe_zona_afectada == "") {
+            $cepe_zona_afectada = $request->cepe_zona_afectada[$i];
+          }
+          else {
+            $cepe_zona_afectada = $cepe_zona_afectada." & ".$request->cepe_zona_afectada[$i];
+          }
+        }
+        $cepe_incidencia = $request->cepe_incidencia;
+        $cepe_control = $request->cepe_control;
+      }
+      else {
+        $cepe_fecha = "0000-00-00";
+        $cepe_zona_afectada = "";
+        $cepe_incidencia = 0;
+        $cepe_control = "";
+      }
+
+      if ($request->grillo == 1) {
+        $grillo_fecha = $request->grillo_fecha;
+        $grillo_zona_afectada = "";
+        //Concatenamos todas las zonas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->grillo_zona_afectada);$i++){
+          if ($grillo_zona_afectada == "") {
+            $grillo_zona_afectada = $request->grillo_zona_afectada[$i];
+          }
+          else {
+            $grillo_zona_afectada = $grillo_zona_afectada." & ".$request->grillo_zona_afectada[$i];
+          }
+        }
+        $grillo_incidencia = $request->grillo_incidencia;
+        $grillo_control = $request->grillo_control;
+      }
+      else {
+        $grillo_fecha = "0000-00-00";
+        $grillo_zona_afectada = "";
+        $grillo_incidencia = 0;
+        $grillo_control = "";
+      }
+
+      if ($request->cochinilla == 1) {
+        $cochinilla_fecha = $request->cochinilla_fecha;
+        $cochinilla_zona_afectada = "";
+        //Concatenamos todas las zonas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->cochinilla_zona_afectada);$i++){
+          if ($cochinilla_zona_afectada == "") {
+            $cochinilla_zona_afectada = $request->cochinilla_zona_afectada[$i];
+          }
+          else {
+            $cochinilla_zona_afectada = $cochinilla_zona_afectada." & ".$request->cochinilla_zona_afectada[$i];
+          }
+        }
+        $cochinilla_incidencia = $request->cochinilla_incidencia;
+        $cochinilla_control = $request->cochinilla_control;
+      }
+      else {
+        $cochinilla_fecha = "0000-00-00";
+        $cochinilla_zona_afectada = "";
+        $cochinilla_incidencia = 0;
+        $cochinilla_control = "";
+      }
+
+      if ($request->escamas == 1) {
+        $escamas_fecha = $request->escamas_fecha;
+        $escamas_zona_afectada = "";
+        //Concatenamos todas las zonas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->escamas_zona_afectada);$i++){
+          if ($escamas_zona_afectada == "") {
+            $escamas_zona_afectada = $request->escamas_zona_afectada[$i];
+          }
+          else {
+            $escamas_zona_afectada = $escamas_zona_afectada." & ".$request->escamas_zona_afectada[$i];
+          }
+        }
+        $escamas_incidencia = $request->escamas_incidencia;
+        $escamas_control = $request->escamas_control;
+      }
+      else {
+        $escamas_fecha = "0000-00-00";
+        $escamas_zona_afectada = "";
+        $escamas_incidencia = 0;
+        $escamas_control = "";
+      }
+
+      if ($request->minador == 1) {
+        $minador_fecha = $request->minador_fecha;
+        $minador_zona_afectada = "";
+        //Concatenamos todas las zonas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->minador_zona_afectada);$i++){
+          if ($minador_zona_afectada == "") {
+            $minador_zona_afectada = $request->minador_zona_afectada[$i];
+          }
+          else {
+            $minador_zona_afectada = $minador_zona_afectada." & ".$request->minador_zona_afectada[$i];
+          }
+        }
+        $minador_incidencia = $request->minador_incidencia;
+        $minador_control = $request->minador_control;
+      }
+      else {
+        $minador_fecha = "0000-00-00";
+        $minador_zona_afectada = "";
+        $minador_incidencia = 0;
+        $minador_control = "";
+      }
+
+      if ($request->barrenador == 1) {
+        $barrenador_fecha = $request->barrenador_fecha;
+        $barrenador_zona_afectada = "";
+        //Concatenamos todas las zonas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->barrenador_zona_afectada);$i++){
+          if ($barrenador_zona_afectada == "") {
+            $barrenador_zona_afectada = $request->barrenador_zona_afectada[$i];
+          }
+          else {
+            $barrenador_zona_afectada = $barrenador_zona_afectada." & ".$request->barrenador_zona_afectada[$i];
+          }
+        }
+        $barrenador_incidencia = $request->barrenador_incidencia;
+        $barrenador_control = $request->barrenador_control;
+      }
+      else {
+        $nematodos_fecha = "0000-00-00";
+        $nematodos_zona_afectada = "";
+        $nematodos_incidencia = 0;
+        $nematodos_control = "";
+      }
+
+      if ($request->nematodos == 1) {
+        $nematodos_fecha = $request->nematodos_fecha;
+        $nematodos_zona_afectada = "";
+        //Concatenamos todas las zonas afectadas para guardarlas en un solo campo
+        for ($i=0;$i<count($request->nematodos_zona_afectada);$i++){
+          if ($nematodos_zona_afectada == "") {
+            $nematodos_zona_afectada = $request->nematodos_zona_afectada[$i];
+          }
+          else {
+            $nematodos_zona_afectada = $nematodos_zona_afectada." & ".$request->nematodos_zona_afectada[$i];
+          }
+        }
+        $nematodos_incidencia = $request->nematodos_incidencia;
+        $nematodos_control = $request->nematodos_control;
+      }
+      else {
+        $nematodos_fecha = "0000-00-00";
+        $nematodos_zona_afectada = "";
+        $nematodos_incidencia = 0;
+        $nematodos_control = "";
+      }
+
+      $dato = \DB::table('enc_plagas')
+              ->where('id_plaga', $id)
+              ->update([
+                'broca' => $request->broca,
+                'broca_fecha' => $broca_fecha,
+                'broca_zona_afectada' => $broca_zona_afectada,
+                'broca_incidencia' => $broca_incidencia,
+                'broca_control' => $broca_control,
+
+                'cepe' => $request->cepe,
+                'cepe_fecha' => $cepe_fecha,
+                'cepe_zona_afectada' => $cepe_zona_afectada,
+                'cepe_incidencia' => $cepe_incidencia,
+                'cepe_control' => $cepe_control,
+
+                'grillo' => $request->grillo,
+                'grillo_fecha' => $grillo_fecha,
+                'grillo_zona_afectada' => $grillo_zona_afectada,
+                'grillo_incidencia' => $grillo_incidencia,
+                'grillo_control' => $grillo_control,
+
+                'cochinilla' => $request->cochinilla,
+                'cochinilla_fecha' => $cochinilla_fecha,
+                'cochinilla_zona_afectada' => $cochinilla_zona_afectada,
+                'cochinilla_incidencia' => $cochinilla_incidencia,
+                'cochinilla_control' => $cochinilla_control,
+
+                'escamas' => $request->escamas,
+                'escamas_fecha' => $escamas_fecha,
+                'escamas_zona_afectada' => $escamas_zona_afectada,
+                'escamas_incidencia' => $escamas_incidencia,
+                'escamas_control' => $escamas_control,
+
+                'minador' => $request->minador,
+                'minador_fecha' => $minador_fecha,
+                'minador_zona_afectada' => $minador_zona_afectada,
+                'minador_incidencia' => $minador_incidencia,
+                'minador_control' => $minador_control,
+
+                'barrenador' => $request->barrenador,
+                'barrenador_fecha' => $barrenador_fecha,
+                'barrenador_zona_afectada' => $barrenador_zona_afectada,
+                'barrenador_incidencia' => $barrenador_incidencia,
+                'barrenador_control' => $barrenador_control,
+
+                'nematodos' => $request->nematodos,
+                'nematodos_fecha' => $nematodos_fecha,
+                'nematodos_zona_afectada' => $nematodos_zona_afectada,
+                'nematodos_incidencia' => $nematodos_incidencia,
+                'nematodos_control' => $nematodos_control,
+
+                'updated_at' => $tiempo_actual
+      ]);
+
+      return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Plagas Actualizada Exitosamente');
     }
 
 

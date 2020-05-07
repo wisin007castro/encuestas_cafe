@@ -12,14 +12,14 @@
 <div class="col-md-8">
 	<div class="myform-top">
 		<div class="myform-top-left">
-			<h3>Enfermedades de Cultivo de Café</h3>
+			<h3>Plagas de Cultivo de Café</h3>
 		</div>
 
 	 </div>
     <div class="box-header with-border bg-primary">
         <h3 class="box-title">Respuestas Anteriores</h3>
         <div class="box-tools pull-right">
-						<a href="{{route('form_enfermedades_agregar')}}" class="btn btn-block btn-success btn-sm">
+						<a href="{{route('form_plagas_agregar')}}" class="btn btn-block btn-success btn-sm">
                 <i class="fa fa-fw fa-plus-circle"></i> Nueva Respuesta
             </a>
         </div>
@@ -39,13 +39,13 @@
 
 		@foreach ($datos as $key => $dato)
 		@php
-			$id_enfermedad_encode = base64_encode($dato->id_enfermedad)
+			$id_plaga_encode = base64_encode($dato->id_plaga)
 		@endphp
 		 <tr role="row" class="odd">
 			<td>{{ $key + 1 }}</td>
 			<td>{{ f_formato($dato->updated_at) }}</td>
 			<td>
-				<a href="{{route('form_enfermedades_editar', ['id_enfermedad' => $id_enfermedad_encode])}}" class="btn-accion-tabla">
+				<a href="{{route('form_plagas_editar', ['id_plaga' => $id_plaga_encode])}}" class="btn-accion-tabla">
 					<i class="fa fa-fw fa-edit"></i>
 				</a>
 			{{-- <button type="button" class="btn  btn-default btn-xs" onclick="verinfo_usuario({{  $dato->id_densidad }}, 1)" ><i class="fa fa-fw fa-edit"></i></button> --}}

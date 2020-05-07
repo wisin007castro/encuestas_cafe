@@ -15,7 +15,7 @@
                  <div class="myform-top">
                     <div class="myform-top-left">
                        {{-- <img  src="" class="img-responsive logo" /> --}}
-                      <h3>Enfermedades y Plagas de Cultivo de Café</h3>
+                      <h3>Enfermedades de Cultivo de Café</h3>
                         <p>Por favor responda las siguientes preguntas (Editando)</p>
                     </div>
                     <div class="myform-top-right">
