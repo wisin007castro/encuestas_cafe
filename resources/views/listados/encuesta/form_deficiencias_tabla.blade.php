@@ -19,7 +19,7 @@
     <div class="box-header with-border bg-primary">
         <h3 class="box-title">Respuestas Anteriores</h3>
         <div class="box-tools pull-right">
-		<a href="{{route('form_deficiencias_agregar')}}" class="btn btn-block btn-success btn-sm">
+						<a href="{{route('form_deficiencias_agregar')}}" class="btn btn-block btn-success btn-sm">
                 <i class="fa fa-fw fa-plus-circle"></i> Nueva Respuesta
             </a>
         </div>
@@ -48,17 +48,22 @@
 
 		@foreach ($datos as $key => $dato)
 		@php
-			$id_control_encode = base64_encode($dato->id_control_maleza)
+			$id_deficiencia_encode = base64_encode($dato->id_deficiencia)
 		@endphp
 		 <tr role="row" class="odd">
 			<td>{{ $key + 1 }}</td>
 			<td>{{ f_formato($dato->updated_at) }}</td>
-			<td>{{ $dato->biologico == 1 ? 'SI' : 'NO'}}</td>
-			<td>{{ $dato->quimico == 1 ? 'SI' : 'NO'}}</td>
-			<td>{{ $dato->mecanico == 1 ? 'SI' : 'NO'}}</td>
-			{{-- <td>{{ f_formato($dato->fecha) }}</td> --}}
+			<td>{{ $dato->p == 1 ? 'SI' : 'NO'}}</td>
+			<td>{{ $dato->k == 1 ? 'SI' : 'NO'}}</td>
+			<td>{{ $dato->ca == 1 ? 'SI' : 'NO'}}</td>
+			<td>{{ $dato->mg == 1 ? 'SI' : 'NO'}}</td>
+			<td>{{ $dato->s == 1 ? 'SI' : 'NO'}}</td>
+			<td>{{ $dato->fe == 1 ? 'SI' : 'NO'}}</td>
+			<td>{{ $dato->zc == 1 ? 'SI' : 'NO'}}</td>
+			<td>{{ $dato->cu == 1 ? 'SI' : 'NO'}}</td>
+			<td>{{ $dato->b == 1 ? 'SI' : 'NO'}}</td>
 			<td>
-				<a href="{{route('form_controles_editar', ['id_control_maleza' => $id_control_encode])}}" class="btn-accion-tabla">
+				<a href="{{route('form_deficiencias_editar', ['id_deficiencia' => $id_deficiencia_encode])}}" class="btn-accion-tabla">
 					<i class="fa fa-fw fa-edit"></i>
 				</a>
 			{{-- <button type="button" class="btn  btn-default btn-xs" onclick="verinfo_usuario({{  $dato->id_densidad }}, 1)" ><i class="fa fa-fw fa-edit"></i></button> --}}

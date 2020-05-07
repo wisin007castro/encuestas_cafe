@@ -160,6 +160,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('form_cosecha_editar/{id}', 'FormEncuestasController@form_cosecha_editar')->name('form_cosecha_editar');
     Route::get('form_post_cosecha_editar/{id}', 'FormEncuestasController@form_post_cosecha_editar')->name('form_post_cosecha_editar');
     Route::get('form_secado_editar/{id}', 'FormEncuestasController@form_secado_editar')->name('form_secado_editar');
+    Route::get('form_deficiencias_editar/{id}', 'FormEncuestasController@form_deficiencias_editar')->name('form_deficiencias_editar');
 
 
 
@@ -175,6 +176,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('cosecha_actualizar/{id}', 'FormEncuestasController@cosecha_actualizar')->name('cosecha_actualizar');
     Route::post('post_cosecha_actualizar/{id}', 'FormEncuestasController@post_cosecha_actualizar')->name('post_cosecha_actualizar');
     Route::post('secado_actualizar/{id}', 'FormEncuestasController@secado_actualizar')->name('secado_actualizar');
+    Route::post('deficiencias_actualizar/{id}', 'FormEncuestasController@deficiencias_actualizar')->name('deficiencias_actualizar');
 
 
 

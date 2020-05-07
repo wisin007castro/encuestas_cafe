@@ -104,7 +104,7 @@ class FormEncuestasController extends Controller
     }
 
     public function form_deficiencias_tabla(){
-        $datos = \DB::table('enc_controles_maleza')->where('object_id', Auth::user()->object_id)->where('activo', 1)->orderBy('id_control_maleza', 'desc')->get();
+        $datos = \DB::table('enc_deficiencias')->where('object_id', Auth::user()->object_id)->where('activo', 1)->orderBy('id_deficiencia', 'desc')->get();
         return view("listados.encuesta.form_deficiencias_tabla", compact('datos'));
     }
 
@@ -592,9 +592,296 @@ class FormEncuestasController extends Controller
     }
 
     public function deficiencias_guardar(Request $request){
-      $a="California&Delaware";
-      echo strpos($a, 'Alabama');
-      echo strpos($a, 'Delaware');
+      $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+      //Tomamos los valores y les asignamos valores según corresponda
+      if ($request->p == 1) {
+        $p_fecha = $request->p_fecha;
+        $p_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->p_deficiencia);$i++){
+          if ($p_deficiencia == "") {
+            $p_deficiencia = $request->p_deficiencia[$i];
+          }
+          else {
+            $p_deficiencia = $p_deficiencia." & ".$request->p_deficiencia[$i];
+          }
+        }
+        $p_severidad = $request->p_severidad;
+        $p_producto = $request->p_producto;
+        $p_fecha_aplicacion = $request->p_fecha_aplicacion;
+      }
+      else {
+        $p_fecha = "0000-00-00";
+        $p_deficiencia = "";
+        $p_severidad = 0;
+        $p_producto = "";
+        $p_fecha_aplicacion = "0000-00-00";
+      }
+
+      if ($request->k == 1) {
+        $k_fecha = $request->k_fecha;
+        $k_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->k_deficiencia);$i++){
+          if ($k_deficiencia == "") {
+            $k_deficiencia = $request->k_deficiencia[$i];
+          }
+          else {
+            $k_deficiencia = $k_deficiencia." & ".$request->k_deficiencia[$i];
+          }
+        }
+        $k_severidad = $request->k_severidad;
+        $k_producto = $request->k_producto;
+        $k_fecha_aplicacion = $request->k_fecha_aplicacion;
+      }
+      else {
+        $k_fecha = "0000-00-00";
+        $k_deficiencia = "";
+        $k_severidad = 0;
+        $k_producto = "";
+        $k_fecha_aplicacion = "0000-00-00";
+      }
+
+      if ($request->ca == 1) {
+        $ca_fecha = $request->ca_fecha;
+        $ca_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->ca_deficiencia);$i++){
+          if ($ca_deficiencia == "") {
+            $ca_deficiencia = $request->ca_deficiencia[$i];
+          }
+          else {
+            $ca_deficiencia = $ca_deficiencia." & ".$request->ca_deficiencia[$i];
+          }
+        }
+        $ca_severidad = $request->ca_severidad;
+        $ca_producto = $request->ca_producto;
+        $ca_fecha_aplicacion = $request->ca_fecha_aplicacion;
+      }
+      else {
+        $ca_fecha = "0000-00-00";
+        $ca_deficiencia = "";
+        $ca_severidad = 0;
+        $ca_producto = "";
+        $ca_fecha_aplicacion = "0000-00-00";
+      }
+
+      if ($request->mg == 1) {
+        $mg_fecha = $request->mg_fecha;
+        $mg_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->mg_deficiencia);$i++){
+          if ($mg_deficiencia == "") {
+            $mg_deficiencia = $request->mg_deficiencia[$i];
+          }
+          else {
+            $mg_deficiencia = $mg_deficiencia." & ".$request->mg_deficiencia[$i];
+          }
+        }
+        $mg_severidad = $request->mg_severidad;
+        $mg_producto = $request->mg_producto;
+        $mg_fecha_aplicacion = $request->mg_fecha_aplicacion;
+      }
+      else {
+        $mg_fecha = "0000-00-00";
+        $mg_deficiencia = "";
+        $mg_severidad = 0;
+        $mg_producto = "";
+        $mg_fecha_aplicacion = "0000-00-00";
+      }
+
+      if ($request->s == 1) {
+        $s_fecha = $request->s_fecha;
+        $s_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->s_deficiencia);$i++){
+          if ($s_deficiencia == "") {
+            $s_deficiencia = $request->s_deficiencia[$i];
+          }
+          else {
+            $s_deficiencia = $s_deficiencia." & ".$request->s_deficiencia[$i];
+          }
+        }
+        $s_severidad = $request->s_severidad;
+        $s_producto = $request->s_producto;
+        $s_fecha_aplicacion = $request->s_fecha_aplicacion;
+      }
+      else {
+        $s_fecha = "0000-00-00";
+        $s_deficiencia = "";
+        $s_severidad = 0;
+        $s_producto = "";
+        $s_fecha_aplicacion = "0000-00-00";
+      }
+
+      if ($request->fe == 1) {
+        $fe_fecha = $request->fe_fecha;
+        $fe_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->fe_deficiencia);$i++){
+          if ($fe_deficiencia == "") {
+            $fe_deficiencia = $request->fe_deficiencia[$i];
+          }
+          else {
+            $fe_deficiencia = $fe_deficiencia." & ".$request->fe_deficiencia[$i];
+          }
+        }
+        $fe_severidad = $request->fe_severidad;
+        $fe_producto = $request->fe_producto;
+        $fe_fecha_aplicacion = $request->fe_fecha_aplicacion;
+      }
+      else {
+        $fe_fecha = "0000-00-00";
+        $fe_deficiencia = "";
+        $fe_severidad = 0;
+        $fe_producto = "";
+        $fe_fecha_aplicacion = "0000-00-00";
+      }
+
+      if ($request->zc == 1) {
+        $zc_fecha = $request->zc_fecha;
+        $zc_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->zc_deficiencia);$i++){
+          if ($zc_deficiencia == "") {
+            $zc_deficiencia = $request->zc_deficiencia[$i];
+          }
+          else {
+            $zc_deficiencia = $zc_deficiencia." & ".$request->zc_deficiencia[$i];
+          }
+        }
+        $zc_severidad = $request->zc_severidad;
+        $zc_producto = $request->zc_producto;
+        $zc_fecha_aplicacion = $request->zc_fecha_aplicacion;
+      }
+      else {
+        $zc_fecha = "0000-00-00";
+        $zc_deficiencia = "";
+        $zc_severidad = 0;
+        $zc_producto = "";
+        $zc_fecha_aplicacion = "0000-00-00";
+      }
+
+      if ($request->cu == 1) {
+        $cu_fecha = $request->cu_fecha;
+        $cu_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->cu_deficiencia);$i++){
+          if ($cu_deficiencia == "") {
+            $cu_deficiencia = $request->cu_deficiencia[$i];
+          }
+          else {
+            $cu_deficiencia = $cu_deficiencia." & ".$request->cu_deficiencia[$i];
+          }
+        }
+        $cu_severidad = $request->cu_severidad;
+        $cu_producto = $request->cu_producto;
+        $cu_fecha_aplicacion = $request->cu_fecha_aplicacion;
+      }
+      else {
+        $cu_fecha = "0000-00-00";
+        $cu_deficiencia = "";
+        $cu_severidad = 0;
+        $cu_producto = "";
+        $cu_fecha_aplicacion = "0000-00-00";
+      }
+
+      if ($request->b == 1) {
+        $b_fecha = $request->b_fecha;
+        $b_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->b_deficiencia);$i++){
+          if ($b_deficiencia == "") {
+            $b_deficiencia = $request->b_deficiencia[$i];
+          }
+          else {
+            $b_deficiencia = $b_deficiencia." & ".$request->b_deficiencia[$i];
+          }
+        }
+        $b_severidad = $request->b_severidad;
+        $b_producto = $request->b_producto;
+        $b_fecha_aplicacion = $request->b_fecha_aplicacion;
+      }
+      else {
+        $b_fecha = "0000-00-00";
+        $b_deficiencia = "";
+        $b_severidad = 0;
+        $b_producto = "";
+        $b_fecha_aplicacion = "0000-00-00";
+      }
+
+     \DB::table('enc_deficiencias')->insert([
+                ['object_id' => Auth::user()->object_id,
+                'p' => $request->p,
+                'p_fecha' => $p_fecha,
+                'p_deficiencia' => $p_deficiencia,
+                'p_severidad' => $p_severidad,
+                'p_producto' => $p_producto,
+                'p_fecha_aplicacion' => $p_fecha_aplicacion,
+
+                'k' => $request->k,
+                'k_fecha' => $k_fecha,
+                'k_deficiencia' => $k_deficiencia,
+                'k_severidad' => $k_severidad,
+                'k_producto' => $k_producto,
+                'k_fecha_aplicacion' => $k_fecha_aplicacion,
+
+                'ca' => $request->ca,
+                'ca_fecha' => $ca_fecha,
+                'ca_deficiencia' => $ca_deficiencia,
+                'ca_severidad' => $ca_severidad,
+                'ca_producto' => $ca_producto,
+                'ca_fecha_aplicacion' => $ca_fecha_aplicacion,
+
+                'mg' => $request->mg,
+                'mg_fecha' => $mg_fecha,
+                'mg_deficiencia' => $mg_deficiencia,
+                'mg_severidad' => $mg_severidad,
+                'mg_producto' => $mg_producto,
+                'mg_fecha_aplicacion' => $mg_fecha_aplicacion,
+
+                's' => $request->s,
+                's_fecha' => $s_fecha,
+                's_deficiencia' => $s_deficiencia,
+                's_severidad' => $s_severidad,
+                's_producto' => $s_producto,
+                's_fecha_aplicacion' => $s_fecha_aplicacion,
+
+                'fe' => $request->fe,
+                'fe_fecha' => $fe_fecha,
+                'fe_deficiencia' => $fe_deficiencia,
+                'fe_severidad' => $fe_severidad,
+                'fe_producto' => $fe_producto,
+                'fe_fecha_aplicacion' => $fe_fecha_aplicacion,
+
+                'zc' => $request->zc,
+                'zc_fecha' => $zc_fecha,
+                'zc_deficiencia' => $zc_deficiencia,
+                'zc_severidad' => $zc_severidad,
+                'zc_producto' => $zc_producto,
+                'zc_fecha_aplicacion' => $zc_fecha_aplicacion,
+
+                'cu' => $request->cu,
+                'cu_fecha' => $cu_fecha,
+                'cu_deficiencia' => $cu_deficiencia,
+                'cu_severidad' => $cu_severidad,
+                'cu_producto' => $cu_producto,
+                'cu_fecha_aplicacion' => $cu_fecha_aplicacion,
+
+                'b' => $request->b,
+                'b_fecha' => $b_fecha,
+                'b_deficiencia' => $b_deficiencia,
+                'b_severidad' => $b_severidad,
+                'b_producto' => $b_producto,
+                'b_fecha_aplicacion' => $b_fecha_aplicacion,
+
+                'created_at' => $tiempo_actual,
+                'updated_at' => $tiempo_actual,
+                'activo' => 1]
+      ]);
+      return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Deficiencia Guardada Exitosamente');
+
       //echo $campo= $request->multiple[1]."&".$request->multiple[2];
         /*$tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
 
@@ -638,29 +925,7 @@ class FormEncuestasController extends Controller
           $miel_p_efectivo = 0;
         }
 
-        \DB::table('enc_secados')->insert([
-                  ['object_id' => Auth::user()->object_id,
-
-                  'secado' => $request->secado,
-                  'secado_fecha' => $secado_fecha,
-                  'secado_p_total' => $secado_p_total,
-                  'secado_humedad' => $secado_humedad,
-                  'secado_p_efectivo' => $secado_p_efectivo,
-                  'lavado' => $request->lavado,
-                  'lavado_fecha' => $lavado_fecha,
-                  'lavado_p_total' => $lavado_p_total,
-                  'lavado_humedad' => $lavado_humedad,
-                  'lavado_p_efectivo' => $lavado_p_efectivo,
-                  'miel' => $request->miel,
-                  'miel_fecha' => $miel_fecha,
-                  'miel_p_total' => $miel_p_total,
-                  'miel_humedad' => $miel_humedad,
-                  'miel_p_efectivo' => $miel_p_efectivo,
-                  'created_at' => $tiempo_actual,
-                  'updated_at' => $tiempo_actual,
-                  'activo' => 1]
-        ]);
-        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Secado Guardada Exitosamente');*/
+*/
     }
 
 
@@ -710,6 +975,12 @@ class FormEncuestasController extends Controller
       $id_secado = base64_decode($id);
       $dato = \DB::table('enc_secados')->where('id_secado', $id_secado)->first();
       return view("formularios.encuestas.form_secado_editar", compact('dato'));
+    }
+
+    public function form_deficiencias_editar($id){
+      $id_deficiencia = base64_decode($id);
+      $dato = \DB::table('enc_deficiencias')->where('id_deficiencia', $id_deficiencia)->first();
+      return view("formularios.encuestas.form_deficiencias_editar", compact('dato'));
     }
 
 
@@ -1155,6 +1426,298 @@ class FormEncuestasController extends Controller
       ]);
 
       return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Secado Actualizada Exitosamente');
+    }
+
+    public function deficiencias_actualizar(Request $request, $id){
+      $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+      //Tomamos los valores y les asignamos valores según corresponda
+      if ($request->p == 1) {
+        $p_fecha = $request->p_fecha;
+        $p_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->p_deficiencia);$i++){
+          if ($p_deficiencia == "") {
+            $p_deficiencia = $request->p_deficiencia[$i];
+          }
+          else {
+            $p_deficiencia = $p_deficiencia." & ".$request->p_deficiencia[$i];
+          }
+        }
+        $p_severidad = $request->p_severidad;
+        $p_producto = $request->p_producto;
+        $p_fecha_aplicacion = $request->p_fecha_aplicacion;
+      }
+      else {
+        $p_fecha = "0000-00-00";
+        $p_deficiencia = "";
+        $p_severidad = 0;
+        $p_producto = "";
+        $p_fecha_aplicacion = "0000-00-00";
+      }
+
+      if ($request->k == 1) {
+        $k_fecha = $request->k_fecha;
+        $k_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->k_deficiencia);$i++){
+          if ($k_deficiencia == "") {
+            $k_deficiencia = $request->k_deficiencia[$i];
+          }
+          else {
+            $k_deficiencia = $k_deficiencia." & ".$request->k_deficiencia[$i];
+          }
+        }
+        $k_severidad = $request->k_severidad;
+        $k_producto = $request->k_producto;
+        $k_fecha_aplicacion = $request->k_fecha_aplicacion;
+      }
+      else {
+        $k_fecha = "0000-00-00";
+        $k_deficiencia = "";
+        $k_severidad = 0;
+        $k_producto = "";
+        $k_fecha_aplicacion = "0000-00-00";
+      }
+
+      if ($request->ca == 1) {
+        $ca_fecha = $request->ca_fecha;
+        $ca_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->ca_deficiencia);$i++){
+          if ($ca_deficiencia == "") {
+            $ca_deficiencia = $request->ca_deficiencia[$i];
+          }
+          else {
+            $ca_deficiencia = $ca_deficiencia." & ".$request->ca_deficiencia[$i];
+          }
+        }
+        $ca_severidad = $request->ca_severidad;
+        $ca_producto = $request->ca_producto;
+        $ca_fecha_aplicacion = $request->ca_fecha_aplicacion;
+      }
+      else {
+        $ca_fecha = "0000-00-00";
+        $ca_deficiencia = "";
+        $ca_severidad = 0;
+        $ca_producto = "";
+        $ca_fecha_aplicacion = "0000-00-00";
+      }
+
+      if ($request->mg == 1) {
+        $mg_fecha = $request->mg_fecha;
+        $mg_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->mg_deficiencia);$i++){
+          if ($mg_deficiencia == "") {
+            $mg_deficiencia = $request->mg_deficiencia[$i];
+          }
+          else {
+            $mg_deficiencia = $mg_deficiencia." & ".$request->mg_deficiencia[$i];
+          }
+        }
+        $mg_severidad = $request->mg_severidad;
+        $mg_producto = $request->mg_producto;
+        $mg_fecha_aplicacion = $request->mg_fecha_aplicacion;
+      }
+      else {
+        $mg_fecha = "0000-00-00";
+        $mg_deficiencia = "";
+        $mg_severidad = 0;
+        $mg_producto = "";
+        $mg_fecha_aplicacion = "0000-00-00";
+      }
+
+      if ($request->s == 1) {
+        $s_fecha = $request->s_fecha;
+        $s_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->s_deficiencia);$i++){
+          if ($s_deficiencia == "") {
+            $s_deficiencia = $request->s_deficiencia[$i];
+          }
+          else {
+            $s_deficiencia = $s_deficiencia." & ".$request->s_deficiencia[$i];
+          }
+        }
+        $s_severidad = $request->s_severidad;
+        $s_producto = $request->s_producto;
+        $s_fecha_aplicacion = $request->s_fecha_aplicacion;
+      }
+      else {
+        $s_fecha = "0000-00-00";
+        $s_deficiencia = "";
+        $s_severidad = 0;
+        $s_producto = "";
+        $s_fecha_aplicacion = "0000-00-00";
+      }
+
+      if ($request->fe == 1) {
+        $fe_fecha = $request->fe_fecha;
+        $fe_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->fe_deficiencia);$i++){
+          if ($fe_deficiencia == "") {
+            $fe_deficiencia = $request->fe_deficiencia[$i];
+          }
+          else {
+            $fe_deficiencia = $fe_deficiencia." & ".$request->fe_deficiencia[$i];
+          }
+        }
+        $fe_severidad = $request->fe_severidad;
+        $fe_producto = $request->fe_producto;
+        $fe_fecha_aplicacion = $request->fe_fecha_aplicacion;
+      }
+      else {
+        $fe_fecha = "0000-00-00";
+        $fe_deficiencia = "";
+        $fe_severidad = 0;
+        $fe_producto = "";
+        $fe_fecha_aplicacion = "0000-00-00";
+      }
+
+      if ($request->zc == 1) {
+        $zc_fecha = $request->zc_fecha;
+        $zc_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->zc_deficiencia);$i++){
+          if ($zc_deficiencia == "") {
+            $zc_deficiencia = $request->zc_deficiencia[$i];
+          }
+          else {
+            $zc_deficiencia = $zc_deficiencia." & ".$request->zc_deficiencia[$i];
+          }
+        }
+        $zc_severidad = $request->zc_severidad;
+        $zc_producto = $request->zc_producto;
+        $zc_fecha_aplicacion = $request->zc_fecha_aplicacion;
+      }
+      else {
+        $zc_fecha = "0000-00-00";
+        $zc_deficiencia = "";
+        $zc_severidad = 0;
+        $zc_producto = "";
+        $zc_fecha_aplicacion = "0000-00-00";
+      }
+
+      if ($request->cu == 1) {
+        $cu_fecha = $request->cu_fecha;
+        $cu_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->cu_deficiencia);$i++){
+          if ($cu_deficiencia == "") {
+            $cu_deficiencia = $request->cu_deficiencia[$i];
+          }
+          else {
+            $cu_deficiencia = $cu_deficiencia." & ".$request->cu_deficiencia[$i];
+          }
+        }
+        $cu_severidad = $request->cu_severidad;
+        $cu_producto = $request->cu_producto;
+        $cu_fecha_aplicacion = $request->cu_fecha_aplicacion;
+      }
+      else {
+        $cu_fecha = "0000-00-00";
+        $cu_deficiencia = "";
+        $cu_severidad = 0;
+        $cu_producto = "";
+        $cu_fecha_aplicacion = "0000-00-00";
+      }
+
+      if ($request->b == 1) {
+        $b_fecha = $request->b_fecha;
+        $b_deficiencia = "";
+        //Concatenamos todas las deficiencias para guardarlas en un solo campo
+        for ($i=0;$i<count($request->b_deficiencia);$i++){
+          if ($b_deficiencia == "") {
+            $b_deficiencia = $request->b_deficiencia[$i];
+          }
+          else {
+            $b_deficiencia = $b_deficiencia." & ".$request->b_deficiencia[$i];
+          }
+        }
+        $b_severidad = $request->b_severidad;
+        $b_producto = $request->b_producto;
+        $b_fecha_aplicacion = $request->b_fecha_aplicacion;
+      }
+      else {
+        $b_fecha = "0000-00-00";
+        $b_deficiencia = "";
+        $b_severidad = 0;
+        $b_producto = "";
+        $b_fecha_aplicacion = "0000-00-00";
+      }
+
+      $dato = \DB::table('enc_deficiencias')
+              ->where('id_deficiencia', $id)
+              ->update([
+                'p' => $request->p,
+                'p_fecha' => $p_fecha,
+                'p_deficiencia' => $p_deficiencia,
+                'p_severidad' => $p_severidad,
+                'p_producto' => $p_producto,
+                'p_fecha_aplicacion' => $p_fecha_aplicacion,
+
+                'k' => $request->k,
+                'k_fecha' => $k_fecha,
+                'k_deficiencia' => $k_deficiencia,
+                'k_severidad' => $k_severidad,
+                'k_producto' => $k_producto,
+                'k_fecha_aplicacion' => $k_fecha_aplicacion,
+
+                'ca' => $request->ca,
+                'ca_fecha' => $ca_fecha,
+                'ca_deficiencia' => $ca_deficiencia,
+                'ca_severidad' => $ca_severidad,
+                'ca_producto' => $ca_producto,
+                'ca_fecha_aplicacion' => $ca_fecha_aplicacion,
+
+                'mg' => $request->mg,
+                'mg_fecha' => $mg_fecha,
+                'mg_deficiencia' => $mg_deficiencia,
+                'mg_severidad' => $mg_severidad,
+                'mg_producto' => $mg_producto,
+                'mg_fecha_aplicacion' => $mg_fecha_aplicacion,
+
+                's' => $request->s,
+                's_fecha' => $s_fecha,
+                's_deficiencia' => $s_deficiencia,
+                's_severidad' => $s_severidad,
+                's_producto' => $s_producto,
+                's_fecha_aplicacion' => $s_fecha_aplicacion,
+
+                'fe' => $request->fe,
+                'fe_fecha' => $fe_fecha,
+                'fe_deficiencia' => $fe_deficiencia,
+                'fe_severidad' => $fe_severidad,
+                'fe_producto' => $fe_producto,
+                'fe_fecha_aplicacion' => $fe_fecha_aplicacion,
+
+                'zc' => $request->zc,
+                'zc_fecha' => $zc_fecha,
+                'zc_deficiencia' => $zc_deficiencia,
+                'zc_severidad' => $zc_severidad,
+                'zc_producto' => $zc_producto,
+                'zc_fecha_aplicacion' => $zc_fecha_aplicacion,
+
+                'cu' => $request->cu,
+                'cu_fecha' => $cu_fecha,
+                'cu_deficiencia' => $cu_deficiencia,
+                'cu_severidad' => $cu_severidad,
+                'cu_producto' => $cu_producto,
+                'cu_fecha_aplicacion' => $cu_fecha_aplicacion,
+
+                'b' => $request->b,
+                'b_fecha' => $b_fecha,
+                'b_deficiencia' => $b_deficiencia,
+                'b_severidad' => $b_severidad,
+                'b_producto' => $b_producto,
+                'b_fecha_aplicacion' => $b_fecha_aplicacion,
+
+                'updated_at' => $tiempo_actual
+      ]);
+
+      return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Deficiencias Actualizada Exitosamente');
     }
 
 

@@ -6,13 +6,18 @@
     <meta name="description" content="Realiza encuestas de producción de Cafe y Cacao">
     {{-- <meta name="keywords" content="@yield('keywords')"> --}}
     <meta name="keywords" content="encuestas cacao, encuestas cafe, encuestas 2020, bolivia, cacao, cafe">
+
+
+        <!-- Select2 -->
+        <link rel="stylesheet" href="{{ asset('/bower_components/select2/dist/css/select2.min.css') }}"/>
+
     <!-- Bootstrap 3.3.4 -->
     <link href="{{ asset('/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ url('css/mycustom.css') }}">
     <!-- Font Awesome Icons -->
     <link href="{{ asset('/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
     <!-- Ionicons -->
- 
+
     <!-- Theme style -->
     <link href="{{ asset('/css/AdminLTE.css') }}" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -39,7 +44,8 @@
 
     <link rel="stylesheet" href="{{ asset('/bower_components/fullcalendar/dist/fullcalendar.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('/bower_components/fullcalendar/dist/fullcalendar.print.min.css') }}" media="print"/>
-    
+
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
