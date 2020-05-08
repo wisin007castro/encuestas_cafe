@@ -164,7 +164,6 @@ class ClienteEncuestasController extends Controller
     public function cliente_podas_guardar(){
         $url = 'servicio_podas_guardar';
         $datas = \DB::table('enc_podas')->where('activo', 1)->get();
-
         if (count($datas) > 0) {
             foreach ($datas as $key => $value) {
                 $e = array();
@@ -172,21 +171,27 @@ class ClienteEncuestasController extends Controller
                     $e['form_planta'] = $value->form_planta;
                     $e['form_planta_fecha'] = $value->form_planta_fecha;
                     $e['form_planta_fecha_final'] = $value->form_planta_fecha_final;
+                    $e['form_planta_foto'] = $value->form_planta_foto;
                     $e['mantenimiento'] = $value->mantenimiento;
                     $e['mantenimiento_fecha'] = $value->mantenimiento_fecha;
                     $e['mantenimiento_fecha_final'] = $value->mantenimiento_fecha_final;
+                    $e['mantenimiento_foto'] = $value->mantenimiento_foto;
                     $e['sel_brotes'] = $value->sel_brotes;
                     $e['sel_brotes_fecha'] = $value->sel_brotes_fecha;
                     $e['sel_brotes_fecha_final'] = $value->sel_brotes_fecha_final;
+                    $e['sel_brotes_foto'] = $value->sel_brotes_foto;
                     $e['rehabilitacion'] = $value->rehabilitacion;
                     $e['rehabilitacion_fecha'] = $value->rehabilitacion_fecha;
                     $e['rehabilitacion_fecha_final'] = $value->rehabilitacion_fecha_final;
+                    $e['rehabilitacion_foto'] = $value->rehabilitacion_foto;
                     $e['renovacion'] = $value->renovacion;
                     $e['renovacion_fecha'] = $value->renovacion_fecha;
                     $e['renovacion_fecha_final'] = $value->renovacion_fecha_final;
+                    $e['renovacion_foto'] = $value->renovacion_foto;
                     $e['deshoje_despunte'] = $value->deshoje_despunte;
                     $e['deshoje_despunte_fecha'] = $value->deshoje_despunte_fecha;
                     $e['deshoje_despunte_fecha_final'] = $value->deshoje_despunte_fecha_final;
+                    $e['deshoje_despunte_foto'] = $value->deshoje_despunte_foto;
                     $e['created_at'] = $value->created_at;
                     $e['updated_at'] = $value->updated_at;
                     $e['activo'] = $value->activo;

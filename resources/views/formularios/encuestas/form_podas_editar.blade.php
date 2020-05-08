@@ -42,7 +42,7 @@
 
                     <div id="div_notificacion_sol" class="myform-bottom">
 
-                    <form action="{{ route('podas_actualizar', ['id' => $dato->id_poda]) }}"  method="post" class="" >
+                    <form action="{{ route('podas_actualizar', ['id' => $dato->id_poda]) }}"  method="post" class="" enctype="multipart/form-data">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                       {{-- FORMACION --}}
                         <br>
@@ -63,15 +63,16 @@
 														<label >Recomendación de Fecha Final para Poda de Formación de Planta</label>
 														<input type="date" name="form_planta_fecha_final" id="form_planta_fecha_final" value="{{old('form_planta_fecha_final', $dato->form_planta_fecha_final ?? '')}}" class="form-control" required>
                           </div>
-
-                          <div class="attachment-block clearfix">
-                            <img class="attachment-img" src="../dist/img/photo1.png" alt="Attachment Image">
-            
-                            <div class="form-group">
-                              <label >Fotografía</label>
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+                              <img class="attachment-img" src="{{$dato->form_planta_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar Fotografía</label>
                               <input name="form_planta_foto" id="form_planta_foto" type="file" class="text-white" accept="image/*"/>
                             </div>
-                            <!-- /.attachment-pushed -->
                           </div>
                         </div>
 
@@ -94,16 +95,16 @@
                           <label >Recomendación de Fecha Final para Poda de Mantenimiento</label>
                           <input type="date" name="mantenimiento_fecha_final" id="mantenimiento_fecha_final" value="{{old('mantenimiento_fecha_final', $dato->mantenimiento_fecha_final ?? '')}}" class="form-control" required>
                         </div>
-                        <div class="attachment-block clearfix">
-                          <img class="attachment-img" src="../dist/img/photo1.png" alt="Attachment Image">
-          
-                          <div class="form-group">
-                            <label >Fotografía</label>
+                        <div class="row col-md-12">
+                          <div class="attachment-block clearfix col-md-3 col-xs-4">
+                            <label >Foto anterior</label>
+                            <img class="attachment-img" src="{{$dato->mantenimiento_foto}}" alt="Attachment Image">
+                          </div>
+                          <div class="col-md-9 col-xs-8">
+                            <label >Actualizar Fotografía</label>
                             <input name="mantenimiento_foto" id="mantenimiento_foto" type="file" class="text-white" accept="image/*"/>
                           </div>
-                          <!-- /.attachment-pushed -->
                         </div>
-
                       </div>
 
                       {{-- SELECCION DE BROTES --}}
@@ -125,18 +126,17 @@
 													<label >Recomendación de Fecha Final para Poda de Selección de Brotes</label>
                           <input type="date" name="sel_brotes_fecha_final" id="sel_brotes_fecha_final" value="{{old('sel_brotes_fecha_final', $dato->sel_brotes_fecha_final ?? '')}}" class="form-control" required>
                         </div>
-                        <div class="attachment-block clearfix">
-                          <img class="attachment-img" src="../dist/img/photo1.png" alt="Attachment Image">
-          
-                          <div class="form-group">
-                            <label >Fotografía</label>
+                        <div class="row col-md-12">
+                          <div class="attachment-block clearfix col-md-3 col-xs-4">
+                            <label >Foto anterior</label>
+                            <img class="attachment-img" src="{{$dato->sel_brotes_foto}}" alt="Attachment Image">
+                          </div>
+                          <div class="col-md-9 col-xs-8">
+                            <label >Actualizar Fotografía</label>
                             <input name="sel_brotes_foto" id="sel_brotes_foto" type="file" class="text-white" accept="image/*"/>
                           </div>
-                          <!-- /.attachment-pushed -->
                         </div>
-
                       </div>
-
 
                       {{-- REHABILITACION --}}
                       <br>
@@ -157,15 +157,16 @@
                           <label >Recomendación de Fecha Final para Poda de Rehabilitación</label>
                           <input type="date" name="rehabilitacion_fecha_final" id="rehabilitacion_fecha_final" value="{{old('rehabilitacion_fecha_final', $dato->rehabilitacion_fecha_final ?? '')}}" class="form-control" required>
                         </div>
-                        <div class="attachment-block clearfix">
-                          <img class="attachment-img" src="../dist/img/photo1.png" alt="Attachment Image">
-                          <div class="form-group">
-                            <label >Fotografía</label>
+                        <div class="row col-md-12">
+                          <div class="attachment-block clearfix col-md-3 col-xs-4">
+                            <label >Foto anterior</label>
+                            <img class="attachment-img" src="{{$dato->rehabilitacion_foto}}" alt="Attachment Image">
+                          </div>
+                          <div class="col-md-9 col-xs-8">
+                            <label >Actualizar Fotografía</label>
                             <input name="rehabilitacion_foto" id="rehabilitacion_foto" type="file" class="text-white" accept="image/*"/>
                           </div>
-                          <!-- /.attachment-pushed -->
                         </div>
-
                       </div>
 
                       {{-- RENOVACION --}}
@@ -187,15 +188,16 @@
                           <label >Recomendación de Fecha Final para Poda de Renovación</label>
                           <input type="date" name="renovacion_fecha_final" id="renovacion_fecha_final" value="{{old('renovacion_fecha_final', $dato->renovacion_fecha_final ?? '')}}" class="form-control" required>
                         </div>
-                        <div class="attachment-block clearfix">
-                          <img class="attachment-img" src="../dist/img/photo1.png" alt="Attachment Image">
-                          <div class="form-group">
-                            <label >Fotografía</label>
+                        <div class="row col-md-12">
+                          <div class="attachment-block clearfix col-md-3 col-xs-4">
+                            <label >Foto anterior</label>
+                            <img class="attachment-img" src="{{$dato->renovacion_foto}}" alt="Attachment Image">
+                          </div>
+                          <div class="col-md-9 col-xs-8">
+                            <label >Actualizar Fotografía</label>
                             <input name="renovacion_foto" id="renovacion_foto" type="file" class="text-white" accept="image/*"/>
                           </div>
-                          <!-- /.attachment-pushed -->
                         </div>
-
                       </div>
 
                       {{-- DESHOJE Y DESPUNTE --}}
@@ -217,15 +219,17 @@
                           <label >Recomendación de Fecha Final para Deshoje y Despunte</label>
                           <input type="date" name="deshoje_despunte_fecha_final" id="deshoje_despunte_fecha_final" value="{{old('deshoje_despunte_fecha_final', $dato->deshoje_despunte_fecha_final ?? '')}}" class="form-control" required>
                         </div>
-                        <div class="attachment-block clearfix">
-                          <img class="attachment-img" src="../dist/img/photo1.png" alt="Attachment Image">
-                          <div class="form-group">
-                            <label >Fotografía</label>
+
+                        <div class="row col-md-12">
+                          <div class="attachment-block clearfix col-md-3 col-xs-4">
+                            <label >Foto anterior</label>
+                            <img class="attachment-img" src="{{$dato->deshoje_despunte_foto}}" alt="Attachment Image">
+                          </div>
+                          <div class="col-md-9 col-xs-8">
+                            <label >Actualizar Fotografía</label>
                             <input name="deshoje_despunte_foto" id="deshoje_despunte_foto" type="file" class="text-white" accept="image/*"/>
                           </div>
-                          <!-- /.attachment-pushed -->
                         </div>
-
                       </div>
 
 												<br>

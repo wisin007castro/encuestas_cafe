@@ -216,18 +216,18 @@
 
 
 // quitar luego
-document.getElementById("form_planta_fecha").required = false;
-document.getElementById("form_planta_fecha_final").required = false;
-document.getElementById("mantenimiento_fecha").required = false;
-document.getElementById("mantenimiento_fecha_final").required = false;
-document.getElementById("sel_brotes_fecha").required = false;
-document.getElementById("sel_brotes_fecha_final").required = false;
-document.getElementById("rehabilitacion_fecha").required = false;
-document.getElementById("rehabilitacion_fecha_final").required = false;
-document.getElementById("renovacion_fecha").required = false;
-document.getElementById("renovacion_fecha_final").required = false;
-document.getElementById("deshoje_despunte_fecha").required = false;
-document.getElementById("deshoje_despunte_fecha_final").required = false;
+// document.getElementById("form_planta_fecha").required = false;
+// document.getElementById("form_planta_fecha_final").required = false;
+// document.getElementById("mantenimiento_fecha").required = false;
+// document.getElementById("mantenimiento_fecha_final").required = false;
+// document.getElementById("sel_brotes_fecha").required = false;
+// document.getElementById("sel_brotes_fecha_final").required = false;
+// document.getElementById("rehabilitacion_fecha").required = false;
+// document.getElementById("rehabilitacion_fecha_final").required = false;
+// document.getElementById("renovacion_fecha").required = false;
+// document.getElementById("renovacion_fecha_final").required = false;
+// document.getElementById("deshoje_despunte_fecha").required = false;
+// document.getElementById("deshoje_despunte_fecha_final").required = false;
 
 
 
