@@ -40,7 +40,7 @@
 
                     <div id="div_notificacion_sol" class="myform-bottom">
 
-                    <form action="{{ route('deficiencias_guardar') }}" method="post" class="">
+                    <form action="{{ route('deficiencias_guardar') }}" method="post" class="" enctype="multipart/form-data">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 												<br>
 												<h4 style="color:white">Deficiencia: Fósforo (P)</h4>
@@ -80,6 +80,11 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="p_fecha_aplicacion" id="p_fecha_aplicacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="p_foto" id="p_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -121,6 +126,11 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="k_fecha_aplicacion" id="k_fecha_aplicacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="k_foto" id="k_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -162,6 +172,11 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="ca_fecha_aplicacion" id="ca_fecha_aplicacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="ca_foto" id="ca_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -203,6 +218,11 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="mg_fecha_aplicacion" id="mg_fecha_aplicacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="mg_foto" id="mg_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -245,6 +265,11 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="s_fecha_aplicacion" id="s_fecha_aplicacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="s_foto" id="s_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -286,6 +311,11 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="fe_fecha_aplicacion" id="fe_fecha_aplicacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="fe_foto" id="fe_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -327,6 +357,11 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="zc_fecha_aplicacion" id="zc_fecha_aplicacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="zc_foto" id="zc_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -368,6 +403,11 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="cu_fecha_aplicacion" id="cu_fecha_aplicacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="cu_foto" id="cu_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -409,6 +449,11 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="b_fecha_aplicacion" id="b_fecha_aplicacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="b_foto" id="b_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 												<br>

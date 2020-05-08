@@ -53,15 +53,69 @@
 		 <tr role="row" class="odd">
 			<td>{{ $key + 1 }}</td>
 			<td>{{ f_formato($dato->updated_at) }}</td>
-			<td>{{ $dato->p == 1 ? 'SI' : 'NO'}}</td>
-			<td>{{ $dato->k == 1 ? 'SI' : 'NO'}}</td>
-			<td>{{ $dato->ca == 1 ? 'SI' : 'NO'}}</td>
-			<td>{{ $dato->mg == 1 ? 'SI' : 'NO'}}</td>
-			<td>{{ $dato->s == 1 ? 'SI' : 'NO'}}</td>
-			<td>{{ $dato->fe == 1 ? 'SI' : 'NO'}}</td>
-			<td>{{ $dato->zc == 1 ? 'SI' : 'NO'}}</td>
-			<td>{{ $dato->cu == 1 ? 'SI' : 'NO'}}</td>
-			<td>{{ $dato->b == 1 ? 'SI' : 'NO'}}</td>
+			<td>{{ $dato->p == 1 ? 'SI' : 'NO'}}
+				@if ($dato->p_foto)
+					<a href="#modal_ver_fotografia" data-id="{{$dato->p_foto}}" data-toggle="modal" class="abrirModal btn btn-default btn-sm">
+						<i class="fa fa-fw fa-file-image-o"></i>
+					</a>
+				@endif
+			</td>
+			<td>{{ $dato->k == 1 ? 'SI' : 'NO'}}
+				@if ($dato->k_foto)
+					<a href="#modal_ver_fotografia" data-id="{{$dato->k_foto}}" data-toggle="modal" class="abrirModal btn btn-default btn-sm">
+						<i class="fa fa-fw fa-file-image-o"></i>
+					</a>
+				@endif
+			</td>
+			<td>{{ $dato->ca == 1 ? 'SI' : 'NO'}}
+				@if ($dato->ca_foto)
+					<a href="#modal_ver_fotografia" data-id="{{$dato->ca_foto}}" data-toggle="modal" class="abrirModal btn btn-default btn-sm">
+						<i class="fa fa-fw fa-file-image-o"></i>
+					</a>
+				@endif
+			</td>
+			<td>{{ $dato->mg == 1 ? 'SI' : 'NO'}}
+				@if ($dato->mg_foto)
+					<a href="#modal_ver_fotografia" data-id="{{$dato->mg_foto}}" data-toggle="modal" class="abrirModal btn btn-default btn-sm">
+						<i class="fa fa-fw fa-file-image-o"></i>
+					</a>
+				@endif
+			</td>
+			<td>{{ $dato->s == 1 ? 'SI' : 'NO'}}
+				@if ($dato->s_foto)
+					<a href="#modal_ver_fotografia" data-id="{{$dato->s_foto}}" data-toggle="modal" class="abrirModal btn btn-default btn-sm">
+						<i class="fa fa-fw fa-file-image-o"></i>
+					</a>
+				@endif
+			</td>
+			<td>{{ $dato->fe == 1 ? 'SI' : 'NO'}}
+				@if ($dato->fe_foto)
+					<a href="#modal_ver_fotografia" data-id="{{$dato->fe_foto}}" data-toggle="modal" class="abrirModal btn btn-default btn-sm">
+						<i class="fa fa-fw fa-file-image-o"></i>
+					</a>
+				@endif
+			</td>
+			<td>{{ $dato->zc == 1 ? 'SI' : 'NO'}}
+				@if ($dato->zc_foto)
+					<a href="#modal_ver_fotografia" data-id="{{$dato->zc_foto}}" data-toggle="modal" class="abrirModal btn btn-default btn-sm">
+						<i class="fa fa-fw fa-file-image-o"></i>
+					</a>
+				@endif
+			</td>
+			<td>{{ $dato->cu == 1 ? 'SI' : 'NO'}}
+				@if ($dato->cu_foto)
+					<a href="#modal_ver_fotografia" data-id="{{$dato->cu_foto}}" data-toggle="modal" class="abrirModal btn btn-default btn-sm">
+						<i class="fa fa-fw fa-file-image-o"></i>
+					</a>
+				@endif
+			</td>
+			<td>{{ $dato->b == 1 ? 'SI' : 'NO'}}
+				@if ($dato->b_foto)
+					<a href="#modal_ver_fotografia" data-id="{{$dato->b_foto}}" data-toggle="modal" class="abrirModal btn btn-default btn-sm">
+						<i class="fa fa-fw fa-file-image-o"></i>
+					</a>
+				@endif
+			</td>
 			<td>
 				<a href="{{route('form_deficiencias_editar', ['id_deficiencia' => $id_deficiencia_encode])}}" class="btn-accion-tabla">
 					<i class="fa fa-fw fa-edit"></i>
@@ -100,4 +154,35 @@
 @endif
 
 </div></section>
+
+<div class="modal fade" id="modal_ver_fotografia" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Fotografía</h4>
+            </div>
+            <div class="modal-body">
+				<img id="foto" class="img-responsive" src="" alt="">
+			</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('scripts')
+
+@parent
+<script type="text/javascript">
+  $(document).on("click", ".abrirModal", function () {
+		var foto = $(this).data('id');
+		$(".modal-body #foto").attr("src", foto);
+	});
+</script>
+
 @endsection

@@ -40,7 +40,7 @@
 
                     <div id="div_notificacion_sol" class="myform-bottom">
 
-                    <form action="{{ route('enfermedades_guardar') }}" method="post" class="">
+                    <form action="{{ route('enfermedades_guardar') }}" method="post" class="" enctype="multipart/form-data">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 												<br>
 												<h4 style="color:white">Enfermedad: Cercospora Caffeicola</h4>
@@ -76,6 +76,11 @@
 														<label >Recomendación Técnica</label>
 														<input type="text" name="cercospora_recomendacion" id="cercospora_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="cercospora_foto" id="cercospora_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -113,6 +118,11 @@
 														<label >Recomendación Técnica</label>
 														<input type="text" name="roya_recomendacion" id="roya_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="roya_foto" id="roya_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -150,6 +160,11 @@
 														<label >Recomendación Técnica</label>
 														<input type="text" name="gallo_recomendacion" id="gallo_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="gallo_foto" id="gallo_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -187,6 +202,11 @@
 														<label >Recomendación Técnica</label>
 														<input type="text" name="antracnosis_recomendacion" id="antracnosis_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="antracnosis_foto" id="antracnosis_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -224,6 +244,11 @@
 														<label >Recomendación Técnica</label>
 														<input type="text" name="marchites_recomendacion" id="marchites_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="marchites_foto" id="marchites_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -261,6 +286,11 @@
 														<label >Recomendación Técnica</label>
 														<input type="text" name="gotera_recomendacion" id="gotera_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="gotera_foto" id="gotera_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -298,6 +328,11 @@
 														<label >Recomendación Técnica</label>
 														<input type="text" name="mancha_recomendacion" id="mancha_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="mancha_foto" id="mancha_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -335,6 +370,11 @@
 														<label >Recomendación Técnica</label>
 														<input type="text" name="pudricion_recomendacion" id="pudricion_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="pudricion_foto" id="pudricion_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -372,6 +412,11 @@
 														<label >Recomendación Técnica</label>
 														<input type="text" name="rosado_recomendacion" id="rosado_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="rosado_foto" id="rosado_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
@@ -409,6 +454,11 @@
 														<label >Recomendación Técnica</label>
 														<input type="text" name="moho_recomendacion" id="moho_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="moho_foto" id="moho_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 												<br>

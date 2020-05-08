@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Encuestas\Poda;
+use App\Models\Encuestas\Enfermedad;
+use App\Models\Encuestas\Deficiencia;
 use Illuminate\Support\Facades\Auth;
 use DateTime;
 
@@ -292,7 +294,7 @@ class FormEncuestasController extends Controller
           else {
             $renovacion_fecha = "0000-00-00";
             $renovacion_fecha_final = "0000-00-00";
-            $renovacion_foto = "";            
+            $renovacion_foto = "";
           }
 
         //DESHOJE Y DESPUNTE
@@ -686,6 +688,11 @@ class FormEncuestasController extends Controller
         $p_severidad = $request->p_severidad;
         $p_producto = $request->p_producto;
         $p_fecha_aplicacion = $request->p_fecha_aplicacion;
+        if ($request->p_foto){
+          $p_foto = Deficiencia::setFoto($request->p_foto);
+        }else{
+          $p_foto = "";
+        }
       }
       else {
         $p_fecha = "0000-00-00";
@@ -693,6 +700,7 @@ class FormEncuestasController extends Controller
         $p_severidad = 0;
         $p_producto = "";
         $p_fecha_aplicacion = "0000-00-00";
+        $p_foto = "";
       }
 
       if ($request->k == 1) {
@@ -710,6 +718,11 @@ class FormEncuestasController extends Controller
         $k_severidad = $request->k_severidad;
         $k_producto = $request->k_producto;
         $k_fecha_aplicacion = $request->k_fecha_aplicacion;
+        if ($request->k_foto){
+          $k_foto = Deficiencia::setFoto($request->k_foto);
+        }else{
+          $k_foto = "";
+        }
       }
       else {
         $k_fecha = "0000-00-00";
@@ -717,6 +730,7 @@ class FormEncuestasController extends Controller
         $k_severidad = 0;
         $k_producto = "";
         $k_fecha_aplicacion = "0000-00-00";
+        $k_foto = "";
       }
 
       if ($request->ca == 1) {
@@ -734,6 +748,11 @@ class FormEncuestasController extends Controller
         $ca_severidad = $request->ca_severidad;
         $ca_producto = $request->ca_producto;
         $ca_fecha_aplicacion = $request->ca_fecha_aplicacion;
+        if ($request->ca_foto){
+          $ca_foto = Deficiencia::setFoto($request->ca_foto);
+        }else{
+          $ca_foto = "";
+        }
       }
       else {
         $ca_fecha = "0000-00-00";
@@ -741,6 +760,7 @@ class FormEncuestasController extends Controller
         $ca_severidad = 0;
         $ca_producto = "";
         $ca_fecha_aplicacion = "0000-00-00";
+        $ca_foto = "";
       }
 
       if ($request->mg == 1) {
@@ -758,6 +778,11 @@ class FormEncuestasController extends Controller
         $mg_severidad = $request->mg_severidad;
         $mg_producto = $request->mg_producto;
         $mg_fecha_aplicacion = $request->mg_fecha_aplicacion;
+        if ($request->mg_foto){
+          $mg_foto = Deficiencia::setFoto($request->mg_foto);
+        }else{
+          $mg_foto = "";
+        }
       }
       else {
         $mg_fecha = "0000-00-00";
@@ -765,6 +790,7 @@ class FormEncuestasController extends Controller
         $mg_severidad = 0;
         $mg_producto = "";
         $mg_fecha_aplicacion = "0000-00-00";
+        $mg_foto = "";
       }
 
       if ($request->s == 1) {
@@ -782,6 +808,11 @@ class FormEncuestasController extends Controller
         $s_severidad = $request->s_severidad;
         $s_producto = $request->s_producto;
         $s_fecha_aplicacion = $request->s_fecha_aplicacion;
+        if ($request->s_foto){
+          $s_foto = Deficiencia::setFoto($request->s_foto);
+        }else{
+          $s_foto = "";
+        }
       }
       else {
         $s_fecha = "0000-00-00";
@@ -789,6 +820,7 @@ class FormEncuestasController extends Controller
         $s_severidad = 0;
         $s_producto = "";
         $s_fecha_aplicacion = "0000-00-00";
+        $s_foto = "";
       }
 
       if ($request->fe == 1) {
@@ -806,6 +838,11 @@ class FormEncuestasController extends Controller
         $fe_severidad = $request->fe_severidad;
         $fe_producto = $request->fe_producto;
         $fe_fecha_aplicacion = $request->fe_fecha_aplicacion;
+        if ($request->fe_foto){
+          $fe_foto = Deficiencia::setFoto($request->fe_foto);
+        }else{
+          $fe_foto = "";
+        }
       }
       else {
         $fe_fecha = "0000-00-00";
@@ -813,6 +850,7 @@ class FormEncuestasController extends Controller
         $fe_severidad = 0;
         $fe_producto = "";
         $fe_fecha_aplicacion = "0000-00-00";
+        $fe_foto = "";
       }
 
       if ($request->zc == 1) {
@@ -830,6 +868,11 @@ class FormEncuestasController extends Controller
         $zc_severidad = $request->zc_severidad;
         $zc_producto = $request->zc_producto;
         $zc_fecha_aplicacion = $request->zc_fecha_aplicacion;
+        if ($request->zc_foto){
+          $zc_foto = Deficiencia::setFoto($request->zc_foto);
+        }else{
+          $zc_foto = "";
+        }
       }
       else {
         $zc_fecha = "0000-00-00";
@@ -837,6 +880,7 @@ class FormEncuestasController extends Controller
         $zc_severidad = 0;
         $zc_producto = "";
         $zc_fecha_aplicacion = "0000-00-00";
+        $zc_foto = "";
       }
 
       if ($request->cu == 1) {
@@ -854,6 +898,11 @@ class FormEncuestasController extends Controller
         $cu_severidad = $request->cu_severidad;
         $cu_producto = $request->cu_producto;
         $cu_fecha_aplicacion = $request->cu_fecha_aplicacion;
+        if ($request->cu_foto){
+          $cu_foto = Deficiencia::setFoto($request->cu_foto);
+        }else{
+          $cu_foto = "";
+        }
       }
       else {
         $cu_fecha = "0000-00-00";
@@ -861,6 +910,7 @@ class FormEncuestasController extends Controller
         $cu_severidad = 0;
         $cu_producto = "";
         $cu_fecha_aplicacion = "0000-00-00";
+        $cu_foto = "";
       }
 
       if ($request->b == 1) {
@@ -878,6 +928,11 @@ class FormEncuestasController extends Controller
         $b_severidad = $request->b_severidad;
         $b_producto = $request->b_producto;
         $b_fecha_aplicacion = $request->b_fecha_aplicacion;
+        if ($request->b_foto){
+          $b_foto = Deficiencia::setFoto($request->b_foto);
+        }else{
+          $b_foto = "";
+        }
       }
       else {
         $b_fecha = "0000-00-00";
@@ -885,6 +940,7 @@ class FormEncuestasController extends Controller
         $b_severidad = 0;
         $b_producto = "";
         $b_fecha_aplicacion = "0000-00-00";
+        $b_foto = "";
       }
 
      \DB::table('enc_deficiencias')->insert([
@@ -895,6 +951,7 @@ class FormEncuestasController extends Controller
                 'p_severidad' => $p_severidad,
                 'p_producto' => $p_producto,
                 'p_fecha_aplicacion' => $p_fecha_aplicacion,
+                'p_foto' => $p_foto,
 
                 'k' => $request->k,
                 'k_fecha' => $k_fecha,
@@ -902,6 +959,7 @@ class FormEncuestasController extends Controller
                 'k_severidad' => $k_severidad,
                 'k_producto' => $k_producto,
                 'k_fecha_aplicacion' => $k_fecha_aplicacion,
+                'k_foto' => $k_foto,
 
                 'ca' => $request->ca,
                 'ca_fecha' => $ca_fecha,
@@ -909,6 +967,7 @@ class FormEncuestasController extends Controller
                 'ca_severidad' => $ca_severidad,
                 'ca_producto' => $ca_producto,
                 'ca_fecha_aplicacion' => $ca_fecha_aplicacion,
+                'ca_foto' => $ca_foto,
 
                 'mg' => $request->mg,
                 'mg_fecha' => $mg_fecha,
@@ -916,6 +975,7 @@ class FormEncuestasController extends Controller
                 'mg_severidad' => $mg_severidad,
                 'mg_producto' => $mg_producto,
                 'mg_fecha_aplicacion' => $mg_fecha_aplicacion,
+                'mg_foto' => $mg_foto,
 
                 's' => $request->s,
                 's_fecha' => $s_fecha,
@@ -923,6 +983,7 @@ class FormEncuestasController extends Controller
                 's_severidad' => $s_severidad,
                 's_producto' => $s_producto,
                 's_fecha_aplicacion' => $s_fecha_aplicacion,
+                's_foto' => $s_foto,
 
                 'fe' => $request->fe,
                 'fe_fecha' => $fe_fecha,
@@ -930,6 +991,7 @@ class FormEncuestasController extends Controller
                 'fe_severidad' => $fe_severidad,
                 'fe_producto' => $fe_producto,
                 'fe_fecha_aplicacion' => $fe_fecha_aplicacion,
+                'fe_foto' => $fe_foto,
 
                 'zc' => $request->zc,
                 'zc_fecha' => $zc_fecha,
@@ -937,6 +999,7 @@ class FormEncuestasController extends Controller
                 'zc_severidad' => $zc_severidad,
                 'zc_producto' => $zc_producto,
                 'zc_fecha_aplicacion' => $zc_fecha_aplicacion,
+                'zc_foto' => $zc_foto,
 
                 'cu' => $request->cu,
                 'cu_fecha' => $cu_fecha,
@@ -944,6 +1007,7 @@ class FormEncuestasController extends Controller
                 'cu_severidad' => $cu_severidad,
                 'cu_producto' => $cu_producto,
                 'cu_fecha_aplicacion' => $cu_fecha_aplicacion,
+                'cu_foto' => $cu_foto,
 
                 'b' => $request->b,
                 'b_fecha' => $b_fecha,
@@ -951,6 +1015,7 @@ class FormEncuestasController extends Controller
                 'b_severidad' => $b_severidad,
                 'b_producto' => $b_producto,
                 'b_fecha_aplicacion' => $b_fecha_aplicacion,
+                'b_foto' => $b_foto,
 
                 'created_at' => $tiempo_actual,
                 'updated_at' => $tiempo_actual,
@@ -977,12 +1042,18 @@ class FormEncuestasController extends Controller
         }
         $cercospora_incidencia = $request->cercospora_incidencia;
         $cercospora_recomendacion = $request->cercospora_recomendacion;
+        if ($request->cercospora_foto){
+          $cercospora_foto = Enfermedad::setFoto($request->cercospora_foto);
+        }else{
+          $cercospora_foto = "";
+        }
       }
       else {
         $cercospora_fecha = "0000-00-00";
         $cercospora_area_afectada = "";
         $cercospora_incidencia = 0;
         $cercospora_recomendacion = "";
+        $cercospora_foto = "";
       }
 
       if ($request->roya == 1) {
@@ -999,12 +1070,18 @@ class FormEncuestasController extends Controller
         }
         $roya_incidencia = $request->roya_incidencia;
         $roya_recomendacion = $request->roya_recomendacion;
+        if ($request->roya_foto){
+          $roya_foto = Enfermedad::setFoto($request->roya_foto);
+        }else{
+          $roya_foto = "";
+        }
       }
       else {
         $roya_fecha = "0000-00-00";
         $roya_area_afectada = "";
         $roya_incidencia = 0;
         $roya_recomendacion = "";
+          $roya_foto = "";
       }
 
       if ($request->gallo == 1) {
@@ -1021,12 +1098,18 @@ class FormEncuestasController extends Controller
         }
         $gallo_incidencia = $request->gallo_incidencia;
         $gallo_recomendacion = $request->gallo_recomendacion;
+        if ($request->gallo_foto){
+          $gallo_foto = Enfermedad::setFoto($request->gallo_foto);
+        }else{
+          $gallo_foto = "";
+        }
       }
       else {
         $gallo_fecha = "0000-00-00";
         $gallo_area_afectada = "";
         $gallo_incidencia = 0;
         $gallo_recomendacion = "";
+        $gallo_foto = "";
       }
 
       if ($request->antracnosis == 1) {
@@ -1043,12 +1126,18 @@ class FormEncuestasController extends Controller
         }
         $antracnosis_incidencia = $request->antracnosis_incidencia;
         $antracnosis_recomendacion = $request->antracnosis_recomendacion;
+        if ($request->antracnosis_foto){
+          $antracnosis_foto = Enfermedad::setFoto($request->antracnosis_foto);
+        }else{
+          $antracnosis_foto = "";
+        }
       }
       else {
         $antracnosis_fecha = "0000-00-00";
         $antracnosis_area_afectada = "";
         $antracnosis_incidencia = 0;
         $antracnosis_recomendacion = "";
+          $antracnosis_foto = "";
       }
 
       if ($request->marchites == 1) {
@@ -1065,12 +1154,18 @@ class FormEncuestasController extends Controller
         }
         $marchites_incidencia = $request->marchites_incidencia;
         $marchites_recomendacion = $request->marchites_recomendacion;
+        if ($request->marchites_foto){
+          $marchites_foto = Enfermedad::setFoto($request->marchites_foto);
+        }else{
+          $marchites_foto = "";
+        }
       }
       else {
         $marchites_fecha = "0000-00-00";
         $marchites_area_afectada = "";
         $marchites_incidencia = 0;
         $marchites_recomendacion = "";
+        $marchites_foto = "";
       }
 
       if ($request->gotera == 1) {
@@ -1087,12 +1182,18 @@ class FormEncuestasController extends Controller
         }
         $gotera_incidencia = $request->gotera_incidencia;
         $gotera_recomendacion = $request->gotera_recomendacion;
+        if ($request->gotera_foto){
+          $gotera_foto = Enfermedad::setFoto($request->gotera_foto);
+        }else{
+          $gotera_foto = "";
+        }
       }
       else {
         $gotera_fecha = "0000-00-00";
         $gotera_area_afectada = "";
         $gotera_incidencia = 0;
         $gotera_recomendacion = "";
+        $gotera_foto = "";
       }
 
       if ($request->mancha == 1) {
@@ -1109,12 +1210,18 @@ class FormEncuestasController extends Controller
         }
         $mancha_incidencia = $request->mancha_incidencia;
         $mancha_recomendacion = $request->mancha_recomendacion;
+        if ($request->mancha_foto){
+          $mancha_foto = Enfermedad::setFoto($request->mancha_foto);
+        }else{
+          $mancha_foto = "";
+        }
       }
       else {
         $mancha_fecha = "0000-00-00";
         $mancha_area_afectada = "";
         $mancha_incidencia = 0;
         $mancha_recomendacion = "";
+        $mancha_foto = "";
       }
 
       if ($request->pudricion == 1) {
@@ -1131,12 +1238,18 @@ class FormEncuestasController extends Controller
         }
         $pudricion_incidencia = $request->pudricion_incidencia;
         $pudricion_recomendacion = $request->pudricion_recomendacion;
+        if ($request->pudricion_foto){
+          $pudricion_foto = Enfermedad::setFoto($request->pudricion_foto);
+        }else{
+          $pudricion_foto = "";
+        }
       }
       else {
         $pudricion_fecha = "0000-00-00";
         $pudricion_area_afectada = "";
         $pudricion_incidencia = 0;
         $pudricion_recomendacion = "";
+        $pudricion_foto = "";
       }
 
       if ($request->rosado == 1) {
@@ -1153,12 +1266,18 @@ class FormEncuestasController extends Controller
         }
         $rosado_incidencia = $request->rosado_incidencia;
         $rosado_recomendacion = $request->rosado_recomendacion;
+        if ($request->rosado_foto){
+          $rosado_foto = Enfermedad::setFoto($request->rosado_foto);
+        }else{
+          $rosado_foto = "";
+        }
       }
       else {
         $rosado_fecha = "0000-00-00";
         $rosado_area_afectada = "";
         $rosado_incidencia = 0;
         $rosado_recomendacion = "";
+        $rosado_foto = "";
       }
 
       if ($request->moho == 1) {
@@ -1175,12 +1294,18 @@ class FormEncuestasController extends Controller
         }
         $moho_incidencia = $request->moho_incidencia;
         $moho_recomendacion = $request->moho_recomendacion;
+        if ($request->moho_foto){
+          $moho_foto = Enfermedad::setFoto($request->moho_foto);
+        }else{
+          $moho_foto = "";
+        }
       }
       else {
         $moho_fecha = "0000-00-00";
         $moho_area_afectada = "";
         $moho_incidencia = 0;
         $moho_recomendacion = "";
+        $moho_foto = "";
       }
 
 
@@ -1191,60 +1316,70 @@ class FormEncuestasController extends Controller
                 'cercospora_area_afectada' => $cercospora_area_afectada,
                 'cercospora_incidencia' => $cercospora_incidencia,
                 'cercospora_recomendacion' => $cercospora_recomendacion,
+                'cercospora_foto' => $cercospora_foto,
 
                 'roya' => $request->roya,
                 'roya_fecha' => $roya_fecha,
                 'roya_area_afectada' => $roya_area_afectada,
                 'roya_incidencia' => $roya_incidencia,
                 'roya_recomendacion' => $roya_recomendacion,
+                'roya_foto' => $roya_foto,
 
                 'gallo' => $request->gallo,
                 'gallo_fecha' => $gallo_fecha,
                 'gallo_area_afectada' => $gallo_area_afectada,
                 'gallo_incidencia' => $gallo_incidencia,
                 'gallo_recomendacion' => $gallo_recomendacion,
+                'gallo_foto' => $gallo_foto,
 
                 'antracnosis' => $request->antracnosis,
                 'antracnosis_fecha' => $antracnosis_fecha,
                 'antracnosis_area_afectada' => $antracnosis_area_afectada,
                 'antracnosis_incidencia' => $antracnosis_incidencia,
                 'antracnosis_recomendacion' => $antracnosis_recomendacion,
+                'antracnosis_foto' => $antracnosis_foto,
 
                 'marchites' => $request->marchites,
                 'marchites_fecha' => $marchites_fecha,
                 'marchites_area_afectada' => $marchites_area_afectada,
                 'marchites_incidencia' => $marchites_incidencia,
                 'marchites_recomendacion' => $marchites_recomendacion,
+                'marchites_foto' => $marchites_foto,
 
                 'gotera' => $request->gotera,
                 'gotera_fecha' => $gotera_fecha,
                 'gotera_area_afectada' => $gotera_area_afectada,
                 'gotera_incidencia' => $gotera_incidencia,
                 'gotera_recomendacion' => $gotera_recomendacion,
+                'gotera_foto' => $gotera_foto,
 
                 'mancha' => $request->mancha,
                 'mancha_fecha' => $mancha_fecha,
                 'mancha_area_afectada' => $mancha_area_afectada,
                 'mancha_incidencia' => $mancha_incidencia,
                 'mancha_recomendacion' => $mancha_recomendacion,
+                'mancha_foto' => $mancha_foto,
 
                 'pudricion' => $request->pudricion,
                 'pudricion_fecha' => $pudricion_fecha,
                 'pudricion_area_afectada' => $pudricion_area_afectada,
                 'pudricion_incidencia' => $pudricion_incidencia,
                 'pudricion_recomendacion' => $pudricion_recomendacion,
+                'pudricion_foto' => $pudricion_foto,
 
                 'rosado' => $request->rosado,
                 'rosado_fecha' => $rosado_fecha,
                 'rosado_area_afectada' => $rosado_area_afectada,
                 'rosado_incidencia' => $rosado_incidencia,
                 'rosado_recomendacion' => $rosado_recomendacion,
+                'rosado_foto' => $rosado_foto,
 
                 'moho' => $request->moho,
                 'moho_fecha' => $moho_fecha,
                 'moho_area_afectada' => $moho_area_afectada,
                 'moho_incidencia' => $moho_incidencia,
                 'moho_recomendacion' => $moho_recomendacion,
+                'moho_foto' => $moho_foto,
 
                 'created_at' => $tiempo_actual,
                 'updated_at' => $tiempo_actual,
@@ -1821,7 +1956,7 @@ class FormEncuestasController extends Controller
             if ($request->form_planta_foto){
               $form_planta_foto = Poda::setFoto($request->form_planta_foto);
             }else{
-              
+
               $form_planta_foto = $selec_dato->form_planta_foto;
             }
           }
