@@ -12,7 +12,8 @@ class EncuestasCafe
 
     public function __construct()
     {
-        $base_uri = 'http://encuestas.cafe.minculturas.com/public/';
+        // $base_uri = 'http://encuestas.cafe.minculturas.com/public/';
+        $base_uri = 'http://encuestas_cafe_server.test:8080';
       
         $this->client = new Client([
             // Base URI is used with relative requests

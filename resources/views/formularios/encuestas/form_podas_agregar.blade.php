@@ -42,7 +42,7 @@
 
                     <div id="div_notificacion_sol" class="myform-bottom">
 
-                    <form action="{{ route('podas_guardar') }}"  method="post" class="" >
+                    <form action="{{ route('podas_guardar') }}"  method="post" class="" enctype="multipart/form-data">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                         <br>
@@ -62,7 +62,11 @@
                           <div class="form-group">
 														<label >Recomendación de Fecha Final para Poda de Formación de Planta</label>
 														<input type="date" name="form_planta_fecha_final" id="form_planta_fecha_final" class="form-control" required>
-													</div>
+                          </div>
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="form_planta_foto" id="form_planta_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
                         </div>
 
                       {{-- MANTENIMIENTO --}}
@@ -84,6 +88,10 @@
                           <label >Recomendación de Fecha Final para Poda de Mantenimiento</label>
                           <input type="date" name="mantenimiento_fecha_final" id="mantenimiento_fecha_final" class="form-control" required>
                         </div>
+                        <div class="form-group">
+                          <label >Fotografía</label>
+                          <input name="mantenimiento_foto" id="mantenimiento_foto" type="file" class="text-white" accept="image/*"/>
+                        </div>
                       </div>
 
                       {{-- SELECCION DE BROTES --}}
@@ -104,6 +112,10 @@
                         <div class="form-group">
                           <label >Recomendación de Fecha Final para Poda de Selección de Brotes</label>
                           <input type="date" name="sel_brotes_fecha_final" id="sel_brotes_fecha_final" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                          <label >Fotografía</label>
+                          <input name="sel_brotes_foto" id="sel_brotes_foto" type="file" class="text-white" accept="image/*"/>
                         </div>
                       </div>
 
@@ -127,6 +139,10 @@
                           <label >Recomendación de Fecha Final para Poda de Rehabilitación</label>
                           <input type="date" name="rehabilitacion_fecha_final" id="rehabilitacion_fecha_final" class="form-control" required>
                         </div>
+                        <div class="form-group">
+                          <label >Fotografía</label>
+                          <input name="rehabilitacion_foto" id="rehabilitacion_foto" type="file" class="text-white" accept="image/*"/>
+                        </div>
                       </div>
 
                       {{-- RENOVACION --}}
@@ -147,6 +163,10 @@
                         <div class="form-group">
                           <label >Recomendación de Fecha Final para Poda de Renovación</label>
                           <input type="date" name="renovacion_fecha_final" id="renovacion_fecha_final" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                          <label >Fotografía</label>
+                          <input name="renovacion_foto" id="renovacion_foto" type="file" class="text-white" accept="image/*"/>
                         </div>
                       </div>
 
@@ -169,8 +189,11 @@
                           <label >Recomendación de Fecha Final para Deshoje y Despunte</label>
                           <input type="date" name="deshoje_despunte_fecha_final" id="deshoje_despunte_fecha_final" class="form-control" required>
                         </div>
+                        <div class="form-group">
+                          <label >Fotografía</label>
+                          <input name="deshoje_despunte_foto" id="deshoje_despunte_foto" type="file" class="text-white" accept="image/*"/>
+                        </div>
                       </div>
-
 												<br>
                         <button type="submit" class="mybtn">Guardar</button>
                       </form>
@@ -190,17 +213,37 @@
 
 @parent
 <script type="text/javascript">
+
+
+// quitar luego
+document.getElementById("form_planta_fecha").required = false;
+document.getElementById("form_planta_fecha_final").required = false;
+document.getElementById("mantenimiento_fecha").required = false;
+document.getElementById("mantenimiento_fecha_final").required = false;
+document.getElementById("sel_brotes_fecha").required = false;
+document.getElementById("sel_brotes_fecha_final").required = false;
+document.getElementById("rehabilitacion_fecha").required = false;
+document.getElementById("rehabilitacion_fecha_final").required = false;
+document.getElementById("renovacion_fecha").required = false;
+document.getElementById("renovacion_fecha_final").required = false;
+document.getElementById("deshoje_despunte_fecha").required = false;
+document.getElementById("deshoje_despunte_fecha_final").required = false;
+
+
+
   function mostrar_form_planta() {
 		form_planta_si = document.getElementById("form_planta_si");
 		if (form_planta_si.checked) {
 			document.getElementById("content_form_planta").style.display='block';
 			document.getElementById("form_planta_fecha").required = true;
 			document.getElementById("form_planta_fecha_final").required = true;
+			document.getElementById("form_planta_foto").required = true;
 		}
 		else {
 			document.getElementById("content_form_planta").style.display='none';
 			document.getElementById("form_planta_fecha").required = false;
 			document.getElementById("form_planta_fecha_final").required = false;
+			document.getElementById("form_planta_foto").required = false;
 		}
   }
 
@@ -210,11 +253,13 @@
 			document.getElementById("content_mantenimiento").style.display='block';
 			document.getElementById("mantenimiento_fecha").required = true;
 			document.getElementById("mantenimiento_fecha_final").required = true;
+			document.getElementById("mantenimiento_foto").required = true;
 		}
 		else {
 			document.getElementById("content_mantenimiento").style.display='none';
 			document.getElementById("mantenimiento_fecha").required = false;
 			document.getElementById("mantenimiento_fecha_final").required = false;
+			document.getElementById("mantenimiento_foto").required = false;
 		}
   }
 
@@ -224,11 +269,13 @@
 			document.getElementById("content_sel_brotes").style.display='block';
 			document.getElementById("sel_brotes_fecha").required = true;
 			document.getElementById("sel_brotes_fecha_final").required = true;
+			document.getElementById("sel_brotes_foto").required = true;
 		}
 		else {
 			document.getElementById("content_sel_brotes").style.display='none';
 			document.getElementById("sel_brotes_fecha").required = false;
 			document.getElementById("sel_brotes_fecha_final").required = false;
+			document.getElementById("sel_brotes_foto").required = false;
 		}
   }
 
@@ -238,11 +285,13 @@
 			document.getElementById("content_rehabilitacion").style.display='block';
 			document.getElementById("rehabilitacion_fecha").required = true;
 			document.getElementById("rehabilitacion_fecha_final").required = true;
+			document.getElementById("rehabilitacion_foto").required = true;
 		}
 		else {
 			document.getElementById("content_rehabilitacion").style.display='none';
 			document.getElementById("rehabilitacion_fecha").required = false;
 			document.getElementById("rehabilitacion_fecha_final").required = false;
+			document.getElementById("rehabilitacion_foto").required = false;
 		}
   }
 
@@ -252,11 +301,13 @@
 			document.getElementById("content_renovacion").style.display='block';
 			document.getElementById("renovacion_fecha").required = true;
 			document.getElementById("renovacion_fecha_final").required = true;
+			document.getElementById("renovacion_foto").required = true;
 		}
 		else {
 			document.getElementById("content_renovacion").style.display='none';
 			document.getElementById("renovacion_fecha").required = false;
 			document.getElementById("renovacion_fecha_final").required = false;
+			document.getElementById("renovacion_foto").required = false;
 		}
   }
 
@@ -266,16 +317,15 @@
 			document.getElementById("content_deshoje_despunte").style.display='block';
 			document.getElementById("deshoje_despunte_fecha").required = true;
 			document.getElementById("deshoje_despunte_fecha_final").required = true;
+			document.getElementById("deshoje_despunte_foto").required = true;
 		}
 		else {
 			document.getElementById("content_deshoje_despunte").style.display='none';
 			document.getElementById("deshoje_despunte_fecha").required = false;
 			document.getElementById("deshoje_despunte_fecha_final").required = false;
+			document.getElementById("deshoje_despunte_foto").required = false;
 		}
   }
-
-
-
 
 </script>
 @endsection
