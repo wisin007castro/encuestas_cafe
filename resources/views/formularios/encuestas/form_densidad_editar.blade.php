@@ -74,7 +74,7 @@
                           <input type="number" name="plntas_efectivas" id="plantas_efectivas" placeholder="0" class="form-control" value="{{old('plantas_efectivas', $dato->plantas_efectivas ?? '')}}" readonly/>
                         </div>
 												<br>
-                        <button type="submit" class="mybtn">Editar</button>
+                        <button type="submit" class="mybtn">Actualizar</button>
                       </form>
 
                     </div>

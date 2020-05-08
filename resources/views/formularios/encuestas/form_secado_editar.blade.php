@@ -144,7 +144,7 @@
 												</div>
 
 												<br>
-                        <button type="submit" class="mybtn">Editar</button>
+                        <button type="submit" class="mybtn">Actualizar</button>
                       </form>
 
                     </div>

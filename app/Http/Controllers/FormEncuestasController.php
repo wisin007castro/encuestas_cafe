@@ -122,6 +122,11 @@ class FormEncuestasController extends Controller
         return view("listados.encuesta.form_plagas_tabla", compact('datos'));
     }
 
+    public function form_fertilizacion_tabla(){
+        $datos = \DB::table('enc_fertilizaciones')->where('object_id', Auth::user()->object_id)->where('activo', 1)->orderBy('id_fertilizacion', 'desc')->get();
+        return view("listados.encuesta.form_fertilizaciones_tabla", compact('datos'));
+    }
+
     //FORMS AGREGAR
     public function form_densidad_agregar(){
         return view("formularios.encuestas.form_densidad_agregar");
@@ -148,6 +153,10 @@ class FormEncuestasController extends Controller
 
     public function form_plagas_agregar(){
         return view("formularios.encuestas.form_plagas_agregar");
+    }
+
+    public function form_fertilizaciones_agregar(){
+        return view("formularios.encuestas.form_fertilizaciones_agregar");
     }
 
 
@@ -1438,6 +1447,103 @@ class FormEncuestasController extends Controller
     }
 
 
+    public function fertilizaciones_guardar(Request $request){
+      $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+      //Tomamos los valores y les asignamos valores según corresponda
+      if ($request->vegetativo == 1) {
+        $vegetativo_fecha = $request->vegetativo_fecha;
+        $vegetativo_fecha_aplicacion = $request->vegetativo_fecha_aplicacion;
+        $vegetativo_bioles_producto = $request->vegetativo_bioles_producto;
+        $vegetativo_bioles_dosis = $request->vegetativo_bioles_dosis;
+        $vegetativo_purines_producto = $request->vegetativo_purines_producto;
+        $vegetativo_purines_dosis = $request->vegetativo_purines_dosis;
+      }
+      else {
+        $vegetativo_fecha = "0000-00-00";
+        $vegetativo_fecha_aplicacion = "0000-00-00";
+        $vegetativo_bioles_producto = "";
+        $vegetativo_bioles_dosis = 0;
+        $vegetativo_purines_producto = "";
+        $vegetativo_purines_dosis = 0;
+      }
+
+      if ($request->reproductivo == 1) {
+        $reproductivo_fecha = $request->reproductivo_fecha;
+        $reproductivo_fecha_aplicacion = $request->reproductivo_fecha_aplicacion;
+        $reproductivo_producto = $request->reproductivo_producto;
+        $reproductivo_dosis = $request->reproductivo_dosis;
+      }
+      else {
+        $reproductivo_fecha = "0000-00-00";
+        $reproductivo_fecha_aplicacion = "0000-00-00";
+        $reproductivo_producto = "";
+        $reproductivo_dosis = 0;
+      }
+
+      if ($request->floracion == 1) {
+        $floracion_fecha = $request->floracion_fecha;
+        $floracion_fecha_aplicacion = $request->floracion_fecha_aplicacion;
+        $floracion_producto = $request->floracion_producto;
+        $floracion_dosis = $request->floracion_dosis;
+      }
+      else {
+        $floracion_fecha = "0000-00-00";
+        $floracion_fecha_aplicacion = "0000-00-00";
+        $floracion_producto = "";
+        $floracion_dosis = 0;
+      }
+
+      if ($request->fructificacion == 1) {
+        $fructificacion_fecha = $request->fructificacion_fecha;
+        $fructificacion_fecha_aplicacion = $request->fructificacion_fecha_aplicacion;
+        $fructificacion_producto = $request->fructificacion_producto;
+        $fructificacion_dosis = $request->fructificacion_dosis;
+      }
+      else {
+        $fructificacion_fecha = "0000-00-00";
+        $fructificacion_fecha_aplicacion = "0000-00-00";
+        $fructificacion_producto = "";
+        $fructificacion_dosis = 0;
+      }
+
+
+     \DB::table('enc_fertilizaciones')->insert([
+                ['object_id' => Auth::user()->object_id,
+                'vegetativo' => $request->vegetativo,
+                'vegetativo_fecha' => $vegetativo_fecha,
+                'vegetativo_fecha_aplicacion' => $vegetativo_fecha_aplicacion,
+                'vegetativo_bioles_producto' => $vegetativo_bioles_producto,
+                'vegetativo_bioles_dosis' => $vegetativo_bioles_dosis,
+                'vegetativo_purines_producto' => $vegetativo_purines_producto,
+                'vegetativo_purines_dosis' => $vegetativo_purines_dosis,
+
+                'reproductivo' => $request->reproductivo,
+                'reproductivo_fecha' => $reproductivo_fecha,
+                'reproductivo_fecha_aplicacion' => $reproductivo_fecha_aplicacion,
+                'reproductivo_producto' => $reproductivo_producto,
+                'reproductivo_dosis' => $reproductivo_dosis,
+
+                'floracion' => $request->floracion,
+                'floracion_fecha' => $floracion_fecha,
+                'floracion_fecha_aplicacion' => $floracion_fecha_aplicacion,
+                'floracion_producto' => $floracion_producto,
+                'floracion_dosis' => $floracion_dosis,
+
+                'fructificacion' => $request->fructificacion,
+                'fructificacion_fecha' => $fructificacion_fecha,
+                'fructificacion_fecha_aplicacion' => $fructificacion_fecha_aplicacion,
+                'fructificacion_producto' => $fructificacion_producto,
+                'fructificacion_dosis' => $fructificacion_dosis,
+
+                'created_at' => $tiempo_actual,
+                'updated_at' => $tiempo_actual,
+                'activo' => 1]
+      ]);
+      return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Fertilizacion Guardada Exitosamente');
+    }
+
+
     //FORMS EDITAR
     public function form_densidad_editar($id){
       $id_densidad = base64_decode($id);
@@ -1502,6 +1608,12 @@ class FormEncuestasController extends Controller
       $id_plaga = base64_decode($id);
       $dato = \DB::table('enc_plagas')->where('id_plaga', $id_plaga)->first();
       return view("formularios.encuestas.form_plagas_editar", compact('dato'));
+    }
+
+    public function form_fertilizaciones_editar($id){
+      $id_fertilizacion = base64_decode($id);
+      $dato = \DB::table('enc_fertilizaciones')->where('id_fertilizacion', $id_fertilizacion)->first();
+      return view("formularios.encuestas.form_fertilizaciones_editar", compact('dato'));
     }
 
 
@@ -2770,6 +2882,101 @@ class FormEncuestasController extends Controller
       ]);
 
       return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Plagas Actualizada Exitosamente');
+    }
+
+    public function fertilizaciones_actualizar(Request $request, $id){
+      $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+      //Tomamos los valores y les asignamos valores según corresponda
+      if ($request->vegetativo == 1) {
+        $vegetativo_fecha = $request->vegetativo_fecha;
+        $vegetativo_fecha_aplicacion = $request->vegetativo_fecha_aplicacion;
+        $vegetativo_bioles_producto = $request->vegetativo_bioles_producto;
+        $vegetativo_bioles_dosis = $request->vegetativo_bioles_dosis;
+        $vegetativo_purines_producto = $request->vegetativo_purines_producto;
+        $vegetativo_purines_dosis = $request->vegetativo_purines_dosis;
+      }
+      else {
+        $vegetativo_fecha = "0000-00-00";
+        $vegetativo_fecha_aplicacion = "0000-00-00";
+        $vegetativo_bioles_producto = "";
+        $vegetativo_bioles_dosis = 0;
+        $vegetativo_purines_producto = "";
+        $vegetativo_purines_dosis = 0;
+      }
+
+      if ($request->reproductivo == 1) {
+        $reproductivo_fecha = $request->reproductivo_fecha;
+        $reproductivo_fecha_aplicacion = $request->reproductivo_fecha_aplicacion;
+        $reproductivo_producto = $request->reproductivo_producto;
+        $reproductivo_dosis = $request->reproductivo_dosis;
+      }
+      else {
+        $reproductivo_fecha = "0000-00-00";
+        $reproductivo_fecha_aplicacion = "0000-00-00";
+        $reproductivo_producto = "";
+        $reproductivo_dosis = 0;
+      }
+
+      if ($request->floracion == 1) {
+        $floracion_fecha = $request->floracion_fecha;
+        $floracion_fecha_aplicacion = $request->floracion_fecha_aplicacion;
+        $floracion_producto = $request->floracion_producto;
+        $floracion_dosis = $request->floracion_dosis;
+      }
+      else {
+        $floracion_fecha = "0000-00-00";
+        $floracion_fecha_aplicacion = "0000-00-00";
+        $floracion_producto = "";
+        $floracion_dosis = 0;
+      }
+
+      if ($request->fructificacion == 1) {
+        $fructificacion_fecha = $request->fructificacion_fecha;
+        $fructificacion_fecha_aplicacion = $request->fructificacion_fecha_aplicacion;
+        $fructificacion_producto = $request->fructificacion_producto;
+        $fructificacion_dosis = $request->fructificacion_dosis;
+      }
+      else {
+        $fructificacion_fecha = "0000-00-00";
+        $fructificacion_fecha_aplicacion = "0000-00-00";
+        $fructificacion_producto = "";
+        $fructificacion_dosis = 0;
+      }
+
+      $dato = \DB::table('enc_fertilizaciones')
+              ->where('id_fertilizacion', $id)
+              ->update([
+                'vegetativo' => $request->vegetativo,
+                'vegetativo_fecha' => $vegetativo_fecha,
+                'vegetativo_fecha_aplicacion' => $vegetativo_fecha_aplicacion,
+                'vegetativo_bioles_producto' => $vegetativo_bioles_producto,
+                'vegetativo_bioles_dosis' => $vegetativo_bioles_dosis,
+                'vegetativo_purines_producto' => $vegetativo_purines_producto,
+                'vegetativo_purines_dosis' => $vegetativo_purines_dosis,
+
+                'reproductivo' => $request->reproductivo,
+                'reproductivo_fecha' => $reproductivo_fecha,
+                'reproductivo_fecha_aplicacion' => $reproductivo_fecha_aplicacion,
+                'reproductivo_producto' => $reproductivo_producto,
+                'reproductivo_dosis' => $reproductivo_dosis,
+
+                'floracion' => $request->floracion,
+                'floracion_fecha' => $floracion_fecha,
+                'floracion_fecha_aplicacion' => $floracion_fecha_aplicacion,
+                'floracion_producto' => $floracion_producto,
+                'floracion_dosis' => $floracion_dosis,
+
+                'fructificacion' => $request->fructificacion,
+                'fructificacion_fecha' => $fructificacion_fecha,
+                'fructificacion_fecha_aplicacion' => $fructificacion_fecha_aplicacion,
+                'fructificacion_producto' => $fructificacion_producto,
+                'fructificacion_dosis' => $fructificacion_dosis,
+
+                'updated_at' => $tiempo_actual
+      ]);
+
+      return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Fertilización Actualizada Exitosamente');
     }
 
 
