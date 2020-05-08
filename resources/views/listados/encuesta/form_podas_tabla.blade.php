@@ -34,7 +34,7 @@
 					<th>Fecha de Respuesta</th>
 					<th>Formación de Planta</th>
 					<th>Mantenimiento</th>
-					<th>Brotes</th>
+					<th>Sel. Brotes</th>
 					<th>Rehabilitación</th>
 					<th>Renovación</th>
 					<th>Deshoje y Despunte</th>
@@ -42,7 +42,6 @@
 				</tr>
 			</thead>
 	    <tbody>
-
 		@foreach ($datos as $key => $dato)
 		@php
 			$id_poda = base64_encode($dato->id_poda)
@@ -50,13 +49,48 @@
 		 <tr role="row" class="odd">
 			<td>{{ $key + 1 }}</td>
 			<td>{{ f_formato($dato->updated_at) }}</td>
-			<td>{{ $dato->form_planta == 1 ? 'SI' : 'NO'}}</td>
-			<td>{{ $dato->mantenimiento == 1 ? 'SI' : 'NO'}}</td>
-			<td>{{ $dato->sel_brotes == 1 ? 'SI' : 'NO'}}</td>
-			<td>{{ $dato->rehabilitacion == 1 ? 'SI' : 'NO'}}</td>
-			<td>{{ $dato->renovacion == 1 ? 'SI' : 'NO'}}</td>
-			<td>{{ $dato->deshoje_despunte == 1 ? 'SI' : 'NO'}}</td>
-			{{-- <td>{{ f_formato($dato->form_planta_fecha) }}</td> --}}
+			<td>{{ $dato->form_planta == 1 ? 'SI' : 'NO'}}
+			@if ($dato->form_planta_foto)
+				<a href="#modal_ver_fotografia" data-id="{{$dato->form_planta_foto}}" data-toggle="modal" class="abrirModal btn btn-default btn-sm">
+					<i class="fa fa-fw fa-file-image-o"></i> 
+				</a>
+			@endif
+			</td>
+			<td>{{ $dato->mantenimiento == 1 ? 'SI' : 'NO'}}
+			@if ($dato->mantenimiento_foto)
+				<a href="#modal_ver_fotografia" data-id="{{$dato->mantenimiento_foto}}" data-toggle="modal" class="abrirModal btn btn-default btn-sm">
+					<i class="fa fa-fw fa-file-image-o"></i> 
+				</a>
+			@endif
+			</td>
+			<td>{{ $dato->sel_brotes == 1 ? 'SI' : 'NO'}}
+			@if ($dato->sel_brotes_foto)
+				<a href="#modal_ver_fotografia" data-id="{{$dato->sel_brotes_foto}}" data-toggle="modal" class="abrirModal btn btn-default btn-sm">
+					<i class="fa fa-fw fa-file-image-o"></i> 
+				</a>
+			@endif
+			</td>
+			<td>{{ $dato->rehabilitacion == 1 ? 'SI' : 'NO'}}
+			@if ($dato->rehabilitacion_foto)
+				<a href="#modal_ver_fotografia" data-id="{{$dato->rehabilitacion_foto}}" data-toggle="modal" class="abrirModal btn btn-default btn-sm">
+					<i class="fa fa-fw fa-file-image-o"></i> 
+				</a>
+			@endif
+			</td>
+			<td>{{ $dato->renovacion == 1 ? 'SI' : 'NO'}}
+			@if ($dato->renovacion_foto)
+				<a href="#modal_ver_fotografia" data-id="{{$dato->renovacion_foto}}" data-toggle="modal" class="abrirModal btn btn-default btn-sm">
+					<i class="fa fa-fw fa-file-image-o"></i> 
+				</a>
+			@endif
+			</td>
+			<td>{{ $dato->deshoje_despunte == 1 ? 'SI' : 'NO'}}
+			@if ($dato->deshoje_despunte_foto)
+				<a href="#modal_ver_fotografia" data-id="{{$dato->deshoje_despunte_foto}}" data-toggle="modal" class="abrirModal btn btn-default btn-sm">
+					<i class="fa fa-fw fa-file-image-o"></i> 
+				</a>
+			@endif
+			</td>
 			<td>
 				<a href="{{route('form_podas_editar', ['id_poda' => $id_poda])}}" class="btn-accion-tabla">
 					<i class="fa fa-fw fa-edit"></i>
@@ -95,4 +129,36 @@
 @endif
 
 </div></section>
+
+<div class="modal fade" id="modal_ver_fotografia" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Fotografía</h4>
+            </div>
+            <div class="modal-body">
+				<img id="foto" class="img-responsive" src="" alt="">
+			</div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+@section('scripts')
+
+@parent
+<script type="text/javascript">
+  $(document).on("click", ".abrirModal", function () {
+		// console.log('Ok');
+		var foto = $(this).data('id');
+		$(".modal-body #foto").attr("src", foto);
+	});
+</script>
+
 @endsection
