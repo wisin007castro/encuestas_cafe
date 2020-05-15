@@ -20,6 +20,10 @@ class FormEncuestasController extends Controller
       return view("formularios.encuestas.form_cliente_cargar_datos");
     }
 
+    public function form_informacion_basica_opcion(){
+      return view("formularios.encuestas.form_informacion_basica_opcion");
+    }
+
     public function form_cliente_podas_control_opcion(){
       return view("formularios.encuestas.form_cliente_podas_control_opcion");
     }
@@ -73,6 +77,25 @@ class FormEncuestasController extends Controller
         return view("listados.encuesta.form_secado_tabla", compact('datos'));
     }
 
+    //Simplemente envia a agregar o editar en funcion a la existencia del registro en la bd
+    public function form_informacion_basica(){
+      //Tomamos los datos del productor logeado
+      $datos = \DB::table('enc_productores')->orderBy('id_productor', 'desc')->where('object_id', Auth::user()->object_id)->where('activo', 1)->get();
+
+      //Si esta vacio, significa que no hay el registro, envìa a formulario vacio
+      if (empty($datos->first())) {
+        return $this->form_informacion_basica_agregar();
+      }
+      else {
+        //Por el contrario, si hay el registro, envìa a actualizar
+        echo "Completar Editar";
+      }
+        //return view("formularios.encuestas.form_informacion_basica_agregar");
+    }
+
+    public function form_informacion_basica_agregar(){
+        return view("formularios.encuestas.form_informacion_basica_agregar");
+    }
 
     public function form_sist_agroforestales_agregar(){
         return view("formularios.encuestas.form_sist_agroforestales_agregar");
@@ -169,24 +192,47 @@ class FormEncuestasController extends Controller
 
 
 
-        //FORMS GUARDAR
-        public function densidad_guardar(Request $request){
-            // dd($request);
-            $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
-            \DB::table('enc_densidad')->insert([
-                ['object_id' => Auth::user()->object_id,
-                 'ano' => $request->ano,
-                 'densidad' => $request->densidad,
-                 'superficie' => $request->superficie,
-                 'cantidad_plantas' => $request->cantidad_plantas,
-                 'plantas_muertas' => $request->plantas_muertas,
-                 'plantas_efectivas' => $request->plntas_efectivas,
-                 'created_at' => $tiempo_actual,
-                 'updated_at' => $tiempo_actual,
-                 'activo' => 1]
-            ]);
-            return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Densidad de Plantación de Café Guardada Exitosamente');
-        }
+    //FORMS GUARDAR
+    public function informacion_basica_guardar(Request $request){
+        $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+        //Establecemos el tipo de cultipo id
+        if ($request->tipo_cultivo == "Cafe") {$tipo_cultivo_id = 1;}
+        else {$tipo_cultivo_id = 2;}
+        \DB::table('enc_productores')->insert([
+            ['object_id' => Auth::user()->object_id,
+             'productor_nombres' => $request->productor_nombres,
+             'productor_paterno' => $request->productor_paterno,
+             'productor_materno' => $request->productor_materno,
+             'productor_sexo' => $request->productor_sexo,
+             'productor_telefono' => $request->productor_telefono,
+             'tipo_cultivo' => $request->tipo_cultivo,
+             'tipo_cultivo_id' => $tipo_cultivo_id,
+
+             'created_at' => $tiempo_actual,
+             'updated_at' => $tiempo_actual,
+             'activo' => 1]
+        ]);
+        return redirect('/home_encuestas')->with('mensaje_exito', 'Información Básica Guardada Exitosamente');
+    }
+
+    public function densidad_guardar(Request $request){
+        // dd($request);
+        $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+        \DB::table('enc_densidad')->insert([
+            ['object_id' => Auth::user()->object_id,
+             'ano' => $request->ano,
+             'densidad' => $request->densidad,
+             'superficie' => $request->superficie,
+             'cantidad_plantas' => $request->cantidad_plantas,
+             'plantas_muertas' => $request->plantas_muertas,
+             'plantas_efectivas' => $request->plntas_efectivas,
+             'created_at' => $tiempo_actual,
+             'updated_at' => $tiempo_actual,
+             'activo' => 1]
+        ]);
+        return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Densidad de Plantación de Café Guardada Exitosamente');
+    }
 
     public function preparacion_guardar(Request $request){
         $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));

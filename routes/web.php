@@ -94,6 +94,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
+    Route::post('form_informacion_basica_opcion', 'FormEncuestasController@form_informacion_basica_opcion');
+
     Route::post('form_podas_control_opcion', 'FormEncuestasController@form_podas_control_opcion');
 
     Route::post('form_transformacion_opcion', 'FormEncuestasController@form_transformacion_opcion');
@@ -106,6 +108,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('listado_densidad', 'FormEncuestasController@listado_densidad');
 
+    Route::post('form_informacion_basica', 'FormEncuestasController@form_informacion_basica')->name('form_informacion_basica'); //Sirve para agregar y editar, en lugar de mostrar tabla, el controlador decide a cual vista enviar
 
     Route::post('form_preparacion_tabla', 'FormEncuestasController@form_preparacion_tabla');
     Route::post('form_podas_tabla', 'FormEncuestasController@form_podas_tabla');
@@ -142,9 +145,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-
-
     //FORMS GUARDAR
+    Route::post('informacion_basica_guardar', 'FormEncuestasController@informacion_basica_guardar')->name('informacion_basica_guardar');
     Route::post('densidad_guardar', 'FormEncuestasController@densidad_guardar')->name('densidad_guardar');
     Route::post('sist_agroforestales_guardar', 'FormEncuestasController@sist_agroforestales_guardar')->name('sist_agroforestales_guardar');
     Route::post('preparacion_guardar', 'FormEncuestasController@preparacion_guardar')->name('preparacion_guardar');
