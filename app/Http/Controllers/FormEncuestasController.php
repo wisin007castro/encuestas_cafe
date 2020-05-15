@@ -527,6 +527,7 @@ class FormEncuestasController extends Controller
              'fecha' => $request->fecha,
              'manual' => $manual,
              'mecanica' => $mecanica,
+             'peso_bruto' => $request->peso_bruto,
              'created_at' => $tiempo_actual,
              'updated_at' => $tiempo_actual,
              'activo' => 1]
@@ -1540,10 +1541,10 @@ class FormEncuestasController extends Controller
         $barrenador_control = $request->barrenador_control;
       }
       else {
-        $nematodos_fecha = "0000-00-00";
-        $nematodos_zona_afectada = "";
-        $nematodos_incidencia = 0;
-        $nematodos_control = "";
+        $barrenador_fecha = "0000-00-00";
+        $barrenador_zona_afectada = "";
+        $barrenador_incidencia = 0;
+        $barrenador_control = "";
       }
 
       if ($request->nematodos == 1) {
@@ -2146,6 +2147,7 @@ class FormEncuestasController extends Controller
                    'fecha' => $request->fecha,
                    'manual' => $manual,
                    'mecanica' => $mecanica,
+                   'peso_bruto' => $request->peso_bruto,
                    'updated_at' => $tiempo_actual
         ]);
 
@@ -3024,10 +3026,10 @@ class FormEncuestasController extends Controller
         $barrenador_control = $request->barrenador_control;
       }
       else {
-        $nematodos_fecha = "0000-00-00";
-        $nematodos_zona_afectada = "";
-        $nematodos_incidencia = 0;
-        $nematodos_control = "";
+        $barrenador_fecha = "0000-00-00";
+        $barrenador_zona_afectada = "";
+        $barrenador_incidencia = 0;
+        $barrenador_control = "";
       }
 
       if ($request->nematodos == 1) {

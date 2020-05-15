@@ -62,6 +62,7 @@
 														<select class="form-control select2" name="broca_zona_afectada[]" id="broca_zona_afectada" multiple="broca_zona_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz" <?php if(strpos($dato->broca_zona_afectada, 'Raiz') !== false) {echo "selected";}?>>Raiz</option>
 															<option value="Tallo" <?php if(strpos($dato->broca_zona_afectada, 'Tallo') !== false) {echo "selected";}?>>Tallo</option>
+															<option value="Flores" <?php if(strpos($dato->broca_zona_afectada, 'Flores') !== false) {echo "selected";}?>>Flores</option>
 															<option value="Hojas"<?php if(strpos($dato->broca_zona_afectada, 'Hojas') !== false) {echo "selected";}?>>Hojas</option>
 						                  <option value="Frutos" <?php if(strpos($dato->broca_zona_afectada, 'Frutos') !== false) {echo "selected";}?>>Frutos</option>
 														</select>
@@ -99,6 +100,7 @@
 														<select class="form-control select2" name="cepe_zona_afectada[]" id="cepe_zona_afectada" multiple="cepe_zona_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz" <?php if(strpos($dato->cepe_zona_afectada, 'Raiz') !== false) {echo "selected";}?>>Raiz</option>
 															<option value="Tallo" <?php if(strpos($dato->cepe_zona_afectada, 'Tallo') !== false) {echo "selected";}?>>Tallo</option>
+															<option value="Flores" <?php if(strpos($dato->cepe_zona_afectada, 'Flores') !== false) {echo "selected";}?>>Flores</option>
 															<option value="Hojas"<?php if(strpos($dato->cepe_zona_afectada, 'Hojas') !== false) {echo "selected";}?>>Hojas</option>
 						                  <option value="Frutos" <?php if(strpos($dato->cepe_zona_afectada, 'Frutos') !== false) {echo "selected";}?>>Frutos</option>
 														</select>
@@ -136,6 +138,7 @@
 														<select class="form-control select2" name="grillo_zona_afectada[]" id="grillo_zona_afectada" multiple="grillo_zona_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz" <?php if(strpos($dato->grillo_zona_afectada, 'Raiz') !== false) {echo "selected";}?>>Raiz</option>
 															<option value="Tallo" <?php if(strpos($dato->grillo_zona_afectada, 'Tallo') !== false) {echo "selected";}?>>Tallo</option>
+															<option value="Flores" <?php if(strpos($dato->grillo_zona_afectada, 'Flores') !== false) {echo "selected";}?>>Flores</option>
 															<option value="Hojas"<?php if(strpos($dato->grillo_zona_afectada, 'Hojas') !== false) {echo "selected";}?>>Hojas</option>
 						                  <option value="Frutos" <?php if(strpos($dato->grillo_zona_afectada, 'Frutos') !== false) {echo "selected";}?>>Frutos</option>
 														</select>
@@ -173,6 +176,7 @@
 														<select class="form-control select2" name="cochinilla_zona_afectada[]" id="cochinilla_zona_afectada" multiple="cochinilla_zona_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz" <?php if(strpos($dato->cochinilla_zona_afectada, 'Raiz') !== false) {echo "selected";}?>>Raiz</option>
 															<option value="Tallo" <?php if(strpos($dato->cochinilla_zona_afectada, 'Tallo') !== false) {echo "selected";}?>>Tallo</option>
+															<option value="Flores" <?php if(strpos($dato->cochinilla_zona_afectada, 'Flores') !== false) {echo "selected";}?>>Flores</option>
 															<option value="Hojas"<?php if(strpos($dato->cochinilla_zona_afectada, 'Hojas') !== false) {echo "selected";}?>>Hojas</option>
 						                  <option value="Frutos" <?php if(strpos($dato->cochinilla_zona_afectada, 'Frutos') !== false) {echo "selected";}?>>Frutos</option>
 														</select>
@@ -210,6 +214,7 @@
 														<select class="form-control select2" name="escamas_zona_afectada[]" id="escamas_zona_afectada" multiple="escamas_zona_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz" <?php if(strpos($dato->escamas_zona_afectada, 'Raiz') !== false) {echo "selected";}?>>Raiz</option>
 															<option value="Tallo" <?php if(strpos($dato->escamas_zona_afectada, 'Tallo') !== false) {echo "selected";}?>>Tallo</option>
+															<option value="Flores" <?php if(strpos($dato->escamas_zona_afectada, 'Flores') !== false) {echo "selected";}?>>Flores</option>
 															<option value="Hojas"<?php if(strpos($dato->escamas_zona_afectada, 'Hojas') !== false) {echo "selected";}?>>Hojas</option>
 						                  <option value="Frutos" <?php if(strpos($dato->escamas_zona_afectada, 'Frutos') !== false) {echo "selected";}?>>Frutos</option>
 														</select>
@@ -247,6 +252,7 @@
 														<select class="form-control select2" name="minador_zona_afectada[]" id="minador_zona_afectada" multiple="minador_zona_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz" <?php if(strpos($dato->minador_zona_afectada, 'Raiz') !== false) {echo "selected";}?>>Raiz</option>
 															<option value="Tallo" <?php if(strpos($dato->minador_zona_afectada, 'Tallo') !== false) {echo "selected";}?>>Tallo</option>
+															<option value="Flores" <?php if(strpos($dato->minador_zona_afectada, 'Flores') !== false) {echo "selected";}?>>Flores</option>
 															<option value="Hojas"<?php if(strpos($dato->minador_zona_afectada, 'Hojas') !== false) {echo "selected";}?>>Hojas</option>
 						                  <option value="Frutos" <?php if(strpos($dato->minador_zona_afectada, 'Frutos') !== false) {echo "selected";}?>>Frutos</option>
 														</select>
@@ -284,6 +290,7 @@
 														<select class="form-control select2" name="barrenador_zona_afectada[]" id="barrenador_zona_afectada" multiple="barrenador_zona_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz" <?php if(strpos($dato->barrenador_zona_afectada, 'Raiz') !== false) {echo "selected";}?>>Raiz</option>
 															<option value="Tallo" <?php if(strpos($dato->barrenador_zona_afectada, 'Tallo') !== false) {echo "selected";}?>>Tallo</option>
+															<option value="Flores" <?php if(strpos($dato->barrenador_zona_afectada, 'Flores') !== false) {echo "selected";}?>>Flores</option>
 															<option value="Hojas"<?php if(strpos($dato->barrenador_zona_afectada, 'Hojas') !== false) {echo "selected";}?>>Hojas</option>
 						                  <option value="Frutos" <?php if(strpos($dato->barrenador_zona_afectada, 'Frutos') !== false) {echo "selected";}?>>Frutos</option>
 														</select>
@@ -321,6 +328,7 @@
 														<select class="form-control select2" name="nematodos_zona_afectada[]" id="nematodos_zona_afectada" multiple="nematodos_zona_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz" <?php if(strpos($dato->nematodos_zona_afectada, 'Raiz') !== false) {echo "selected";}?>>Raiz</option>
 															<option value="Tallo" <?php if(strpos($dato->nematodos_zona_afectada, 'Tallo') !== false) {echo "selected";}?>>Tallo</option>
+															<option value="Flores" <?php if(strpos($dato->nematodos_zona_afectada, 'Flores') !== false) {echo "selected";}?>>Flores</option>
 															<option value="Hojas"<?php if(strpos($dato->nematodos_zona_afectada, 'Hojas') !== false) {echo "selected";}?>>Hojas</option>
 						                  <option value="Frutos" <?php if(strpos($dato->nematodos_zona_afectada, 'Frutos') !== false) {echo "selected";}?>>Frutos</option>
 														</select>

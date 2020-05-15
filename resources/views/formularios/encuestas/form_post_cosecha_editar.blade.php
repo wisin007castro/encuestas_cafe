@@ -17,7 +17,7 @@
                  <div class="myform-top">
                     <div class="myform-top-left">
                        {{-- <img  src="" class="img-responsive logo" /> --}}
-                      <h3>Encuesta - Post Cosecha</h3>
+                      <h3>Post Cosecha</h3>
                         <p>Por favor responda las siguientes preguntas (Editando)</p>
                     </div>
                     <div class="myform-top-right">
@@ -48,8 +48,8 @@
 												<h4 style="color:white">Cosecha de Café en Guinda</h4>
 
 												<div class="form-group">
-													<label >¿Realizó la cosecha de café en guinda?</label>
-													<br>
+													<!--label >¿Realizó la cosecha de café en guinda?</label>
+													<br-->
 													<input type="radio" id="cosecha_si" name="cosecha" value="1" onchange="mostrar_cosecha()" <?php if ($dato->cosecha==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="cosecha_no" name="cosecha" value="0" onchange="mostrar_cosecha()" <?php if ($dato->cosecha==0){echo "checked";}?>> No
 												</div>
@@ -62,17 +62,17 @@
 													</div>
 
 													<div class="form-group">
-														<label >Peso Bruto (Kg) de cosecha de café en guinda</label>
+														<label >Peso inicial (Kg) de cosecha de café en guinda</label>
 														<input type="number" min="0" step="0.01" name="cosecha_p_bruto" id="cosecha_p_bruto" class="form-control" value="{{old('cosecha_p_bruto', $dato->cosecha_p_bruto ?? '')}}" required>
 	                        </div>
 
 													<div class="form-group">
-														<label >Peso Descarte (Kg) de cosecha de café en guinda</label>
+														<label >Peso sultana (Kg) de cosecha de café en guinda</label>
 														<input type="number" min="0" step="0.01" name="cosecha_p_descarte" id="cosecha_p_descarte" class="form-control" value="{{old('cosecha_p_descarte', $dato->cosecha_p_descarte ?? '')}}" required>
 	                        </div>
 
 													<div class="form-group">
-														<label >Peso Efectivo (Kg) de cosecha de café en guinda</label>
+														<label >Peso de pergamino (Kg) de cosecha de café en guinda</label>
 														<input type="number" min="0" step="0.01" name="cosecha_p_efectivo" id="cosecha_p_efectivo" class="form-control" value="{{old('cosecha_p_efectivo', $dato->cosecha_p_efectivo ?? '')}}" required>
 	                        </div>
 												</div>
@@ -82,8 +82,8 @@
 												<h4 style="color:white">Limpieza del Grano de Café (Agua)</h4>
 
 												<div class="form-group">
-													<label >¿Realizó la limpieza del grano de café?</label>
-													<br>
+													<!--label >¿Realizó la limpieza del grano de café?</label>
+													<br-->
 													<input type="radio" id="limpieza_si" name="limpieza" value="1" onchange="mostrar_limpieza()" <?php if ($dato->limpieza==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="limpieza_no" name="limpieza" value="0" onchange="mostrar_limpieza()" <?php if ($dato->limpieza==0){echo "checked";}?>> No
 												</div>
@@ -96,17 +96,17 @@
 													</div>
 
 													<div class="form-group">
-														<label >Peso Bruto (Kg) de la limpieza del grano de café</label>
+														<label >Peso inicial (Kg) de la limpieza del grano de café</label>
 														<input type="number" min="0" step="0.01" name="limpieza_p_bruto" id="limpieza_p_bruto" class="form-control" value="{{old('limpieza_p_bruto', $dato->limpieza_p_bruto ?? '')}}" required>
 	                        </div>
 
 													<div class="form-group">
-														<label >Peso Descarte (Kg) de la limpieza del grano de café</label>
+														<label >Peso sultana (Kg) de la limpieza del grano de café</label>
 														<input type="number" min="0" step="0.01" name="limpieza_p_descarte" id="limpieza_p_descarte" class="form-control" value="{{old('limpieza_p_descarte', $dato->limpieza_p_descarte ?? '')}}" required>
 	                        </div>
 
 													<div class="form-group">
-														<label >Peso Efectivo (Kg) de la limpieza del grano de café</label>
+														<label >Peso de pergamino (Kg) de la limpieza del grano de café</label>
 														<input type="number" min="0" step="0.01" name="limpieza_p_efectivo" id="limpieza_p_efectivo" class="form-control" value="{{old('limpieza_p_efectivo', $dato->limpieza_p_efectivo ?? '')}}" required>
 	                        </div>
 												</div>
@@ -116,8 +116,8 @@
 												<h4 style="color:white">Despulpado</h4>
 
 												<div class="form-group">
-													<label >¿Realizó el despulpado?</label>
-													<br>
+													<!--label >¿Realizó el despulpado?</label>
+													<br-->
 													<input type="radio" id="despulpado_si" name="despulpado" value="1" onchange="mostrar_despulpado()" <?php if ($dato->despulpado==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="despulpado_no" name="despulpado" value="0" onchange="mostrar_despulpado()" <?php if ($dato->despulpado==0){echo "checked";}?>> No
 												</div>
@@ -130,17 +130,17 @@
 													</div>
 
 													<div class="form-group">
-														<label >Peso Bruto (Kg) del despulpado</label>
+														<label >Peso inicial (Kg) del despulpado</label>
 														<input type="number" min="0" step="0.01" name="despulpado_p_bruto" id="despulpado_p_bruto" class="form-control" value="{{old('despulpado_p_bruto', $dato->despulpado_p_bruto ?? '')}}" required>
 													</div>
 
 													<div class="form-group">
-														<label >Peso Descarte (Kg) del despulpado</label>
+														<label >Peso sultana (Kg) del despulpado</label>
 														<input type="number" min="0" step="0.01" name="despulpado_p_descarte" id="despulpado_p_descarte" class="form-control" value="{{old('despulpado_p_descarte', $dato->despulpado_p_descarte ?? '')}}" required>
 													</div>
 
 													<div class="form-group">
-														<label >Peso Efectivo (Kg) del despulpado</label>
+														<label >Peso de pergamino (Kg) del despulpado</label>
 														<input type="number" min="0" step="0.01" name="despulpado_p_efectivo" id="despulpado_p_efectivo" class="form-control" value="{{old('despulpado_p_efectivo', $dato->despulpado_p_efectivo ?? '')}}" required>
 													</div>
 												</div>

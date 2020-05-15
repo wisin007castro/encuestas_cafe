@@ -43,10 +43,10 @@
                     <form action="{{ route('fertilizaciones_actualizar', ['id' => $dato->id_fertilizacion]) }}" method="post" class="">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 												<br>
-												<h4 style="color:white">Etapa: Crecimiento Vegetativo</h4>
+												<h4 style="color:white">Etapa: crecimiento vegetativo</h4>
                         <div class="form-group">
-                          <label >¿Realizó la Etapa de Crecimiento Vegetativo?</label>
-													<br>
+                          <!--label >¿Realizó la Etapa de Crecimiento Vegetativo?</label>
+													<br-->
 													<input type="radio" id="vegetativo_si" name="vegetativo" value="1" onchange="mostrar_vegetativo()" <?php if ($dato->vegetativo==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="vegetativo_no" name="vegetativo" value="0" onchange="mostrar_vegetativo()" <?php if ($dato->vegetativo==0){echo "checked";}?>> No
 												</div>
@@ -88,8 +88,9 @@
 												</div>
 
 
-												<br>
-												<h4 style="color:white">Etapa: Crecimiento Reprpdictivo</h4>
+												<input type="hidden" name="reproductivo" value="0">
+												<!--br>
+												<h4 style="color:white">Etapa: Crecimiento Reproductivo</h4>
 												<div class="form-group">
 													<label >¿Realizó la Etapa de Crecimiento Reproductivo?</label>
 													<br>
@@ -119,14 +120,16 @@
 														<label >COMPOST: Dosis por Hectárea Litros o Kilos</label>
 														<input type="number" min="0" step="0.01" name="reproductivo_dosis" id="reproductivo_dosis" class="form-control" value="{{old('reproductivo_dosis', $dato->reproductivo_dosis ?? '')}}" required>
 													</div>
-												</div>
-
+												</div-->
 
 												<br>
-												<h4 style="color:white">Etapa: Floración</h4>
+												<h4 style="color:white">Etapa: fructificación</h4>
+
+												<br>
+												<h4 style="color:white">Floración</h4>
 												<div class="form-group">
-													<label >¿Realizó la Etapa de Floración?</label>
-													<br>
+													<!--label >¿Realizó la Etapa de Floración?</label>
+													<br-->
 													<input type="radio" id="floracion_si" name="floracion" value="1" onchange="mostrar_floracion()" <?php if ($dato->floracion==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="floracion_no" name="floracion" value="0" onchange="mostrar_floracion()" <?php if ($dato->floracion==0){echo "checked";}?>> No
 												</div>
@@ -157,10 +160,10 @@
 
 
 												<br>
-												<h4 style="color:white">Etapa: Fructificación</h4>
+												<h4 style="color:white">Maduración<!--En Bd tiene el nombre fructificacion, se cambio a solicitud del cliente los labels--></h4>
 												<div class="form-group">
-													<label >¿Realizó la Etapa de Fructificación?</label>
-													<br>
+													<!--label >¿Realizó la Etapa de Fructificación?</label>
+													<br-->
 													<input type="radio" id="fructificacion_si" name="fructificacion" value="1" onchange="mostrar_fructificacion()" <?php if ($dato->fructificacion==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="fructificacion_no" name="fructificacion" value="0" onchange="mostrar_fructificacion()" <?php if ($dato->fructificacion==0){echo "checked";}?>> No
 												</div>
@@ -211,7 +214,7 @@
 	window.onload=function() {
 		//Ejecutamos todas las funciones
 		mostrar_vegetativo();
-		mostrar_reproductivo();
+		//mostrar_reproductivo();
 		mostrar_floracion();
 		mostrar_fructificacion();
 	}

@@ -17,7 +17,7 @@
                  <div class="myform-top">
                     <div class="myform-top-left">
                        {{-- <img  src="" class="img-responsive logo" /> --}}
-                      <h3>Encuesta - Sistemas Agroforestales</h3>
+                      <h3>Sistemas Agroforestales</h3>
                         <p>Por favor responda las siguientes preguntas</p>
                     </div>
                     <div class="myform-top-right">
@@ -51,9 +51,9 @@
                         </div>
 
 												<br>
-												<h4 style="color:white">Cultivo Asociado: Pacay</h4>
+												<h4 style="color:white">Cultivo asociado: pacay</h4>
                         <div class="form-group">
-                          <label >¿Tiene cultivos de Pacay asociados con el café?</label>
+                          <label >¿Tiene cultivos de pacay asociados con el café?</label>
 													<br>
 													<input type="radio" id="pacay_si" name="pacay" value="1" onchange="mostrar_pacay()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="pacay_no" name="pacay" value="0" onchange="mostrar_pacay()"> No
@@ -61,17 +61,17 @@
 
 												<div class="content_pacay" id="content_pacay">
 													<div class="form-group">
-														<label >Fecha de Siembra de Pacay</label>
+														<label >Fecha de siembra de pacay</label>
 														<input type="date" name="pacay_fecha_siembra" id="pacay_fecha_siembra" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Cantidad Aproximada de Plantas de Pacay</label>
+														<label >Cantidad aproximada de plantas de pacay</label>
 														<input type="number" min="0" step="1" name="pacay_cantidad" id="pacay_cantidad" class="form-control" required>
 	                        </div>
 
 													<div class="form-group">
-														<label >¿La Siembra de Pacay es Permanente?</label>
+														<label >¿La siembra de pacay es permanente?</label>
 														<select class="form-control" name="pacay_permanente" id="pacay_permanente" required>
 					                    <option value="1">Si</option>
 					                    <option value="0">No</option>
@@ -80,9 +80,9 @@
 												</div>
 
 												<br>
-												<h4 style="color:white">Cultivo Asociado: Plátano</h4>
+												<h4 style="color:white">Cultivo asociado: plátano</h4>
                         <div class="form-group">
-                          <label >¿Tiene cultivos de Plátano asociados con el café?</label>
+                          <label >¿Tiene cultivos de plátano asociados con el café?</label>
 													<br>
 													<input type="radio" id="platano_si" name="platano" value="1" onchange="mostrar_platano()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="platano_no" name="platano" value="0" onchange="mostrar_platano()"> No
@@ -90,17 +90,17 @@
 
 												<div class="content_platano" id="content_platano">
 													<div class="form-group">
-														<label >Fecha de Siembra de Plátanos</label>
+														<label >Fecha de siembra de plátanos</label>
 														<input type="date" name="platano_fecha_siembra" id="platano_fecha_siembra" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Cantidad Aproximada de Plantas de Plátano</label>
+														<label >Cantidad aproximada de plantas de plátano</label>
 														<input type="number" min="0" step="1" name="platano_cantidad" id="platano_cantidad" class="form-control" required>
 	                        </div>
 
 													<div class="form-group">
-														<label >¿La Siembra de Plátanos es Permanente?</label>
+														<label >¿La siembra de plátanos es permanente?</label>
 														<select class="form-control" name="platano_permanente" id="platano_permanente" required>
 					                    <option value="1">Si</option>
 					                    <option value="0">No</option>
@@ -109,9 +109,9 @@
 												</div>
 
 												<br>
-												<h4 style="color:white">Cultivo Asociado: Cítricos</h4>
+												<h4 style="color:white">Cultivo asociado: cítricos</h4>
                         <div class="form-group">
-                          <label >¿Tiene cultivos de Cítricos asociados con el café?</label>
+                          <label >¿Tiene cultivos de cítricos asociados con el café?</label>
 													<br>
 													<input type="radio" id="citricos_si" name="citricos" value="1" onchange="mostrar_citricos()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="citricos_no" name="citricos" value="0" onchange="mostrar_citricos()"> No
@@ -119,17 +119,17 @@
 
 												<div class="content_citricos" id="content_citricos">
 													<div class="form-group">
-														<label >Fecha de Siembra de Cítricos</label>
+														<label >Fecha de siembra de cítricos</label>
 														<input type="date" name="citricos_fecha_siembra" id="citricos_fecha_siembra" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Cantidad Aproximada de Plantas de Cítricos</label>
+														<label >Cantidad aproximada de plantas de cítricos</label>
 														<input type="number" min="0" step="1" name="citricos_cantidad" id="citricos_cantidad" class="form-control" required>
 	                        </div>
 
 													<div class="form-group">
-														<label >¿La Siembra de Cítricos es Permanente?</label>
+														<label >¿La siembra de cítricos es permanente?</label>
 														<select class="form-control" name="citricos_permanente" id="citricos_permanente" required>
 					                    <option value="1">Si</option>
 					                    <option value="0">No</option>
@@ -138,9 +138,9 @@
 												</div>
 
 												<br>
-												<h4 style="color:white">Cultivo Asociado: Maderables</h4>
+												<h4 style="color:white">Cultivo asociado: maderables</h4>
                         <div class="form-group">
-                          <label >¿Tiene cultivos de Maderables asociados con el café?</label>
+                          <label >¿Tiene cultivos de maderables asociados con el café?</label>
 													<br>
 													<input type="radio" id="maderables_si" name="maderables" value="1" onchange="mostrar_maderables()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="maderables_no" name="maderables" value="0" onchange="mostrar_maderables()"> No
@@ -148,17 +148,17 @@
 
 												<div class="content_maderables" id="content_maderables">
 													<div class="form-group">
-														<label >Fecha de Siembra de Maderables</label>
+														<label >Fecha de siembra de maderables</label>
 														<input type="date" name="maderables_fecha_siembra" id="maderables_fecha_siembra" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Cantidad Aproximada de Plantas de Maderables</label>
+														<label >Cantidad aproximada de plantas de maderables</label>
 														<input type="number" min="0" step="1" name="maderables_cantidad" id="maderables_cantidad" class="form-control" required>
 	                        </div>
 
 													<div class="form-group">
-														<label >¿La Siembra de Maderables es Permanente?</label>
+														<label >¿La siembra de maderables es permanente?</label>
 														<select class="form-control" name="maderables_permanente" id="maderables_permanente" required>
 					                    <option value="1">Si</option>
 					                    <option value="0">No</option>
@@ -167,9 +167,9 @@
 												</div>
 
 												<br>
-												<h4 style="color:white">Cultivo Asociado: Frutas Amazónicas</h4>
+												<h4 style="color:white">Cultivo asociado: frutas amazónicas</h4>
                         <div class="form-group">
-                          <label >¿Tiene cultivos de Frutas Amazónicas asociados con el café?</label>
+                          <label >¿Tiene cultivos de frutas amazónicas asociados con el café?</label>
 													<br>
 													<input type="radio" id="frutas_amazonicas_si" name="frutas_amazonicas" value="1" onchange="mostrar_frutas_amazonicas()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="frutas_amazonicas_no" name="frutas_amazonicas" value="0" onchange="mostrar_frutas_amazonicas()"> No
@@ -177,17 +177,17 @@
 
 												<div class="content_frutas_amazonicas" id="content_frutas_amazonicas">
 													<div class="form-group">
-														<label >Fecha de Siembra de Frutas Amazónicas</label>
+														<label >Fecha de siembra de frutas amazónicas</label>
 														<input type="date" name="frutas_amazonicas_fecha_siembra" id="frutas_amazonicas_fecha_siembra" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Cantidad Aproximada de Plantas de Frutas Amazónicas</label>
+														<label >Cantidad aproximada de plantas de frutas amazónicas</label>
 														<input type="number" min="0" step="1" name="frutas_amazonicas_cantidad" id="frutas_amazonicas_cantidad" class="form-control" required>
 	                        </div>
 
 													<div class="form-group">
-														<label >¿La Siembra de Frutas Amazónicas es Permanente?</label>
+														<label >¿La siembra de frutas amazónicas es permanente?</label>
 														<select class="form-control" name="frutas_amazonicas_permanente" id="frutas_amazonicas_permanente" required>
 					                    <option value="1">Si</option>
 					                    <option value="0">No</option>
@@ -196,7 +196,7 @@
 												</div>
 
 												<br>
-												<h4 style="color:white">Cultivo Asociado: Otro</h4>
+												<h4 style="color:white">Cultivo asociado: otro</h4>
                         <div class="form-group">
                           <label >¿Tiene otros cultivos asociados con el café? (No registrados previamente)</label>
 													<br>
@@ -206,22 +206,22 @@
 
 												<div class="content_otros" id="content_otros">
 													<div class="form-group">
-														<label >Nombre del Cultivo Asociado</label>
+														<label >Nombre del cultivo asociado</label>
 														<input type="text" name="otros_descripcion" id="otros_descripcion" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Fecha de Siembra</label>
+														<label >Fecha de siembra</label>
 														<input type="date" name="otros_fecha_siembra" id="otros_fecha_siembra" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Cantidad Aproximada de Plantas</label>
+														<label >Cantidad aproximada de plantas</label>
 														<input type="number" min="0" step="1" name="otros_cantidad" id="otros_cantidad" class="form-control" required>
 	                        </div>
 
 													<div class="form-group">
-														<label >¿La Siembra es Permanente?</label>
+														<label >¿La siembra es permanente?</label>
 														<select class="form-control" name="otros_permanente" id="otros_permanente" required>
 					                    <option value="1">Si</option>
 					                    <option value="0">No</option>
