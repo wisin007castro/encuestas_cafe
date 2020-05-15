@@ -2649,6 +2649,9 @@ class FormEncuestasController extends Controller
     public function enfermedades_actualizar(Request $request, $id){
       $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
 
+      //Tomamos los datos del registro a actualizar, para tomar la foto que cargaron previamente
+      $selec_dato = \DB::table('enc_enfermedades')->where('id_enfermedad', $id)->first();
+
       //Tomamos los valores y les asignamos valores según corresponda
       if ($request->cercospora == 1) {
         $cercospora_fecha = $request->cercospora_fecha;
@@ -2664,12 +2667,18 @@ class FormEncuestasController extends Controller
         }
         $cercospora_incidencia = $request->cercospora_incidencia;
         $cercospora_recomendacion = $request->cercospora_recomendacion;
+        if ($request->cercospora_foto){
+          $cercospora_foto = Deficiencia::setFoto($request->cercospora_foto);
+        }else{
+          $cercospora_foto = $selec_dato->cercospora_foto;
+        }
       }
       else {
         $cercospora_fecha = "0000-00-00";
         $cercospora_area_afectada = "";
         $cercospora_incidencia = 0;
         $cercospora_recomendacion = "";
+        $cercospora_foto = "";
       }
 
       if ($request->roya == 1) {
@@ -2686,12 +2695,18 @@ class FormEncuestasController extends Controller
         }
         $roya_incidencia = $request->roya_incidencia;
         $roya_recomendacion = $request->roya_recomendacion;
+        if ($request->roya_foto){
+          $roya_foto = Deficiencia::setFoto($request->roya_foto);
+        }else{
+          $roya_foto = $selec_dato->roya_foto;
+        }
       }
       else {
         $roya_fecha = "0000-00-00";
         $roya_area_afectada = "";
         $roya_incidencia = 0;
         $roya_recomendacion = "";
+        $roya_foto = "";
       }
 
       if ($request->gallo == 1) {
@@ -2708,12 +2723,18 @@ class FormEncuestasController extends Controller
         }
         $gallo_incidencia = $request->gallo_incidencia;
         $gallo_recomendacion = $request->gallo_recomendacion;
+        if ($request->gallo_foto){
+          $gallo_foto = Deficiencia::setFoto($request->gallo_foto);
+        }else{
+          $gallo_foto = $selec_dato->gallo_foto;
+        }
       }
       else {
         $gallo_fecha = "0000-00-00";
         $gallo_area_afectada = "";
         $gallo_incidencia = 0;
         $gallo_recomendacion = "";
+        $gallo_foto = "";
       }
 
       if ($request->antracnosis == 1) {
@@ -2730,12 +2751,18 @@ class FormEncuestasController extends Controller
         }
         $antracnosis_incidencia = $request->antracnosis_incidencia;
         $antracnosis_recomendacion = $request->antracnosis_recomendacion;
+        if ($request->antracnosis_foto){
+          $antracnosis_foto = Deficiencia::setFoto($request->antracnosis_foto);
+        }else{
+          $antracnosis_foto = $selec_dato->antracnosis_foto;
+        }
       }
       else {
         $antracnosis_fecha = "0000-00-00";
         $antracnosis_area_afectada = "";
         $antracnosis_incidencia = 0;
         $antracnosis_recomendacion = "";
+        $antracnosis_foto = "";
       }
 
       if ($request->marchites == 1) {
@@ -2752,12 +2779,18 @@ class FormEncuestasController extends Controller
         }
         $marchites_incidencia = $request->marchites_incidencia;
         $marchites_recomendacion = $request->marchites_recomendacion;
+        if ($request->marchites_foto){
+          $marchites_foto = Deficiencia::setFoto($request->marchites_foto);
+        }else{
+          $marchites_foto = $selec_dato->marchites_foto;
+        }
       }
       else {
         $marchites_fecha = "0000-00-00";
         $marchites_area_afectada = "";
         $marchites_incidencia = 0;
         $marchites_recomendacion = "";
+        $marchites_foto = "";
       }
 
       if ($request->gotera == 1) {
@@ -2774,12 +2807,18 @@ class FormEncuestasController extends Controller
         }
         $gotera_incidencia = $request->gotera_incidencia;
         $gotera_recomendacion = $request->gotera_recomendacion;
+        if ($request->gotera_foto){
+          $gotera_foto = Deficiencia::setFoto($request->gotera_foto);
+        }else{
+          $gotera_foto = $selec_dato->gotera_foto;
+        }
       }
       else {
         $gotera_fecha = "0000-00-00";
         $gotera_area_afectada = "";
         $gotera_incidencia = 0;
         $gotera_recomendacion = "";
+        $gotera_foto = "";
       }
 
       if ($request->mancha == 1) {
@@ -2796,12 +2835,18 @@ class FormEncuestasController extends Controller
         }
         $mancha_incidencia = $request->mancha_incidencia;
         $mancha_recomendacion = $request->mancha_recomendacion;
+        if ($request->mancha_foto){
+          $mancha_foto = Deficiencia::setFoto($request->mancha_foto);
+        }else{
+          $mancha_foto = $selec_dato->mancha_foto;
+        }
       }
       else {
         $mancha_fecha = "0000-00-00";
         $mancha_area_afectada = "";
         $mancha_incidencia = 0;
         $mancha_recomendacion = "";
+        $mancha_foto = "";
       }
 
       if ($request->pudricion == 1) {
@@ -2818,12 +2863,18 @@ class FormEncuestasController extends Controller
         }
         $pudricion_incidencia = $request->pudricion_incidencia;
         $pudricion_recomendacion = $request->pudricion_recomendacion;
+        if ($request->pudricion_foto){
+          $pudricion_foto = Deficiencia::setFoto($request->pudricion_foto);
+        }else{
+          $pudricion_foto = $selec_dato->pudricion_foto;
+        }
       }
       else {
         $pudricion_fecha = "0000-00-00";
         $pudricion_area_afectada = "";
         $pudricion_incidencia = 0;
         $pudricion_recomendacion = "";
+        $pudricion_foto = "";
       }
 
       if ($request->rosado == 1) {
@@ -2840,12 +2891,18 @@ class FormEncuestasController extends Controller
         }
         $rosado_incidencia = $request->rosado_incidencia;
         $rosado_recomendacion = $request->rosado_recomendacion;
+        if ($request->rosado_foto){
+          $rosado_foto = Deficiencia::setFoto($request->rosado_foto);
+        }else{
+          $rosado_foto = $selec_dato->rosado_foto;
+        }
       }
       else {
         $rosado_fecha = "0000-00-00";
         $rosado_area_afectada = "";
         $rosado_incidencia = 0;
         $rosado_recomendacion = "";
+        $rosado_foto = "";
       }
 
       if ($request->moho == 1) {
@@ -2862,12 +2919,18 @@ class FormEncuestasController extends Controller
         }
         $moho_incidencia = $request->moho_incidencia;
         $moho_recomendacion = $request->moho_recomendacion;
+        if ($request->moho_foto){
+          $moho_foto = Deficiencia::setFoto($request->moho_foto);
+        }else{
+          $moho_foto = $selec_dato->moho_foto;
+        }
       }
       else {
         $moho_fecha = "0000-00-00";
         $moho_area_afectada = "";
         $moho_incidencia = 0;
         $moho_recomendacion = "";
+        $moho_foto = "";
       }
 
       $dato = \DB::table('enc_enfermedades')
@@ -2878,60 +2941,70 @@ class FormEncuestasController extends Controller
                 'cercospora_area_afectada' => $cercospora_area_afectada,
                 'cercospora_incidencia' => $cercospora_incidencia,
                 'cercospora_recomendacion' => $cercospora_recomendacion,
+                'cercospora_foto' => $cercospora_foto,
 
                 'roya' => $request->roya,
                 'roya_fecha' => $roya_fecha,
                 'roya_area_afectada' => $roya_area_afectada,
                 'roya_incidencia' => $roya_incidencia,
                 'roya_recomendacion' => $roya_recomendacion,
+                'roya_foto' => $roya_foto,
 
                 'gallo' => $request->gallo,
                 'gallo_fecha' => $gallo_fecha,
                 'gallo_area_afectada' => $gallo_area_afectada,
                 'gallo_incidencia' => $gallo_incidencia,
                 'gallo_recomendacion' => $gallo_recomendacion,
+                'gallo_foto' => $gallo_foto,
 
                 'antracnosis' => $request->antracnosis,
                 'antracnosis_fecha' => $antracnosis_fecha,
                 'antracnosis_area_afectada' => $antracnosis_area_afectada,
                 'antracnosis_incidencia' => $antracnosis_incidencia,
                 'antracnosis_recomendacion' => $antracnosis_recomendacion,
+                'antracnosis_foto' => $antracnosis_foto,
 
                 'marchites' => $request->marchites,
                 'marchites_fecha' => $marchites_fecha,
                 'marchites_area_afectada' => $marchites_area_afectada,
                 'marchites_incidencia' => $marchites_incidencia,
                 'marchites_recomendacion' => $marchites_recomendacion,
+                'marchites_foto' => $marchites_foto,
 
                 'gotera' => $request->gotera,
                 'gotera_fecha' => $gotera_fecha,
                 'gotera_area_afectada' => $gotera_area_afectada,
                 'gotera_incidencia' => $gotera_incidencia,
                 'gotera_recomendacion' => $gotera_recomendacion,
+                'gotera_foto' => $gotera_foto,
 
                 'mancha' => $request->mancha,
                 'mancha_fecha' => $mancha_fecha,
                 'mancha_area_afectada' => $mancha_area_afectada,
                 'mancha_incidencia' => $mancha_incidencia,
                 'mancha_recomendacion' => $mancha_recomendacion,
+                'mancha_foto' => $mancha_foto,
 
                 'pudricion' => $request->pudricion,
                 'pudricion_fecha' => $pudricion_fecha,
                 'pudricion_area_afectada' => $pudricion_area_afectada,
                 'pudricion_incidencia' => $pudricion_incidencia,
                 'pudricion_recomendacion' => $pudricion_recomendacion,
+                'pudricion_foto' => $pudricion_foto,
 
                 'rosado' => $request->rosado,
                 'rosado_fecha' => $rosado_fecha,
                 'rosado_area_afectada' => $rosado_area_afectada,
                 'rosado_incidencia' => $rosado_incidencia,
                 'rosado_recomendacion' => $rosado_recomendacion,
+                'rosado_foto' => $rosado_foto,
 
                 'moho' => $request->moho,
                 'moho_fecha' => $moho_fecha,
                 'moho_area_afectada' => $moho_area_afectada,
                 'moho_incidencia' => $moho_incidencia,
                 'moho_recomendacion' => $moho_recomendacion,
+                'moho_foto' => $moho_foto,
 
                 'updated_at' => $tiempo_actual
       ]);

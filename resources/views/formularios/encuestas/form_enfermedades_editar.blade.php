@@ -40,7 +40,7 @@
 
                     <div id="div_notificacion_sol" class="myform-bottom">
 
-                    <form action="{{ route('enfermedades_actualizar', ['id' => $dato->id_enfermedad]) }}" method="post" class="">
+                    <form action="{{ route('enfermedades_actualizar', ['id' => $dato->id_enfermedad]) }}" method="post" class="" enctype="multipart/form-data">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 												<br>
 												<h4 style="color:white">Enfermedad: <b><i>Cercospora caffeicola</b></i></h4>
@@ -77,6 +77,18 @@
 														<label >Recomendación técnica</label>
 														<input type="text" name="cercospora_recomendacion" id="cercospora_recomendacion" class="form-control" value="{{old('cercospora_recomendacion', $dato->cercospora_recomendacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->cercospora_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="cercospora_foto" id="cercospora_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -115,6 +127,18 @@
 														<label >Recomendación técnica</label>
 														<input type="text" name="roya_recomendacion" id="roya_recomendacion" class="form-control" value="{{old('roya_recomendacion', $dato->roya_recomendacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->roya_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="roya_foto" id="roya_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -153,6 +177,18 @@
 														<label >Recomendación técnica</label>
 														<input type="text" name="gallo_recomendacion" id="gallo_recomendacion" class="form-control" value="{{old('gallo_recomendacion', $dato->gallo_recomendacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->gallo_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="gallo_foto" id="gallo_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -191,6 +227,18 @@
 														<label >Recomendación técnica</label>
 														<input type="text" name="antracnosis_recomendacion" id="antracnosis_recomendacion" class="form-control" value="{{old('antracnosis_recomendacion', $dato->antracnosis_recomendacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->antracnosis_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="antracnosis_foto" id="antracnosis_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -229,6 +277,18 @@
 														<label >Recomendación técnica</label>
 														<input type="text" name="marchites_recomendacion" id="marchites_recomendacion" class="form-control" value="{{old('marchites_recomendacion', $dato->marchites_recomendacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->marchites_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="marchites_foto" id="marchites_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -267,6 +327,18 @@
 														<label >Recomendación técnica</label>
 														<input type="text" name="gotera_recomendacion" id="gotera_recomendacion" class="form-control" value="{{old('gotera_recomendacion', $dato->gotera_recomendacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->gotera_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="gotera_foto" id="gotera_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -305,6 +377,18 @@
 														<label >Recomendación técnica</label>
 														<input type="text" name="mancha_recomendacion" id="mancha_recomendacion" class="form-control" value="{{old('mancha_recomendacion', $dato->mancha_recomendacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->mancha_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="mancha_foto" id="mancha_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -343,6 +427,18 @@
 														<label >Recomendación técnica</label>
 														<input type="text" name="pudricion_recomendacion" id="pudricion_recomendacion" class="form-control" value="{{old('pudricion_recomendacion', $dato->pudricion_recomendacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->pudricion_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="pudricion_foto" id="pudricion_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -381,6 +477,18 @@
 														<label >Recomendación técnica</label>
 														<input type="text" name="rosado_recomendacion" id="rosado_recomendacion" class="form-control" value="{{old('rosado_recomendacion', $dato->rosado_recomendacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->rosado_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="rosado_foto" id="rosado_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -419,6 +527,18 @@
 														<label >Recomendación técnica</label>
 														<input type="text" name="moho_recomendacion" id="moho_recomendacion" class="form-control" value="{{old('moho_recomendacion', $dato->moho_recomendacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->moho_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="moho_foto" id="moho_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 												<br>
