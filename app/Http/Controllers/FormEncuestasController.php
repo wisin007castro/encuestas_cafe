@@ -1948,6 +1948,7 @@ class FormEncuestasController extends Controller
     public function podas_actualizar(Request $request, $id){
         $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
 
+        //Tomamos los datos del registro a actualizar, para tomar la foto que cargaron previamente
         $selec_dato = \DB::table('enc_podas')->where('id_poda', $id)->first();
 
         //FORMACION DE PLANTAS
@@ -1957,7 +1958,6 @@ class FormEncuestasController extends Controller
             if ($request->form_planta_foto){
               $form_planta_foto = Poda::setFoto($request->form_planta_foto);
             }else{
-
               $form_planta_foto = $selec_dato->form_planta_foto;
             }
           }
@@ -2290,6 +2290,8 @@ class FormEncuestasController extends Controller
 
     public function deficiencias_actualizar(Request $request, $id){
       $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+      //Tomamos los datos del registro a actualizar, para tomar la foto que cargaron previamente
+      $selec_dato = \DB::table('enc_deficiencias')->where('id_deficiencia', $id)->first();
 
       //Tomamos los valores y les asignamos valores según corresponda
       if ($request->p == 1) {
@@ -2307,6 +2309,11 @@ class FormEncuestasController extends Controller
         $p_severidad = $request->p_severidad;
         $p_producto = $request->p_producto;
         $p_fecha_aplicacion = $request->p_fecha_aplicacion;
+        if ($request->p_foto){
+          $p_foto = Deficiencia::setFoto($request->p_foto);
+        }else{
+          $p_foto = $selec_dato->p_foto;
+        }
       }
       else {
         $p_fecha = "0000-00-00";
@@ -2314,6 +2321,7 @@ class FormEncuestasController extends Controller
         $p_severidad = 0;
         $p_producto = "";
         $p_fecha_aplicacion = "0000-00-00";
+        $p_foto = "";
       }
 
       if ($request->k == 1) {
@@ -2331,6 +2339,11 @@ class FormEncuestasController extends Controller
         $k_severidad = $request->k_severidad;
         $k_producto = $request->k_producto;
         $k_fecha_aplicacion = $request->k_fecha_aplicacion;
+        if ($request->k_foto){
+          $k_foto = Deficiencia::setFoto($request->k_foto);
+        }else{
+          $k_foto = $selec_dato->k_foto;
+        }
       }
       else {
         $k_fecha = "0000-00-00";
@@ -2338,6 +2351,7 @@ class FormEncuestasController extends Controller
         $k_severidad = 0;
         $k_producto = "";
         $k_fecha_aplicacion = "0000-00-00";
+        $k_foto = "";
       }
 
       if ($request->ca == 1) {
@@ -2355,6 +2369,11 @@ class FormEncuestasController extends Controller
         $ca_severidad = $request->ca_severidad;
         $ca_producto = $request->ca_producto;
         $ca_fecha_aplicacion = $request->ca_fecha_aplicacion;
+        if ($request->ca_foto){
+          $ca_foto = Deficiencia::setFoto($request->ca_foto);
+        }else{
+          $ca_foto = $selec_dato->ca_foto;
+        }
       }
       else {
         $ca_fecha = "0000-00-00";
@@ -2362,6 +2381,7 @@ class FormEncuestasController extends Controller
         $ca_severidad = 0;
         $ca_producto = "";
         $ca_fecha_aplicacion = "0000-00-00";
+        $ca_foto = "";
       }
 
       if ($request->mg == 1) {
@@ -2379,6 +2399,11 @@ class FormEncuestasController extends Controller
         $mg_severidad = $request->mg_severidad;
         $mg_producto = $request->mg_producto;
         $mg_fecha_aplicacion = $request->mg_fecha_aplicacion;
+        if ($request->mg_foto){
+          $mg_foto = Deficiencia::setFoto($request->mg_foto);
+        }else{
+          $mg_foto = $selec_dato->mg_foto;
+        }
       }
       else {
         $mg_fecha = "0000-00-00";
@@ -2386,6 +2411,7 @@ class FormEncuestasController extends Controller
         $mg_severidad = 0;
         $mg_producto = "";
         $mg_fecha_aplicacion = "0000-00-00";
+        $mg_foto = "";
       }
 
       if ($request->s == 1) {
@@ -2403,6 +2429,11 @@ class FormEncuestasController extends Controller
         $s_severidad = $request->s_severidad;
         $s_producto = $request->s_producto;
         $s_fecha_aplicacion = $request->s_fecha_aplicacion;
+        if ($request->s_foto){
+          $s_foto = Deficiencia::setFoto($request->s_foto);
+        }else{
+          $s_foto = $selec_dato->s_foto;
+        }
       }
       else {
         $s_fecha = "0000-00-00";
@@ -2410,6 +2441,7 @@ class FormEncuestasController extends Controller
         $s_severidad = 0;
         $s_producto = "";
         $s_fecha_aplicacion = "0000-00-00";
+        $s_foto = "";
       }
 
       if ($request->fe == 1) {
@@ -2427,6 +2459,11 @@ class FormEncuestasController extends Controller
         $fe_severidad = $request->fe_severidad;
         $fe_producto = $request->fe_producto;
         $fe_fecha_aplicacion = $request->fe_fecha_aplicacion;
+        if ($request->fe_foto){
+          $fe_foto = Deficiencia::setFoto($request->fe_foto);
+        }else{
+          $fe_foto = $selec_dato->fe_foto;
+        }
       }
       else {
         $fe_fecha = "0000-00-00";
@@ -2434,6 +2471,7 @@ class FormEncuestasController extends Controller
         $fe_severidad = 0;
         $fe_producto = "";
         $fe_fecha_aplicacion = "0000-00-00";
+        $fe_foto = "";
       }
 
       if ($request->zc == 1) {
@@ -2451,6 +2489,11 @@ class FormEncuestasController extends Controller
         $zc_severidad = $request->zc_severidad;
         $zc_producto = $request->zc_producto;
         $zc_fecha_aplicacion = $request->zc_fecha_aplicacion;
+        if ($request->zc_foto){
+          $zc_foto = Deficiencia::setFoto($request->zc_foto);
+        }else{
+          $zc_foto = $selec_dato->zc_foto;
+        }
       }
       else {
         $zc_fecha = "0000-00-00";
@@ -2458,6 +2501,7 @@ class FormEncuestasController extends Controller
         $zc_severidad = 0;
         $zc_producto = "";
         $zc_fecha_aplicacion = "0000-00-00";
+        $zc_foto = "";
       }
 
       if ($request->cu == 1) {
@@ -2475,6 +2519,11 @@ class FormEncuestasController extends Controller
         $cu_severidad = $request->cu_severidad;
         $cu_producto = $request->cu_producto;
         $cu_fecha_aplicacion = $request->cu_fecha_aplicacion;
+        if ($request->cu_foto){
+          $cu_foto = Deficiencia::setFoto($request->cu_foto);
+        }else{
+          $cu_foto = $selec_dato->cu_foto;
+        }
       }
       else {
         $cu_fecha = "0000-00-00";
@@ -2482,6 +2531,7 @@ class FormEncuestasController extends Controller
         $cu_severidad = 0;
         $cu_producto = "";
         $cu_fecha_aplicacion = "0000-00-00";
+        $cu_foto = "";
       }
 
       if ($request->b == 1) {
@@ -2499,6 +2549,11 @@ class FormEncuestasController extends Controller
         $b_severidad = $request->b_severidad;
         $b_producto = $request->b_producto;
         $b_fecha_aplicacion = $request->b_fecha_aplicacion;
+        if ($request->b_foto){
+          $b_foto = Deficiencia::setFoto($request->b_foto);
+        }else{
+          $b_foto = $selec_dato->b_foto;
+        }
       }
       else {
         $b_fecha = "0000-00-00";
@@ -2506,6 +2561,7 @@ class FormEncuestasController extends Controller
         $b_severidad = 0;
         $b_producto = "";
         $b_fecha_aplicacion = "0000-00-00";
+        $b_foto = "";
       }
 
       $dato = \DB::table('enc_deficiencias')
@@ -2517,6 +2573,7 @@ class FormEncuestasController extends Controller
                 'p_severidad' => $p_severidad,
                 'p_producto' => $p_producto,
                 'p_fecha_aplicacion' => $p_fecha_aplicacion,
+                'p_foto' => $p_foto,
 
                 'k' => $request->k,
                 'k_fecha' => $k_fecha,
@@ -2524,6 +2581,7 @@ class FormEncuestasController extends Controller
                 'k_severidad' => $k_severidad,
                 'k_producto' => $k_producto,
                 'k_fecha_aplicacion' => $k_fecha_aplicacion,
+                'k_foto' => $k_foto,
 
                 'ca' => $request->ca,
                 'ca_fecha' => $ca_fecha,
@@ -2531,6 +2589,7 @@ class FormEncuestasController extends Controller
                 'ca_severidad' => $ca_severidad,
                 'ca_producto' => $ca_producto,
                 'ca_fecha_aplicacion' => $ca_fecha_aplicacion,
+                'ca_foto' => $ca_foto,
 
                 'mg' => $request->mg,
                 'mg_fecha' => $mg_fecha,
@@ -2538,6 +2597,7 @@ class FormEncuestasController extends Controller
                 'mg_severidad' => $mg_severidad,
                 'mg_producto' => $mg_producto,
                 'mg_fecha_aplicacion' => $mg_fecha_aplicacion,
+                'mg_foto' => $mg_foto,
 
                 's' => $request->s,
                 's_fecha' => $s_fecha,
@@ -2545,6 +2605,7 @@ class FormEncuestasController extends Controller
                 's_severidad' => $s_severidad,
                 's_producto' => $s_producto,
                 's_fecha_aplicacion' => $s_fecha_aplicacion,
+                's_foto' => $s_foto,
 
                 'fe' => $request->fe,
                 'fe_fecha' => $fe_fecha,
@@ -2552,6 +2613,7 @@ class FormEncuestasController extends Controller
                 'fe_severidad' => $fe_severidad,
                 'fe_producto' => $fe_producto,
                 'fe_fecha_aplicacion' => $fe_fecha_aplicacion,
+                'fe_foto' => $fe_foto,
 
                 'zc' => $request->zc,
                 'zc_fecha' => $zc_fecha,
@@ -2559,6 +2621,7 @@ class FormEncuestasController extends Controller
                 'zc_severidad' => $zc_severidad,
                 'zc_producto' => $zc_producto,
                 'zc_fecha_aplicacion' => $zc_fecha_aplicacion,
+                'zc_foto' => $zc_foto,
 
                 'cu' => $request->cu,
                 'cu_fecha' => $cu_fecha,
@@ -2566,6 +2629,7 @@ class FormEncuestasController extends Controller
                 'cu_severidad' => $cu_severidad,
                 'cu_producto' => $cu_producto,
                 'cu_fecha_aplicacion' => $cu_fecha_aplicacion,
+                'cu_foto' => $cu_foto,
 
                 'b' => $request->b,
                 'b_fecha' => $b_fecha,
@@ -2573,6 +2637,7 @@ class FormEncuestasController extends Controller
                 'b_severidad' => $b_severidad,
                 'b_producto' => $b_producto,
                 'b_fecha_aplicacion' => $b_fecha_aplicacion,
+                'b_foto' => $b_foto,
 
                 'updated_at' => $tiempo_actual
       ]);

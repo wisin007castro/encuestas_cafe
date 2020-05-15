@@ -40,7 +40,7 @@
 
                     <div id="div_notificacion_sol" class="myform-bottom">
 
-                    <form action="{{ route('deficiencias_actualizar', ['id' => $dato->id_deficiencia])}}" method="post" class="">
+                    <form action="{{ route('deficiencias_actualizar', ['id' => $dato->id_deficiencia])}}" method="post" class="" enctype="multipart/form-data">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
 												<br>
@@ -83,6 +83,18 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="p_fecha_aplicacion" id="p_fecha_aplicacion" class="form-control" value="{{old('p_fecha_aplicacion', $dato->p_fecha_aplicacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->p_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="p_foto" id="p_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -126,6 +138,18 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="k_fecha_aplicacion" id="k_fecha_aplicacion" class="form-control" value="{{old('k_fecha_aplicacion', $dato->k_fecha_aplicacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->k_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="k_foto" id="k_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -169,6 +193,18 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="ca_fecha_aplicacion" id="ca_fecha_aplicacion" class="form-control" value="{{old('ca_fecha_aplicacion', $dato->ca_fecha_aplicacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->ca_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="ca_foto" id="ca_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -212,6 +248,18 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="mg_fecha_aplicacion" id="mg_fecha_aplicacion" class="form-control" value="{{old('mg_fecha_aplicacion', $dato->mg_fecha_aplicacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->mg_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="mg_foto" id="mg_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -255,6 +303,18 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="s_fecha_aplicacion" id="s_fecha_aplicacion" class="form-control" value="{{old('s_fecha_aplicacion', $dato->s_fecha_aplicacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->s_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="s_foto" id="s_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -298,6 +358,18 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="fe_fecha_aplicacion" id="fe_fecha_aplicacion" class="form-control" value="{{old('fe_fecha_aplicacion', $dato->fe_fecha_aplicacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->fe_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="fe_foto" id="fe_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -341,6 +413,18 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="zc_fecha_aplicacion" id="zc_fecha_aplicacion" class="form-control" value="{{old('zc_fecha_aplicacion', $dato->zc_fecha_aplicacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->zc_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="zc_foto" id="zc_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -384,6 +468,18 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="cu_fecha_aplicacion" id="cu_fecha_aplicacion" class="form-control" value="{{old('cu_fecha_aplicacion', $dato->cu_fecha_aplicacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->cu_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="cu_foto" id="cu_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 
@@ -427,6 +523,18 @@
 														<label >Fecha final de aplicación</label>
 														<input type="date" name="b_fecha_aplicacion" id="b_fecha_aplicacion" class="form-control" value="{{old('b_fecha_aplicacion', $dato->b_fecha_aplicacion ?? '')}}" required>
 													</div>
+
+                          <br>
+                          <div class="row col-md-12">
+                            <div class="attachment-block clearfix col-md-3 col-xs-4">
+                              <label >Foto anterior</label>
+															<img class="attachment-img" src="{{$dato->b_foto}}" alt="Attachment Image">
+                            </div>
+                            <div class="col-md-9 col-xs-8">
+                              <label >Actualizar fotografía</label>
+                              <input name="b_foto" id="b_foto" type="file" class="text-white" accept="image/*"/>
+                            </div>
+                          </div>
 												</div>
 
 												<br>
