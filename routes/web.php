@@ -122,6 +122,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('form_fertilizacion_tabla', 'FormEncuestasController@form_fertilizacion_tabla');
 
     //MENU PRINCIPAL
+    Route::get('mapa', 'FormEncuestasController@mapa');
     Route::get('quienes_somos', 'FormEncuestasController@quienes_somos');
     Route::get('contactos', 'FormEncuestasController@contactos');
 
@@ -199,7 +200,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('plagas_actualizar/{id}', 'FormEncuestasController@plagas_actualizar')->name('plagas_actualizar');
     Route::post('fertilizaciones_actualizar/{id}', 'FormEncuestasController@fertilizaciones_actualizar')->name('fertilizaciones_actualizar');
 
-
+    //RUTAS AUXILIARES
+    Route::get('consultaProvincias/{id_departamento}', 'FormEncuestasController@consultaProvincias');
+    Route::get('consultaMunicipios/{id_provincia}', 'FormEncuestasController@consultaMunicipios');
 
 
 

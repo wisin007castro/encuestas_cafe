@@ -88,10 +88,28 @@
 
 												<div class="form-group">
 													<label>Departamento</label>
-													<select class="form-control select2" name="departamento" required>
-														<option value="Tallo">La Paz</option>
-														<option value="Tallo">Oruro</option>
+													<select class="form-control select2" name="id_departamento" id="id_departamento" onchange="cambia_departamento()" required>
+														<option value=""> --- Seleccione un departamento --- </option>
+														@foreach ($departamentos as $departamento)
+															<option value={{$departamento->id_departamento}}>{{$departamento->departamento}}</option>
+														@endforeach
 													</select>
+												</div>
+
+												<div class="form-group">
+													<div class="form-group provincia_json_select">
+															<label class="">Provincia</label>
+															<select class="form-control select2" name="id_provincia" id="id_provincia" onchange="cambia_provincia()" required>
+															</select>
+													</div>
+												</div>
+
+												<div class="form-group">
+													<div class="form-group municipio_json_select">
+															<label class="">Municipio</label>
+															<select class="form-control select2" name="id_municipio" id="id_municipio" required>
+															</select>
+													</div>
 												</div>
 
 												<br>
@@ -108,3 +126,41 @@
 
 </section>
 @endsection
+
+@section('scripts')
+
+@parent
+<script>
+function cambia_departamento(){
+	//Borramos el contenido del select
+	$(".provincia_json_select select").html("");
+	//Tomamos el id del departamento seleccionado
+	var id_departamento = $("#id_departamento").val();
+	//Obtenemos las provincias del departamento seleccionado y los agregamos al select
+	$.getJSON("consultaProvincias/"+id_departamento+"",{},function(objetosretorna){
+			$("#error").html("");
+			var TamanoArray = objetosretorna.length;
+			$(".provincia_json_select select").append('<option value=""> --- Seleccione una provincia --- </option>');
+			$.each(objetosretorna, function(i,value){
+					$(".provincia_json_select select").append('<option value="'+value.id_provincia+'">'+value.provincia+'</option>');
+			});
+	});
+};
+
+
+function cambia_provincia(){
+	//Borramos el contenido del select
+	$(".municipio_json_select select").html("");
+	//Tomamos el id del provincia seleccionado
+	var id_provincia = $("#id_provincia").val();
+	//Obtenemos los municipios de la provincia seleccionado y los agregamos al select
+	$.getJSON("consultaMunicipios/"+id_provincia+"",{},function(objetosretorna){
+			$("#error").html("");
+			var TamanoArray = objetosretorna.length;
+			$(".municipio_json_select select").append('<option value=""> --- Seleccione un municipio --- </option>');
+			$.each(objetosretorna, function(i,value){
+					$(".municipio_json_select select").append('<option value="'+value.id_municipio+'">'+value.municipio+'</option>');
+			});
+	});
+};
+</script>

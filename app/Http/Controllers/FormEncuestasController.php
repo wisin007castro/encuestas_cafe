@@ -28,6 +28,10 @@ class FormEncuestasController extends Controller
       return view("formularios.encuestas.form_cliente_podas_control_opcion");
     }
 
+    public function mapa(){
+        return view("encuestas.mapa");
+    }
+
     public function quienes_somos(){
         return view("encuestas.quienes_somos");
     }
@@ -88,13 +92,20 @@ class FormEncuestasController extends Controller
       }
       else {
         //Por el contrario, si hay el registro, envìa a actualizar
-        echo "Completar Editar";
+        echo "Completar Editar
+        ";
       }
         //return view("formularios.encuestas.form_informacion_basica_agregar");
     }
 
     public function form_informacion_basica_agregar(){
-        return view("formularios.encuestas.form_informacion_basica_agregar");
+      $departamentos = \DB::table('departamentos')
+      ->where('activo', 1)
+      ->orderBy('departamento')
+      ->get();
+
+      return view("formularios.encuestas.form_informacion_basica_agregar")
+            ->with('departamentos', $departamentos);
     }
 
     public function form_sist_agroforestales_agregar(){
@@ -3388,6 +3399,26 @@ class FormEncuestasController extends Controller
       ]);
 
       return redirect('/home_encuestas')->with('mensaje_exito', 'Encuesta de Fertilización Actualizada Exitosamente');
+    }
+
+    public function consultaProvincias($id_departamento){
+        $provincias = \DB::table('provincias')
+        ->where('id_departamento', $id_departamento)
+        ->where('activo', 1)
+        ->distinct()
+        ->orderBy('provincia', 'asc')
+        ->get();
+        return $provincias;
+    }
+
+    public function consultaMunicipios($id_provincia){
+        $municipios = \DB::table('municipios')
+        ->where('id_provincia', $id_provincia)
+        ->where('activo', 1)
+        ->distinct()
+        ->orderBy('municipio', 'asc')
+        ->get();
+        return $municipios;
     }
 
 
