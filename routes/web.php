@@ -40,6 +40,13 @@ Route::get('cliente_densidad_datas', 'ClienteEncuestasController@cliente_densida
 Route::get('cliente_agroforestales_datas', 'ClienteEncuestasController@cliente_agroforestales_datas');
 Route::get('cliente_podas_datas', 'ClienteEncuestasController@cliente_podas_datas');
 Route::get('cliente_control_malezas_datas', 'ClienteEncuestasController@cliente_control_malezas_datas');
+Route::get('cliente_enfermedades_datas', 'ClienteEncuestasController@cliente_enfermedades_datas');
+Route::get('cliente_plagas_datas', 'ClienteEncuestasController@cliente_plagas_datas');
+Route::get('cliente_cosechas_datas', 'ClienteEncuestasController@cliente_cosechas_datas');
+Route::get('cliente_post_cosechas_datas', 'ClienteEncuestasController@cliente_post_cosechas_datas');
+Route::get('cliente_secados_datas', 'ClienteEncuestasController@cliente_secados_datas');
+Route::get('cliente_fertilizaciones_datas', 'ClienteEncuestasController@cliente_fertilizaciones_datas');
+Route::get('cliente_deficiencias_datas', 'ClienteEncuestasController@cliente_deficiencias_datas');
 
 Route::get('cliente_cargar_datos', 'ClienteEncuestasController@cliente_cargar_datos');
 
@@ -48,6 +55,13 @@ Route::get('cliente_densidad_guardar', 'ClienteEncuestasController@cliente_densi
 Route::get('cliente_agroforestales_guardar', 'ClienteEncuestasController@cliente_agroforestales_guardar');
 Route::get('cliente_podas_guardar', 'ClienteEncuestasController@cliente_podas_guardar');
 Route::get('cliente_control_malezas_guardar', 'ClienteEncuestasController@cliente_control_malezas_guardar');
+Route::get('cliente_enfermedades_guardar', 'ClienteEncuestasController@cliente_enfermedades_guardar');
+Route::get('cliente_plagas_guardar', 'ClienteEncuestasController@cliente_plagas_guardar');
+Route::get('cliente_cosechas_guardar', 'ClienteEncuestasController@cliente_cosechas_guardar');
+Route::get('cliente_post_cosechas_guardar', 'ClienteEncuestasController@cliente_post_cosechas_guardar');
+Route::get('cliente_secados_guardar', 'ClienteEncuestasController@cliente_secados_guardar');
+Route::get('cliente_fertilizaciones_guardar', 'ClienteEncuestasController@cliente_fertilizaciones_guardar');
+Route::get('cliente_deficiencias_guardar', 'ClienteEncuestasController@cliente_deficiencias_guardar');
 
 Auth::routes();
 
@@ -58,12 +72,26 @@ Route::group(["middleware" => "apikey.validate"], function () {
     Route::get('datas_agroforestales', 'ApiEncuestasController@datas_agroforestales');
     Route::get('datas_podas', 'ApiEncuestasController@datas_podas');
     Route::get('datas_control_malezas', 'ApiEncuestasController@datas_control_malezas');
+    Route::get('datas_enfermedades', 'ApiEncuestasController@datas_enfermedades');
+    Route::get('datas_plagas', 'ApiEncuestasController@datas_plagas');
+    Route::get('datas_cosechas', 'ApiEncuestasController@datas_cosechas');
+    Route::get('datas_post_cosechas', 'ApiEncuestasController@datas_post_cosechas');
+    Route::get('datas_secados', 'ApiEncuestasController@datas_secados');
+    Route::get('datas_fertilizaciones', 'ApiEncuestasController@datas_fertilizaciones');
+    Route::get('datas_deficiencias', 'ApiEncuestasController@datas_deficiencias');
 
     Route::post('servicio_informacion_basica_guardar', 'ApiEncuestasController@servicio_informacion_basica_guardar');
     Route::post('servicio_densidad_guardar', 'ApiEncuestasController@servicio_densidad_guardar');
     Route::post('servicio_agroforestales_guardar', 'ApiEncuestasController@servicio_agroforestales_guardar');
     Route::post('servicio_podas_guardar', 'ApiEncuestasController@servicio_podas_guardar');
     Route::post('servicio_control_malezas_guardar', 'ApiEncuestasController@servicio_control_malezas_guardar');
+    Route::post('servicio_enfermedades_guardar', 'ApiEncuestasController@servicio_enfermedades_guardar');
+    Route::post('servicio_plagas_guardar', 'ApiEncuestasController@servicio_plagas_guardar');
+    Route::post('servicio_cosechas_guardar', 'ApiEncuestasController@servicio_cosechas_guardar');
+    Route::post('servicio_post_cosechas_guardar', 'ApiEncuestasController@servicio_post_cosechas_guardar');
+    Route::post('servicio_secados_guardar', 'ApiEncuestasController@servicio_secados_guardar');
+    Route::post('servicio_fertilizaciones_guardar', 'ApiEncuestasController@servicio_fertilizaciones_guardar');
+    Route::post('servicio_deficiencias_guardar', 'ApiEncuestasController@servicio_deficiencias_guardar');
     // Route::get('datas', 'ApiEncuestasController@datas');
 
     // Route::post('servicio_densidad_guardar', 'ApiEncuestasController@servicio_densidad_guardar');
