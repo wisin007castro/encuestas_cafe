@@ -15,7 +15,7 @@
                  <div class="myform-top">
                     <div class="myform-top-left">
                        {{-- <img  src="" class="img-responsive logo" /> --}}
-                      <h3>Enfermedades de Cultivo de Café</h3>
+                      <h3>Enfermedades de cultivo de café</h3>
                         <p>Por favor responda las siguientes preguntas</p>
                     </div>
                     <div class="myform-top-right">
@@ -40,12 +40,12 @@
 
                     <div id="div_notificacion_sol" class="myform-bottom">
 
-                    <form action="{{ route('enfermedades_guardar') }}" method="post" class="">
+                    <form action="{{ route('enfermedades_guardar') }}" method="post" class="" enctype="multipart/form-data">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
 												<br>
-												<h4 style="color:white">Enfermedad: Cercospora Caffeicola</h4>
+												<h4 style="color:white">Enfermedad: <b><i>Cercospora caffeicola</i></b></h4>
                         <div class="form-group">
-                          <label >¿Detectó la Enfermedad Cercospora Caffeicola?</label>
+                          <label >¿Detectó la enfermedad Cercospora caffeicola?</label>
 													<br>
 													<input type="radio" id="cercospora_si" name="cercospora" value="1" onchange="mostrar_cercospora()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="cercospora_no" name="cercospora" value="0" onchange="mostrar_cercospora()"> No
@@ -58,31 +58,37 @@
 													</div>
 
 													<div class="form-group">
-														<label>Área Afectada</label>
+														<label>Área afectada</label>
 														<select class="form-control select2" name="cercospora_area_afectada[]" id="cercospora_area_afectada" multiple="cercospora_area_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 						                  <option value="Frutos">Frutos</option>
 														</select>
 													</div>
 
 													<div class="form-group">
-														<label >Porcentaje de Incidencia (%)</label>
+														<label >Porcentaje de incidencia (%)</label>
 														<input type="number" min="0" max="100" step="0.01" name="cercospora_incidencia" id="cercospora_incidencia" class="form-control" required>
 	                        </div>
 
 													<div class="form-group">
-														<label >Recomendación Técnica</label>
+														<label >Recomendación técnica</label>
 														<input type="text" name="cercospora_recomendacion" id="cercospora_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="cercospora_foto" id="cercospora_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
 												<br>
-												<h4 style="color:white">Enfermedad: La Roya (Hemilenia Vastatrix)</h4>
+												<h4 style="color:white">Enfermedad: La Roya <b><i>(Hemilenia vastatrix)</b></i></h4>
 												<div class="form-group">
-													<label >¿Detectó la Enfermedad La Roya (Hemilenia Vastatrix)?</label>
+													<label >¿Detectó la enfermedad La Roya (Hemilenia vastatrix)?</label>
 													<br>
 													<input type="radio" id="roya_si" name="roya" value="1" onchange="mostrar_roya()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="roya_no" name="roya" value="0" onchange="mostrar_roya()"> No
@@ -95,31 +101,37 @@
 													</div>
 
 													<div class="form-group">
-														<label>Área Afectada</label>
+														<label>Área afectada</label>
 														<select class="form-control select2" name="roya_area_afectada[]" id="roya_area_afectada" multiple="roya_area_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 															<option value="Frutos">Frutos</option>
 														</select>
 													</div>
 
 													<div class="form-group">
-														<label >Porcentaje de Incidencia (%)</label>
+														<label >Porcentaje de incidencia (%)</label>
 														<input type="number" min="0" max="100" step="0.01" name="roya_incidencia" id="roya_incidencia" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Recomendación Técnica</label>
+														<label >Recomendación técnica</label>
 														<input type="text" name="roya_recomendacion" id="roya_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="roya_foto" id="roya_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
 												<br>
-												<h4 style="color:white">Enfermedad: Ojo de Gallo (Mycena Citricolor)</h4>
+												<h4 style="color:white">Enfermedad: Ojo de Gallo <b><i>(Mycena citricolor)</b></i></h4>
 												<div class="form-group">
-													<label >¿Detectó la Enfermedad Ojo de Gallo (Mycena Citricolor)?</label>
+													<label >¿Detectó la enfermedad Ojo de Gallo (Mycena citricolor)?</label>
 													<br>
 													<input type="radio" id="gallo_si" name="gallo" value="1" onchange="mostrar_gallo()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="gallo_no" name="gallo" value="0" onchange="mostrar_gallo()"> No
@@ -132,31 +144,37 @@
 													</div>
 
 													<div class="form-group">
-														<label>Área Afectada</label>
+														<label>Área afectada</label>
 														<select class="form-control select2" name="gallo_area_afectada[]" id="gallo_area_afectada" multiple="gallo_area_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 															<option value="Frutos">Frutos</option>
 														</select>
 													</div>
 
 													<div class="form-group">
-														<label >Porcentaje de Incidencia (%)</label>
+														<label >Porcentaje de incidencia (%)</label>
 														<input type="number" min="0" max="100" step="0.01" name="gallo_incidencia" id="gallo_incidencia" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Recomendación Técnica</label>
+														<label >Recomendación técnica</label>
 														<input type="text" name="gallo_recomendacion" id="gallo_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="gallo_foto" id="gallo_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
 												<br>
-												<h4 style="color:white">Enfermedad: Antracnosis (Colletotrichum Coffeanum)</h4>
+												<h4 style="color:white">Enfermedad: Antracnosis <b><i>(Colletotrichum coffeanum)</b></i></h4>
 												<div class="form-group">
-													<label >¿Detectó la Enfermedad Antracnosis (Colletotrichum Coffeanum)?</label>
+													<label >¿Detectó la enfermedad Antracnosis (Colletotrichum coffeanum)?</label>
 													<br>
 													<input type="radio" id="antracnosis_si" name="antracnosis" value="1" onchange="mostrar_antracnosis()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="antracnosis_no" name="antracnosis" value="0" onchange="mostrar_antracnosis()"> No
@@ -169,31 +187,37 @@
 													</div>
 
 													<div class="form-group">
-														<label>Área Afectada</label>
+														<label>Área afectada</label>
 														<select class="form-control select2" name="antracnosis_area_afectada[]" id="antracnosis_area_afectada" multiple="antracnosis_area_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 															<option value="Frutos">Frutos</option>
 														</select>
 													</div>
 
 													<div class="form-group">
-														<label >Porcentaje de Incidencia (%)</label>
+														<label >Porcentaje de incidencia (%)</label>
 														<input type="number" min="0" max="100" step="0.01" name="antracnosis_incidencia" id="antracnosis_incidencia" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Recomendación Técnica</label>
+														<label >Recomendación técnica</label>
 														<input type="text" name="antracnosis_recomendacion" id="antracnosis_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="antracnosis_foto" id="antracnosis_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
 												<br>
-												<h4 style="color:white">Enfermedad: Marchites  Vascular(Fusarium oxysporum f.Sp. Coffeae)</h4>
+												<h4 style="color:white">Enfermedad: Marchites  Vascular <b><i>(Fusarium oxysporum f.sp. coffeae)</b></i></h4>
 												<div class="form-group">
-													<label >¿Detectó la Enfermedad Marchites  Vascular(Fusarium oxysporum f.Sp. Coffeae)?</label>
+													<label >¿Detectó la enfermedad Marchites  Vascular(Fusarium oxysporum f.sp. coffeae)?</label>
 													<br>
 													<input type="radio" id="marchites_si" name="marchites" value="1" onchange="mostrar_marchites()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="marchites_no" name="marchites" value="0" onchange="mostrar_marchites()"> No
@@ -206,31 +230,37 @@
 													</div>
 
 													<div class="form-group">
-														<label>Área Afectada</label>
+														<label>Área afectada</label>
 														<select class="form-control select2" name="marchites_area_afectada[]" id="marchites_area_afectada" multiple="marchites_area_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 															<option value="Frutos">Frutos</option>
 														</select>
 													</div>
 
 													<div class="form-group">
-														<label >Porcentaje de Incidencia (%)</label>
+														<label >Porcentaje de incidencia (%)</label>
 														<input type="number" min="0" max="100" step="0.01" name="marchites_incidencia" id="marchites_incidencia" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Recomendación Técnica</label>
+														<label >Recomendación técnica</label>
 														<input type="text" name="marchites_recomendacion" id="marchites_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="marchites_foto" id="marchites_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
 												<br>
-												<h4 style="color:white">Enfermedad: Gotera (Mycena Citricolor)</h4>
+												<h4 style="color:white">Enfermedad: Gotera <b><i>(Mycena citricolor)</b></i></h4>
 												<div class="form-group">
-													<label >¿Detectó la Enfermedad Gotera (Mycena Citricolor)?</label>
+													<label >¿Detectó la enfermedad Gotera (Mycena citricolor)?</label>
 													<br>
 													<input type="radio" id="gotera_si" name="gotera" value="1" onchange="mostrar_gotera()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="gotera_no" name="gotera" value="0" onchange="mostrar_gotera()"> No
@@ -243,31 +273,37 @@
 													</div>
 
 													<div class="form-group">
-														<label>Área Afectada</label>
+														<label>Área afectada</label>
 														<select class="form-control select2" name="gotera_area_afectada[]" id="gotera_area_afectada" multiple="gotera_area_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 															<option value="Frutos">Frutos</option>
 														</select>
 													</div>
 
 													<div class="form-group">
-														<label >Porcentaje de Incidencia (%)</label>
+														<label >Porcentaje de incidencia (%)</label>
 														<input type="number" min="0" max="100" step="0.01" name="gotera_incidencia" id="gotera_incidencia" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Recomendación Técnica</label>
+														<label >Recomendación técnica</label>
 														<input type="text" name="gotera_recomendacion" id="gotera_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="gotera_foto" id="gotera_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
 												<br>
-												<h4 style="color:white">Enfermedad: Mancha bacteriana (Pseudomonas Syringe)</h4>
+												<h4 style="color:white">Enfermedad: Mancha bacteriana <b><i>(Pseudomonas syringe)</b></i></h4>
 												<div class="form-group">
-													<label >¿Detectó la Enfermedad Mancha bacteriana (Pseudomonas Syringe)?</label>
+													<label >¿Detectó la enfermedad Mancha bacteriana (Pseudomonas syringe)?</label>
 													<br>
 													<input type="radio" id="mancha_si" name="mancha" value="1" onchange="mostrar_mancha()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="mancha_no" name="mancha" value="0" onchange="mostrar_mancha()"> No
@@ -280,31 +316,37 @@
 													</div>
 
 													<div class="form-group">
-														<label>Área Afectada</label>
+														<label>Área afectada</label>
 														<select class="form-control select2" name="mancha_area_afectada[]" id="mancha_area_afectada" multiple="mancha_area_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 															<option value="Frutos">Frutos</option>
 														</select>
 													</div>
 
 													<div class="form-group">
-														<label >Porcentaje de Incidencia (%)</label>
+														<label >Porcentaje de incidencia (%)</label>
 														<input type="number" min="0" max="100" step="0.01" name="mancha_incidencia" id="mancha_incidencia" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Recomendación Técnica</label>
+														<label >Recomendación técnica</label>
 														<input type="text" name="mancha_recomendacion" id="mancha_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="mancha_foto" id="mancha_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
 												<br>
-												<h4 style="color:white">Enfermedad: Pudricion de la Raiz (Rosellinia Bunodes)</h4>
+												<h4 style="color:white">Enfermedad: Pudricion de la Raiz <b><i>(Rosellinia bunodes)</b></i></h4>
 												<div class="form-group">
-													<label >¿Detectó la Enfermedad Pudricion de la Raiz (Rosellinia Bunodes)?</label>
+													<label >¿Detectó la enfermedad Pudricion de la Raiz (Rosellinia bunodes)?</label>
 													<br>
 													<input type="radio" id="pudricion_si" name="pudricion" value="1" onchange="mostrar_pudricion()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="pudricion_no" name="pudricion" value="0" onchange="mostrar_pudricion()"> No
@@ -317,31 +359,37 @@
 													</div>
 
 													<div class="form-group">
-														<label>Área Afectada</label>
+														<label>Área afectada</label>
 														<select class="form-control select2" name="pudricion_area_afectada[]" id="pudricion_area_afectada" multiple="pudricion_area_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 															<option value="Frutos">Frutos</option>
 														</select>
 													</div>
 
 													<div class="form-group">
-														<label >Porcentaje de Incidencia (%)</label>
+														<label >Porcentaje de incidencia (%)</label>
 														<input type="number" min="0" max="100" step="0.01" name="pudricion_incidencia" id="pudricion_incidencia" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Recomendación Técnica</label>
+														<label >Recomendación técnica</label>
 														<input type="text" name="pudricion_recomendacion" id="pudricion_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="pudricion_foto" id="pudricion_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
 												<br>
-												<h4 style="color:white">Enfermedad: Mal Rosado (Corticium Salmonicolor)</h4>
+												<h4 style="color:white">Enfermedad: Mal Rosado <b><i>(Corticium salmonicolor)</b></i></h4>
 												<div class="form-group">
-													<label >¿Detectó la Enfermedad Mal Rosado (Corticium Salmonicolor)?</label>
+													<label >¿Detectó la enfermedad Mal Rosado (Corticium salmonicolor)?</label>
 													<br>
 													<input type="radio" id="rosado_si" name="rosado" value="1" onchange="mostrar_rosado()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="rosado_no" name="rosado" value="0" onchange="mostrar_rosado()"> No
@@ -354,31 +402,37 @@
 													</div>
 
 													<div class="form-group">
-														<label>Área Afectada</label>
+														<label>Área afectada</label>
 														<select class="form-control select2" name="rosado_area_afectada[]" id="rosado_area_afectada" multiple="rosado_area_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 															<option value="Frutos">Frutos</option>
 														</select>
 													</div>
 
 													<div class="form-group">
-														<label >Porcentaje de Incidencia (%)</label>
+														<label >Porcentaje de incidencia (%)</label>
 														<input type="number" min="0" max="100" step="0.01" name="rosado_incidencia" id="rosado_incidencia" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Recomendación Técnica</label>
+														<label >Recomendación técnica</label>
 														<input type="text" name="rosado_recomendacion" id="rosado_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="rosado_foto" id="rosado_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 
 												<br>
-												<h4 style="color:white">Enfermedad: Moho de Hilachas (Pellicularia Koleroga)</h4>
+												<h4 style="color:white">Enfermedad: Moho de Hilachas <b><i>(Pellicularia koleroga)</b></i></h4>
 												<div class="form-group">
-													<label >¿Detectó la Enfermedad Moho de Hilachas (Pellicularia Koleroga)?</label>
+													<label >¿Detectó la enfermedad Moho de Hilachas (Pellicularia koleroga)?</label>
 													<br>
 													<input type="radio" id="moho_si" name="moho" value="1" onchange="mostrar_moho()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="moho_no" name="moho" value="0" onchange="mostrar_moho()"> No
@@ -391,24 +445,30 @@
 													</div>
 
 													<div class="form-group">
-														<label>Área Afectada</label>
+														<label>Área afectada</label>
 														<select class="form-control select2" name="moho_area_afectada[]" id="moho_area_afectada" multiple="moho_area_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 															<option value="Frutos">Frutos</option>
 														</select>
 													</div>
 
 													<div class="form-group">
-														<label >Porcentaje de Incidencia (%)</label>
+														<label >Porcentaje de incidencia (%)</label>
 														<input type="number" min="0" max="100" step="0.01" name="moho_incidencia" id="moho_incidencia" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Recomendación Técnica</label>
+														<label >Recomendación técnica</label>
 														<input type="text" name="moho_recomendacion" id="moho_recomendacion" class="form-control" required>
 													</div>
+
+                          <div class="form-group">
+                            <label >Fotografía</label>
+                            <input name="moho_foto" id="moho_foto" type="file" class="text-white" accept="image/*"/>
+                          </div>
 												</div>
 
 												<br>

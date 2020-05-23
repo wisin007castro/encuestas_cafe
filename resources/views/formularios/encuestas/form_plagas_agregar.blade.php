@@ -62,6 +62,7 @@
 														<select class="form-control select2" name="broca_zona_afectada[]" id="broca_zona_afectada" multiple="broca_zona_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 						                  <option value="Frutos">Frutos</option>
 														</select>
@@ -99,6 +100,7 @@
 														<select class="form-control select2" name="cepe_zona_afectada[]" id="cepe_zona_afectada" multiple="cepe_zona_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 						                  <option value="Frutos">Frutos</option>
 														</select>
@@ -136,6 +138,7 @@
 														<select class="form-control select2" name="grillo_zona_afectada[]" id="grillo_zona_afectada" multiple="grillo_zona_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 						                  <option value="Frutos">Frutos</option>
 														</select>
@@ -174,6 +177,7 @@
 														<select class="form-control select2" name="cochinilla_zona_afectada[]" id="cochinilla_zona_afectada" multiple="cochinilla_zona_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 															<option value="Frutos">Frutos</option>
 														</select>
@@ -212,6 +216,7 @@
 														<select class="form-control select2" name="escamas_zona_afectada[]" id="escamas_zona_afectada" multiple="escamas_zona_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 															<option value="Frutos">Frutos</option>
 														</select>
@@ -250,6 +255,7 @@
 														<select class="form-control select2" name="minador_zona_afectada[]" id="minador_zona_afectada" multiple="minador_zona_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 															<option value="Frutos">Frutos</option>
 														</select>
@@ -288,6 +294,7 @@
 														<select class="form-control select2" name="barrenador_zona_afectada[]" id="barrenador_zona_afectada" multiple="barrenador_zona_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 															<option value="Frutos">Frutos</option>
 														</select>
@@ -324,6 +331,7 @@
 														<select class="form-control select2" name="nematodos_zona_afectada[]" id="nematodos_zona_afectada" multiple="nematodos_zona_afectada[]" data-placeholder="Selecione una o varias" required>
 															<option value="Raiz">Raiz</option>
 															<option value="Tallo">Tallo</option>
+															<option value="Flores">Flores</option>
 															<option value="Hojas">Hojas</option>
 															<option value="Frutos">Frutos</option>
 														</select>

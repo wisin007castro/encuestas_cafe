@@ -47,7 +47,7 @@
                         <br>
                         <div class="form-group">
                           <label >Fecha</label>
-                          <input type="date" name="fecha" id="fecha" class="form-control" value="{{old('ano', $dato->fecha ?? '')}}"  required/ >
+                          <input type="date" name="fecha" id="fecha" class="form-control" value="{{old('ano', $dato->fecha ?? '')}}" required/ >
 												</div>
                         <br>
                         <div class="form-group">
@@ -77,6 +77,11 @@
 														</label>
 													</div>
 												@endif
+
+												<div class="form-group">
+													<label >Peso bruto (Kg) de cosecha de café</label>
+													<input type="number" min="0" step="0.01" name="peso_bruto" id="peso_bruto" class="form-control" value="{{old('peso_bruto', $dato->peso_bruto ?? '')}}" required>
+												</div>
 												<br>
                         <button type="submit" class="mybtn">Actualizar</button>
                       </form>

@@ -65,6 +65,10 @@
                             </label>
                           </div>
                         </div>
+												<div class="form-group">
+													<label >Peso bruto (Kg) de cosecha de café</label>
+													<input type="number" min="0" step="0.01" name="peso_bruto" id="peso_bruto" class="form-control" required>
+												</div>
 												<br>
                         <button type="submit" class="mybtn">Guardar</button>
                       </form>

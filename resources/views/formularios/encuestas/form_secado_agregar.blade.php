@@ -17,7 +17,7 @@
                  <div class="myform-top">
                     <div class="myform-top-left">
                        {{-- <img  src="" class="img-responsive logo" /> --}}
-                      <h3>Encuesta - Secado</h3>
+                      <h3>Secado</h3>
                         <p>Por favor responda las siguientes preguntas</p>
                     </div>
                     <div class="myform-top-right">
@@ -48,8 +48,8 @@
 												<h4 style="color:white">Secado coCO</h4>
 
 												<div class="form-group">
-													<label >¿Realizó secado coCO?</label>
-													<br>
+													<!--label >¿Realizó secado coCO?</label>
+													<br-->
 													<input type="radio" id="secado_si" name="secado" value="1" onchange="mostrar_secado()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="secado_no" name="secado" value="0" onchange="mostrar_secado()"> No
 												</div>
@@ -78,34 +78,34 @@
 												</div>
 
 												<br>
-												<h4 style="color:white">Lavado y Secado</h4>
+												<h4 style="color:white">Secado pergamino sin miel</h4>
 
 												<div class="form-group">
-													<label >¿Realizó lavado y secado?</label>
-													<br>
+													<!--label >¿Realizó lavado y secado?</label>
+													<br-->
 													<input type="radio" id="lavado_si" name="lavado" value="1" onchange="mostrar_lavado()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="lavado_no" name="lavado" value="0" onchange="mostrar_lavado()"> No
 												</div>
 
 												<div class="content_lavado" id="content_lavado">
 	                        <div class="form-group">
-	                          <label >Fecha de lavado y secado</label>
+	                          <label >Fecha de secado pergamino sin miel</label>
 														<br>
 														<input type="date" name="lavado_fecha" id="lavado_fecha" class="form-control" required>
 													</div>
 
 													<div class="form-group">
-														<label >Peso Total (Kg) de lavado y secado</label>
+														<label >Peso Total (Kg) de secado pergamino sin miel</label>
 														<input type="number" min="0" step="0.01" name="lavado_p_total" id="lavado_p_total" class="form-control" required>
 	                        </div>
 
 													<div class="form-group">
-														<label >Porcentaje de Humedad (%) de lavado y secado</label>
+														<label >Porcentaje de Humedad (%) de secado pergamino sin miel</label>
 														<input type="number" min="0" max="100" step="0.01" name="lavado_humedad" id="lavado_humedad" class="form-control" required>
 	                        </div>
 
 													<div class="form-group">
-														<label >Peso Efectivo en Grano Final de lavado y secado</label>
+														<label >Peso Efectivo en Grano Final de secado pergamino sin miel</label>
 														<input type="number" min="0" step="0.01" name="lavado_p_efectivo" id="lavado_p_efectivo" class="form-control" required>
 	                        </div>
 												</div>
@@ -114,8 +114,8 @@
 												<h4 style="color:white">Secado en Miel</h4>
 
 												<div class="form-group">
-													<label >¿Realizó secado en miel?</label>
-													<br>
+													<!--label >¿Realizó secado en miel?</label>
+													<br-->
 													<input type="radio" id="miel_si" name="miel" value="1" onchange="mostrar_miel()" checked> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="miel_no" name="miel" value="0" onchange="mostrar_miel()"> No
 												</div>

@@ -46,21 +46,21 @@
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
                       {{-- FORMACION --}}
                         <br>
-												<h4 style="color:white">Poda de Formación de Planta</h4>
+												<h4 style="color:white">Poda de formación de planta</h4>
                         <div class="form-group">
-													<label >¿Realizó Poda de Formación de Planta?</label>
-													<br>
+													<!--label >¿Realizó Poda de Formación de Planta?</label>
+													<br-->
 													<input type="radio" id="form_planta_si" name="form_planta" value="1" onchange="mostrar_form_planta()" <?php if ($dato->form_planta==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
 													<input type="radio" id="form_planta_no" name="form_planta" value="0" onchange="mostrar_form_planta()" <?php if ($dato->form_planta==0){echo "checked";}?>> No
 												</div>
 
 												<div class="content_form_planta" id="content_form_planta">
 													<div class="form-group">
-                            <label >Fecha de Poda de Formación de Planta</label>
+                            <label >Fecha de poda de formación de planta</label>
 														<input type="date" name="form_planta_fecha" id="form_planta_fecha" value="{{old('form_planta_fecha', $dato->form_planta_fecha ?? '')}}" class="form-control" required>
                           </div>
                           <div class="form-group">
-														<label >Recomendación de Fecha Final para Poda de Formación de Planta</label>
+														<label >Recomendación de fecha final para poda de formación de planta</label>
 														<input type="date" name="form_planta_fecha_final" id="form_planta_fecha_final" value="{{old('form_planta_fecha_final', $dato->form_planta_fecha_final ?? '')}}" class="form-control" required>
                           </div>
                           <br>
@@ -70,7 +70,7 @@
                               <img class="attachment-img" src="{{$dato->form_planta_foto}}" alt="Attachment Image">
                             </div>
                             <div class="col-md-9 col-xs-8">
-                              <label >Actualizar Fotografía</label>
+                              <label >Actualizar fotografía</label>
                               <input name="form_planta_foto" id="form_planta_foto" type="file" class="text-white" accept="image/*"/>
                             </div>
                           </div>
@@ -78,21 +78,21 @@
 
                       {{-- MANTENIMIENTO --}}
                       <br>
-											<h4 style="color:white">Poda de Mantenimiento</h4>
+											<h4 style="color:white">Poda de mantenimiento</h4>
                       <div class="form-group">
-												<label >¿Realizó Poda de Mantenimiento?</label>
-                        <br>
+												<!--label >¿Realizó Poda de Mantenimiento?</label>
+                        <br-->
                         <input type="radio" id="mantenimiento_si" name="mantenimiento" value="1" onchange="mostrar_mantenimiento()" <?php if ($dato->mantenimiento==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="radio" id="mantenimiento_no" name="mantenimiento" value="0" onchange="mostrar_mantenimiento()" <?php if ($dato->mantenimiento==0){echo "checked";}?>> No
                       </div>
 
                       <div class="content_mantenimiento" id="content_mantenimiento">
                         <div class="form-group">
-													<label >Fecha de Poda de Mantenimiento</label>
+													<label >Fecha de poda de mantenimiento</label>
                           <input type="date" name="mantenimiento_fecha" id="mantenimiento_fecha" value="{{old('mantenimiento_fecha', $dato->mantenimiento_fecha ?? '')}}" class="form-control" required>
                         </div>
                         <div class="form-group">
-                          <label >Recomendación de Fecha Final para Poda de Mantenimiento</label>
+                          <label >Recomendación de fecha final para poda de dantenimiento</label>
                           <input type="date" name="mantenimiento_fecha_final" id="mantenimiento_fecha_final" value="{{old('mantenimiento_fecha_final', $dato->mantenimiento_fecha_final ?? '')}}" class="form-control" required>
                         </div>
                         <div class="row col-md-12">
@@ -101,7 +101,7 @@
                             <img class="attachment-img" src="{{$dato->mantenimiento_foto}}" alt="Attachment Image">
                           </div>
                           <div class="col-md-9 col-xs-8">
-                            <label >Actualizar Fotografía</label>
+                            <label >Actualizar fotografía</label>
                             <input name="mantenimiento_foto" id="mantenimiento_foto" type="file" class="text-white" accept="image/*"/>
                           </div>
                         </div>
@@ -109,21 +109,21 @@
 
                       {{-- SELECCION DE BROTES --}}
                       <br>
-											<h4 style="color:white">Poda de Selección de Brotes</h4>
+											<h4 style="color:white">Poda de selección de brotes</h4>
                       <div class="form-group">
-												<label >¿Realizó Poda de Selección de Brotes?</label>
-                        <br>
+												<!--label >¿Realizó Poda de Selección de Brotes?</label>
+                        <br-->
                         <input type="radio" id="sel_brotes_si" name="sel_brotes" value="1" onchange="mostrar_sel_brotes()" <?php if ($dato->sel_brotes==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="radio" id="sel_brotes_no" name="sel_brotes" value="0" onchange="mostrar_sel_brotes()" <?php if ($dato->sel_brotes==0){echo "checked";}?>> No
                       </div>
 
                       <div class="content_sel_brotes" id="content_sel_brotes">
                         <div class="form-group">
-													<label >Fecha de Poda de Selección de Brotes</label>
+													<label >Fecha de poda de selección de brotes</label>
                           <input type="date" name="sel_brotes_fecha" id="sel_brotes_fecha" value="{{old('sel_brotes_fecha', $dato->sel_brotes_fecha ?? '')}}" class="form-control" required>
                         </div>
                         <div class="form-group">
-													<label >Recomendación de Fecha Final para Poda de Selección de Brotes</label>
+													<label >Recomendación de fecha final para poda de selección de brotes</label>
                           <input type="date" name="sel_brotes_fecha_final" id="sel_brotes_fecha_final" value="{{old('sel_brotes_fecha_final', $dato->sel_brotes_fecha_final ?? '')}}" class="form-control" required>
                         </div>
                         <div class="row col-md-12">
@@ -132,7 +132,7 @@
                             <img class="attachment-img" src="{{$dato->sel_brotes_foto}}" alt="Attachment Image">
                           </div>
                           <div class="col-md-9 col-xs-8">
-                            <label >Actualizar Fotografía</label>
+                            <label >Actualizar fotografía</label>
                             <input name="sel_brotes_foto" id="sel_brotes_foto" type="file" class="text-white" accept="image/*"/>
                           </div>
                         </div>
@@ -140,21 +140,21 @@
 
                       {{-- REHABILITACION --}}
                       <br>
-											<h4 style="color:white">Poda de Rehabilitación</h4>
+											<h4 style="color:white">Poda de rehabilitación</h4>
                       <div class="form-group">
-												<label >¿Realizó Poda de Rehabilitación?</label>
-                        <br>
+												<!--label >¿Realizó Poda de Rehabilitación?</label>
+                        <br-->
                         <input type="radio" id="rehabilitacion_si" name="rehabilitacion" value="1" onchange="mostrar_rehabilitacion()" <?php if ($dato->rehabilitacion==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="radio" id="rehabilitacion_no" name="rehabilitacion" value="0" onchange="mostrar_rehabilitacion()" <?php if ($dato->rehabilitacion==0){echo "checked";}?>> No
                       </div>
 
                       <div class="content_rehabilitacion" id="content_rehabilitacion">
                         <div class="form-group">
-                          <label >Fecha de Poda de Rehabilitación</label>
+                          <label >Fecha de poda de rehabilitación</label>
                           <input type="date" name="rehabilitacion_fecha" id="rehabilitacion_fecha" value="{{old('rehabilitacion_fecha', $dato->rehabilitacion_fecha ?? '')}}" class="form-control" required>
                         </div>
                         <div class="form-group">
-                          <label >Recomendación de Fecha Final para Poda de Rehabilitación</label>
+                          <label >Recomendación de fecha final para poda de rehabilitación</label>
                           <input type="date" name="rehabilitacion_fecha_final" id="rehabilitacion_fecha_final" value="{{old('rehabilitacion_fecha_final', $dato->rehabilitacion_fecha_final ?? '')}}" class="form-control" required>
                         </div>
                         <div class="row col-md-12">
@@ -163,7 +163,7 @@
                             <img class="attachment-img" src="{{$dato->rehabilitacion_foto}}" alt="Attachment Image">
                           </div>
                           <div class="col-md-9 col-xs-8">
-                            <label >Actualizar Fotografía</label>
+                            <label >Actualizar fotografía</label>
                             <input name="rehabilitacion_foto" id="rehabilitacion_foto" type="file" class="text-white" accept="image/*"/>
                           </div>
                         </div>
@@ -171,21 +171,21 @@
 
                       {{-- RENOVACION --}}
                       <br>
-											<h4 style="color:white">Poda de Renovación</h4>
+											<h4 style="color:white">Poda de renovación</h4>
                       <div class="form-group">
-												<label >¿Realizó Poda de Renovación?</label>
-												<br>
+												<!--label >¿Realizó Poda de Renovación?</label>
+												<br-->
                         <input type="radio" id="renovacion_si" name="renovacion" value="1" onchange="mostrar_renovacion()" <?php if ($dato->renovacion==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="radio" id="renovacion_no" name="renovacion" value="0" onchange="mostrar_renovacion()" <?php if ($dato->renovacion==0){echo "checked";}?>> No
                       </div>
 
                       <div class="content_renovacion" id="content_renovacion">
                         <div class="form-group">
-                          <label >Fecha de Poda de Renovación</label>
+                          <label >Fecha de poda de renovación</label>
                           <input type="date" name="renovacion_fecha" id="renovacion_fecha" value="{{old('renovacion_fecha', $dato->renovacion_fecha ?? '')}}" class="form-control" required>
                         </div>
                         <div class="form-group">
-                          <label >Recomendación de Fecha Final para Poda de Renovación</label>
+                          <label >Recomendación de fecha final para poda de renovación</label>
                           <input type="date" name="renovacion_fecha_final" id="renovacion_fecha_final" value="{{old('renovacion_fecha_final', $dato->renovacion_fecha_final ?? '')}}" class="form-control" required>
                         </div>
                         <div class="row col-md-12">
@@ -194,7 +194,7 @@
                             <img class="attachment-img" src="{{$dato->renovacion_foto}}" alt="Attachment Image">
                           </div>
                           <div class="col-md-9 col-xs-8">
-                            <label >Actualizar Fotografía</label>
+                            <label >Actualizar fotografía</label>
                             <input name="renovacion_foto" id="renovacion_foto" type="file" class="text-white" accept="image/*"/>
                           </div>
                         </div>
@@ -202,21 +202,21 @@
 
                       {{-- DESHOJE Y DESPUNTE --}}
                       <br>
-											<h4 style="color:white">Deshoje y Despunte</h4>
+											<h4 style="color:white">Deshoje y despunte</h4>
                       <div class="form-group">
-												<label >¿Realizó Deshoje y Despunte?</label>
-                        <br>
+												<!--label >¿Realizó Deshoje y Despunte?</label>
+                        <br-->
                         <input type="radio" id="deshoje_despunte_si" name="deshoje_despunte" value="1" onchange="mostrar_deshoje_despunte()" <?php if ($dato->deshoje_despunte==1){echo "checked";}?>> Si &nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="radio" id="deshoje_despunte_no" name="deshoje_despunte" value="0" onchange="mostrar_deshoje_despunte()" <?php if ($dato->deshoje_despunte==0){echo "checked";}?>> No
                       </div>
 
                       <div class="content_deshoje_despunte" id="content_deshoje_despunte">
                         <div class="form-group">
-                          <label >Fecha de Deshoje y Despunte</label>
+                          <label >Fecha de deshoje y despunte</label>
                           <input type="date" name="deshoje_despunte_fecha" id="deshoje_despunte_fecha" value="{{old('deshoje_despunte_fecha', $dato->deshoje_despunte_fecha ?? '')}}" class="form-control" required>
                         </div>
                         <div class="form-group">
-                          <label >Recomendación de Fecha Final para Deshoje y Despunte</label>
+                          <label >Recomendación de fecha final para deshoje y despunte</label>
                           <input type="date" name="deshoje_despunte_fecha_final" id="deshoje_despunte_fecha_final" value="{{old('deshoje_despunte_fecha_final', $dato->deshoje_despunte_fecha_final ?? '')}}" class="form-control" required>
                         </div>
 
@@ -226,7 +226,7 @@
                             <img class="attachment-img" src="{{$dato->deshoje_despunte_foto}}" alt="Attachment Image">
                           </div>
                           <div class="col-md-9 col-xs-8">
-                            <label >Actualizar Fotografía</label>
+                            <label >Actualizar fotografía</label>
                             <input name="deshoje_despunte_foto" id="deshoje_despunte_foto" type="file" class="text-white" accept="image/*"/>
                           </div>
                         </div>
