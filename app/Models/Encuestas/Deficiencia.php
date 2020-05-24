@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+<?php
+
+namespace App\Models\Encuestas;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Deficiencia extends Model
+{
+    protected $table = 'enc_deficiencias';
+}
+=======
 <?php
 
 namespace App\Models\Encuestas;
@@ -20,3 +32,4 @@ class Deficiencia extends Model
 
   }
 }
+>>>>>>> d532c47827818c93b83c2d9448478090eb55a9f0

@@ -9,6 +9,8 @@
               {{-- <li><a href="{{ url('listado_empresas') }}">Usuarios</a></li> --}}
           </ul>
       </li>
+      @endrole
+      @role('admin')
       <li><a href="{{ url('cliente_cargar_datos') }}"><i class="fa fa-server"></i> Subir Datos</a></li>
       @endrole
       <li><a href="{{ url('mapa') }}"><i class="fa fa-map-marker"></i> Mapa</a></li>
