@@ -30,8 +30,7 @@
 <section  id="contenido_principal">
 <section  id="content">
     <div class="" >
-			  <div class="container" id="map">
-					<input type="hidden" id="ip_srv" value="<?php echo $_SERVER['SERVER_NAME']; ?>">
+        <div class="container" id="map">
         </div>
       </div>
 </section>
@@ -146,10 +145,7 @@ var layer_MUNICIPIOS_1 = new L.geoJson(json_MUNICIPIOS_1, {
 });
 bounds_group.addLayer(layer_MUNICIPIOS_1);
 map.addLayer(layer_MUNICIPIOS_1);
-var ip_srv = $("#ip_srv").val();
-var ip_srv = "3.18.220.74";
-var url_wms = "http://"+ip_srv+":8080/geoserver/encuestas_cafe/wms";
-var layer_enc_productores_2 = L.WMS.layer(url_wms, "enc_productores", {
+var layer_enc_productores_2 = L.WMS.layer("http://18.225.6.4:8080/geoserver/encuestas_cafe/wms", "enc_productores", {
 		format: 'image/png',
 		uppercase: true,
 		transparent: true,

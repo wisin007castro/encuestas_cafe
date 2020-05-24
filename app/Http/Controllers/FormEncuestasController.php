@@ -92,8 +92,7 @@ class FormEncuestasController extends Controller
       }
       else {
         //Por el contrario, si hay el registro, envìa a actualizar
-        echo "Completar Editar
-        ";
+        return $this->form_informacion_basica_editar();
       }
         //return view("formularios.encuestas.form_informacion_basica_agregar");
     }
@@ -201,8 +200,6 @@ class FormEncuestasController extends Controller
 
 
 
-
-
     //FORMS GUARDAR
     public function informacion_basica_guardar(Request $request){
         $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
@@ -215,11 +212,17 @@ class FormEncuestasController extends Controller
              'productor_nombres' => $request->productor_nombres,
              'productor_paterno' => $request->productor_paterno,
              'productor_materno' => $request->productor_materno,
+             'productor_ci' => $request->productor_ci,
              'productor_sexo' => $request->productor_sexo,
              'productor_telefono' => $request->productor_telefono,
+             'tecnico_responsable' => $request->tecnico_responsable,
+             'id_departamento' => $request->id_departamento,
+             'id_provincia' => $request->id_provincia,
+             'id_municipio' => $request->id_municipio,
+             'localidad' => $request->localidad,
+             'comunidad' => $request->comunidad,
              'tipo_cultivo' => $request->tipo_cultivo,
              'tipo_cultivo_id' => $tipo_cultivo_id,
-
              'created_at' => $tiempo_actual,
              'updated_at' => $tiempo_actual,
              'activo' => 1]
@@ -1783,6 +1786,35 @@ class FormEncuestasController extends Controller
 
 
     //FORMS EDITAR
+    public function form_informacion_basica_editar(){
+      $departamentos = \DB::table('departamentos')
+                      ->where('activo', 1)
+                      ->orderBy('departamento')
+                      ->get();
+
+      $dato = \DB::table('enc_productores')->where('object_id', Auth::user()->object_id)->where('activo', 1)->first();
+
+
+      $provincias = \DB::table('provincias')
+                    ->where('id_departamento', $dato->id_departamento)
+                    ->where('activo', 1)
+                    ->distinct()
+                    ->orderBy('provincia', 'asc')
+                    ->get();
+
+      $municipios = \DB::table('municipios')
+                    ->where('id_provincia', $dato->id_provincia)
+                    ->where('activo', 1)
+                    ->distinct()
+                    ->orderBy('municipio', 'asc')
+                    ->get();
+
+      return view("formularios.encuestas.form_informacion_basica_editar", compact('dato'))
+            ->with('departamentos', $departamentos)
+            ->with('provincias', $provincias)
+            ->with('municipios', $municipios);
+    }
+
     public function form_densidad_editar($id){
       $id_densidad = base64_decode($id);
       $dato = \DB::table('enc_densidad')->where('id_densidad', $id_densidad)->first();
@@ -1858,6 +1890,35 @@ class FormEncuestasController extends Controller
 
 
     //FORMS ACTUALIZAR
+    public function informacion_basica_actualizar(Request $request){
+        $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
+
+        //Establecemos el tipo de cultipo id
+        if ($request->tipo_cultivo == "Cafe") {$tipo_cultivo_id = 1;}
+        else {$tipo_cultivo_id = 2;}
+
+        \DB::table('enc_productores')
+              ->where('object_id', Auth::user()->object_id)
+              ->where('activo', 1)
+              ->update([ 'productor_nombres' => $request->productor_nombres,
+                         'productor_paterno' => $request->productor_paterno,
+                         'productor_materno' => $request->productor_materno,
+                         'productor_ci' => $request->productor_ci,
+                         'productor_sexo' => $request->productor_sexo,
+                         'productor_telefono' => $request->productor_telefono,
+                         'tecnico_responsable' => $request->tecnico_responsable,
+                         'id_departamento' => $request->id_departamento,
+                         'id_provincia' => $request->id_provincia,
+                         'id_municipio' => $request->id_municipio,
+                         'localidad' => $request->localidad,
+                         'comunidad' => $request->comunidad,
+                         'tipo_cultivo' => $request->tipo_cultivo,
+                         'tipo_cultivo_id' => $tipo_cultivo_id,
+                         'updated_at' => $tiempo_actual]);
+
+        return redirect('/home_encuestas')->with('mensaje_exito', 'Información Básica Actualizada Exitosamente');
+    }
+
     public function densidad_actualizar(Request $request, $id){
 
       $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));

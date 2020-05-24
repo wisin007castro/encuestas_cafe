@@ -167,8 +167,8 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //FORMS EDITAR
+    Route::get('form_informacion_basica_editar', 'FormEncuestasController@form_informacion_basica_editar')->name('form_informacion_basica_editar');
     Route::get('form_densidad_editar/{id}', 'FormEncuestasController@form_densidad_editar')->name('form_densidad_editar');
-
     Route::get('form_preparacion_editar/{id}', 'FormEncuestasController@form_preparacion_editar')->name('form_preparacion_editar');
     Route::get('form_podas_editar/{id}', 'FormEncuestasController@form_podas_editar')->name('form_podas_editar');
     Route::get('form_controles_editar/{id}', 'FormEncuestasController@form_controles_editar')->name('form_controles_editar');
@@ -187,6 +187,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     //FORMS ACTUALIZAR
+    Route::post('informacion_basica_actualizar', 'FormEncuestasController@informacion_basica_actualizar')->name('informacion_basica_actualizar');
     Route::post('densidad_actualizar/{id}', 'FormEncuestasController@densidad_actualizar')->name('densidad_actualizar');
     Route::post('preparacion_actualizar/{id}', 'FormEncuestasController@preparacion_actualizar')->name('preparacion_actualizar');
     Route::post('podas_actualizar/{id}', 'FormEncuestasController@podas_actualizar')->name('podas_actualizar');

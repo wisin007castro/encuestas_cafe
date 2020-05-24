@@ -62,7 +62,7 @@
 
 												<div class="form-group">
 													<label >Cédula de Identidad del productor</label>
-													<input type="number" min="0" step="1" name="productor_ci" class="form-control" required/ >
+													<input type="text" maxlength="15" name="productor_ci" class="form-control" required/ >
 												</div>
 
                         <div class="form-group">
@@ -76,6 +76,11 @@
 												<div class="form-group">
 													<label >Número de teléfono del productor</label>
 													<input type="number" min="0" step="1" name="productor_telefono" class="form-control" required/ >
+												</div>
+
+												<div class="form-group">
+													<label >Nombre del técnico responsable</label>
+													<input type="text" maxlength="150" name="tecnico_responsable" class="form-control"/ >
 												</div>
 
                         <div class="form-group">
@@ -100,6 +105,7 @@
 													<div class="form-group provincia_json_select">
 															<label class="">Provincia</label>
 															<select class="form-control select2" name="id_provincia" id="id_provincia" onchange="cambia_provincia()" required>
+																<option value=""> --- Seleccione una provincia --- </option>
 															</select>
 													</div>
 												</div>
@@ -110,6 +116,16 @@
 															<select class="form-control select2" name="id_municipio" id="id_municipio" required>
 															</select>
 													</div>
+												</div>
+
+												<div class="form-group">
+													<label >Localidad</label>
+													<input type="text" maxlength="100" name="localidad" class="form-control" required/ >
+												</div>
+
+												<div class="form-group">
+													<label >Comunidad</label>
+													<input type="text" maxlength="100" name="comunidad" class="form-control" required/ >
 												</div>
 
 												<br>
@@ -130,8 +146,17 @@
 @section('scripts')
 
 @parent
+<script type="text/javascript">
+	window.onload=function() {
+		//Ejecutamos todas las funciones
+		cambia_departamento();
+		//cambia_provincia();
+	}
+</script>
 <script>
 function cambia_departamento(){
+	//Borramos la seleccion de municipio
+	cambia_provincia();
 	//Borramos el contenido del select
 	$(".provincia_json_select select").html("");
 	//Tomamos el id del departamento seleccionado
@@ -164,3 +189,4 @@ function cambia_provincia(){
 	});
 };
 </script>
+@endsection
