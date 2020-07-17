@@ -77,14 +77,5 @@ class LoginController extends Controller
             return redirect()->intended('form_agregar_persona');
         }
 
-    }
-
-
-
-  
-
-
-
-
-    
+    }    
 }

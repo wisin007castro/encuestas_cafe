@@ -22,7 +22,7 @@ use App\UsuarioCasaCampana;
 
 class PersonasController extends Controller
 {
-    
+    /*
     public function form_agregar_persona(){
         //carga el formulario para agregar un nueva persona
 
@@ -143,51 +143,51 @@ class PersonasController extends Controller
         }elseif ($request->input("rol_slug") == 'responsable_circunscripcion' && $request->input("recinto") == "") {
             return "recinto";
         }else{}
-            
-        $reglas=[ 
+
+        $reglas=[
             'archivo'  => 'mimes:jpg,jpeg,gif,png,bmp | max:2048000'
             ];
-            
+
         $mensajes=[
         'archivo.mimes' => 'El archivo debe ser un archivo con formato: jpg, jpeg, gif, png, bmp',
         'archivo.max' => 'El archivo Supera el tamaño máximo permitido',
         ];
 
         $validator = Validator::make( $request->all(),$reglas,$mensajes );
-        if( $validator->fails() ){ 
+        if( $validator->fails() ){
             $circunscripciones = \DB::table('recintos')
 
             ->select('circunscripcion')
             ->distinct()
             ->orderBy('circunscripcion', 'asc')
             ->get();
-    
+
             $origenes = \DB::table('origen')
             ->where('activo', 1)
             ->get();
-    
+
             $roles = \DB::table('roles')
             ->where('id', '>=', 15)
             ->get();
-    
+
             $casas =  \DB::table('casas_campana')
             ->where('casas_campana.activo', 1)
             ->orderBy('circunscripcion', 'asc')
             ->orderBy('distrito', 'asc')
             ->orderBy('id_casa_campana', 'asc')
             ->get();
-    
+
             $vehiculos = \DB::table('transportes')
             ->where('transportes.activo', 1)
             ->orderBy('id_transporte', 'asc')
             ->get();
-    
+
             $evidencias = \DB::table('tipo_evidencias')
             ->where('estado', 1)
             ->orderBy('id')
             ->get();
-    
-    
+
+
             return view("formularios.form_agregar_persona")
             ->with('circunscripciones', $circunscripciones)
             ->with('origenes', $origenes)
@@ -214,7 +214,7 @@ class PersonasController extends Controller
             }else{
                 if($request->recinto != ""){
                     $persona=new Persona;
-                        
+
                     $persona->nombre=ucwords(strtolower($request->input("nombres")));
                     $persona->paterno=ucwords(strtolower($request->input("paterno")));
                     $persona->materno=ucwords(strtolower($request->input("materno")));
@@ -241,9 +241,9 @@ class PersonasController extends Controller
                     $persona->titularidad="TITULAR";
                     $persona->informatico="SI";
                     $persona->evidencia=$request->input("evidencia");
-                    
+
                     $persona->id_rol=15;
-                    
+
                     //Subimos el archivo
                     if($request->file('archivo') != ""){
                         $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
@@ -256,7 +256,7 @@ class PersonasController extends Controller
                         $file = $request->file('archivo');
 
                         $image = Image::make($file->getRealPath());
-                        
+
                         //reducimos la calidad y cambiamos la dimensiones de la nueva instancia.
                         $image->resize(1280, null, function ($constraint) {
                         $constraint->aspectRatio();
@@ -265,7 +265,7 @@ class PersonasController extends Controller
                         $image->orientate();
 
                         $rutadelaimagen="../storage/media/evidencias/".$nuevo_nombre;
-        
+
                         if ($image->save($rutadelaimagen)){
 
 
@@ -278,7 +278,7 @@ class PersonasController extends Controller
                             return view("mensajes.msj_error")->with("msj","Ocurrio un error al subir la imagen");
                         }
                     }
-    
+
                     if($persona->save())
                     {
                         $persona = Persona::find($persona->id_persona);
@@ -286,7 +286,7 @@ class PersonasController extends Controller
 
                         $username = $this->ObtieneUsuario($persona->id_persona);
                         // $persona->id_rol =$request->input("id_rol");
-                
+
                         $usuario=new User;
                         $usuario->name=$username;
                         // $email=strtolower($persona->nombre.$persona->paterno.$persona->materno).'@'.$username;
@@ -294,7 +294,7 @@ class PersonasController extends Controller
                         $usuario->password= bcrypt($username);
                         $usuario->id_persona=$persona->id_persona;
                         $usuario->activo=1;
-                
+
                         if($request->input("rol_slug") == ''){
                             //rol delegado del MAS
                             return 'rol';
@@ -310,7 +310,7 @@ class PersonasController extends Controller
                                 $persona->id_rol = $rol->id;
                                 //Asignando rol
                                 $usuario->assignRole($rol->id);
-            
+
                                 if ($persona->save()) {
                                     // return view("mensajes.msj_enviado")->with("msj","enviado_crear_persona");
                                     return view("formularios.form_agregar_persona")
@@ -323,7 +323,7 @@ class PersonasController extends Controller
                                 } else {
                                     // si no se guarda el update
                                 }
-                                
+
                             } else {
                                 //si el usuario no se guarda
                                 return "failed usuario;";
@@ -334,7 +334,7 @@ class PersonasController extends Controller
                                 //Si el usuario es creado correctamente modificamos su rol
 
                                 if ($usuario->save()) {
-                    
+
                                     $rol = \DB::table('roles')
                                     ->where('roles.slug', $request->input("rol_slug"))
                                     ->first();
@@ -363,12 +363,12 @@ class PersonasController extends Controller
                                     } else {
                                         // si no se guarda el update
                                     }
-                                    
+
                                 } else {
                                     //si el usuario no se guarda
                                     return "failed usuario;";
                                 }
-                                
+
                             } else {
                                 return "id_vehiculo";
                             }
@@ -376,10 +376,10 @@ class PersonasController extends Controller
                         }elseif ($request->input("rol_slug") == 'registrador') {
                             // rol Registrador
                             if ($request->input("id_casa_campana") != "") {
-                
+
                                 //Si el usuario es creado correctamente modificamos su rol
                                 if ($usuario->save()) {
-                    
+
                                     $rol = \DB::table('roles')
                                     ->where('roles.slug', $request->input("rol_slug"))
                                     ->first();
@@ -389,7 +389,7 @@ class PersonasController extends Controller
 
                                     //Asignando rol registrador en la tabla users
                                     $usuario->assignRole($rol->id);
-                
+
                                     if ($persona->save()) {
                                         // creamos las relaciones usuario - recinto
                                         $usuario_casa_campana = new UsuarioCasaCampana();
@@ -411,12 +411,12 @@ class PersonasController extends Controller
                                     } else {
                                         // si no se guarda el update
                                     }
-                                    
+
                                 } else {
                                     //si el usuario no se guarda
                                     return "failed usuario;";
                                 }
-                                
+
                             } else {
                                 return "id_casa_campana";
                             }
@@ -434,7 +434,7 @@ class PersonasController extends Controller
                                 $persona->id_rol = $rol->id;
                                 //Asignando rol
                                 $usuario->assignRole($rol->id);
-            
+
                                 if ($persona->save()) {
                                     // return view("mensajes.msj_enviado")->with("msj","enviado_crear_persona");
                                     return view("formularios.form_agregar_persona")
@@ -447,7 +447,7 @@ class PersonasController extends Controller
                                 } else {
                                     // si no se guarda el update
                                 }
-                                
+
                             } else {
                                 //si el usuario no se guarda
                                 return "failed usuario;";
@@ -455,18 +455,18 @@ class PersonasController extends Controller
                         }elseif ($request->input("rol_slug") == 'responsable_mesa'){
                             //rol responsable_mesa
                             if ($request->has("mesas")) {
-                
+
                                 //Si el usuario es creado correctamente modificamos su rol
                                 if ($usuario->save()) {
-                    
+
                                     $rol = \DB::table('roles')
                                     ->where('roles.slug', $request->input("rol_slug"))
                                     ->first();
-                    
+
                                     $persona->id_rol =$rol->id;
                                     //Asignando rol
                                     $usuario->assignRole($rol->id);
-                    
+
                                     if ($persona->save()) {
                                         // creamos las relaciones usuario - mesas
                                         foreach ($request->mesas as $value) {
@@ -487,12 +487,12 @@ class PersonasController extends Controller
                                     } else {
                                         // si no se guarda el update
                                     }
-                                    
+
                                 } else {
                                     //si el usuario no se guarda
                                     return "failed usuario;";
                                 }
-                                
+
                             } else {
                                 return "mesas";
                             }
@@ -501,10 +501,10 @@ class PersonasController extends Controller
 
                             // rol responsable recinto
                             if ($request->input("recinto") != "") {
-                                    
+
                                 //Si el usuario es creado correctamente modificamos su rol
                                 if ($usuario->save()) {
-                    
+
                                     $rol = \DB::table('roles')
                                     ->where('roles.slug', $request->input("rol_slug"))
                                     ->first();
@@ -534,24 +534,24 @@ class PersonasController extends Controller
                                     } else {
                                         // si no se guarda el update
                                     }
-                                    
+
                                 } else {
                                     //si el usuario no se guarda
                                     return "failed usuario;";
                                 }
-                                
+
                             } else {
                                 return "recinto";
                             }
                             // finresponsable recinto
                         }elseif ($request->input("rol_slug") == 'responsable_distrito') {
                             //rol Responsable de Distrito
-                            
+
                             if ($request->input("recinto") != "") {
-                
+
                                 //Si el usuario es creado correctamente modificamos su rol
                                 if ($usuario->save()) {
-                    
+
                                     $rol = \DB::table('roles')
                                     ->where('roles.slug', $request->input("rol_slug"))
                                     ->first();
@@ -559,7 +559,7 @@ class PersonasController extends Controller
                                     $persona->id_rol =$rol->id;
                                     //Asignando rol
                                     $usuario->assignRole($rol->id);
-                    
+
                                     if ($persona->save()) {
                                         // creamos las relaciones usuario - recinto
                                         $usuario_distrito = new UsuarioDistrito;
@@ -581,12 +581,12 @@ class PersonasController extends Controller
                                     } else {
                                         // si no se guarda el update
                                     }
-                                    
+
                                 } else {
                                     //si el usuario no se guarda
                                     return "failed usuario;";
                                 }
-                                
+
                             } else {
                                 return "distrito";
                             }
@@ -594,7 +594,7 @@ class PersonasController extends Controller
                         }elseif ($request->input("rol_slug") == 'responsable_circunscripcion') {
                             //rol Responsable Circunscripcion
                             if ($request->input("recinto") != "") {
-                    
+
                                 //Si el usuario es creado correctamente modificamos su rol
                                 if ($usuario->save()) {
 
@@ -605,7 +605,7 @@ class PersonasController extends Controller
                                     $persona->id_rol =$rol->id;
                                     //Asignando rol
                                     $usuario->assignRole($rol->id);
-                
+
                                     if ($persona->save()) {
                                         // creamos las relaciones usuario - recinto
                                         $usuario_circunscripcion = new UsuarioCircunscripcion;
@@ -627,18 +627,18 @@ class PersonasController extends Controller
                                     } else {
                                         // si no se guarda el update
                                     }
-                                    
+
                                 } else {
                                     //si el usuario no se guarda
                                     return "failed usuario;";
                                 }
-                                
+
                             } else {
                                 return "circunscripcion";
                             }
                             // fin Responsable Circunscripcion
                         }else{
-                
+
                         }
 
                         // return view("mensajes.msj_enviado")->with("msj","enviado_crear_persona");
@@ -705,7 +705,7 @@ class PersonasController extends Controller
         ->distinct()
         ->orderBy('circunscripcion', 'asc')
         ->get();
-        
+
         $distritos = \DB::table('recintos')
         ->where('circunscripcion', $circunscripcion->circunscripcion)
         ->select('distrito')
@@ -781,7 +781,7 @@ class PersonasController extends Controller
         ->orderBy('mesas.id_mesa')
         ->get();
 
-        
+
         $evidencias = \DB::table('tipo_evidencias')
         ->where('estado', 1)
         ->orderBy('id')
@@ -826,7 +826,7 @@ class PersonasController extends Controller
 
         $id_persona = $request->input("id_persona");
         $persona = Persona::find($id_persona);
-        
+
         if ($request->input("cedula") != $persona->cedula_identidad || $request->input("complemento") != $persona->complemento_cedula) {
             $cedulas = \DB::table('personas')
             ->select('cedula_identidad')
@@ -851,7 +851,7 @@ class PersonasController extends Controller
             $persona->telefono_celular=$request->input("telefono");
             $persona->telefono_referencia=$request->input("telefono_ref");
             $persona->direccion=ucwords(strtolower($request->input("direccion")));
-            
+
             $persona->email=$request->input("email");
 
             if($persona->save())
@@ -870,7 +870,7 @@ class PersonasController extends Controller
 
         $id_persona = $request->input("id_persona");
         $persona = Persona::find($id_persona);
-        
+
         if ($request->input("rol_slug") == '') {
             return 'rol';
         // }elseif ($request->input("grado_compromiso") == "") {
@@ -892,11 +892,11 @@ class PersonasController extends Controller
         }else {
             # code...
         }
-      
+
         if($request->recinto != ""){
 
             $persona->grado_compromiso=$request->input("grado_compromiso");
-            
+
             $persona->id_origen=$request->input("id_origen");
             $persona->id_sub_origen=$request->input("id_sub_origen");
             $persona->id_responsable_registro=Auth::user()->id;
@@ -918,7 +918,7 @@ class PersonasController extends Controller
             $rol_actual = \DB::table('roles')
             ->where('id', $persona->id_rol)
             ->first();
-             
+
             if ($persona->id_rol != $rol->id) {
                 // si el rol cambia
 
@@ -928,7 +928,7 @@ class PersonasController extends Controller
 
                 //Rol Actual a liberar
                 if ($rol_actual->slug == 'productor') {
-                 
+
                 }elseif ($rol_actual->slug == 'militante') {
                     # militantes...
                 }elseif ($rol_actual->slug == 'conductor') {
@@ -989,7 +989,7 @@ class PersonasController extends Controller
                         //Si el usuario es creado correctamente modificamos su rol
 
                         if ($usuario->save()) {
-            
+
                             $rol = \DB::table('roles')
                             ->where('roles.slug', $request->input("rol_slug"))
                             ->first();
@@ -1011,12 +1011,12 @@ class PersonasController extends Controller
                             } else {
                                 // si no se guarda el update
                             }
-                            
+
                         } else {
                             //si el usuario no se guarda
                             return "failed usuario;";
                         }
-                        
+
                     } else {
                         return "id_vehiculo";
                     }
@@ -1024,10 +1024,10 @@ class PersonasController extends Controller
                 }elseif ($request->input("rol_slug") == 'registrador') {
                     // rol Registrador
                     if ($request->input("id_casa_campana") != "") {
-        
+
                         //Si el usuario es creado correctamente modificamos su rol
                         if ($usuario->save()) {
-            
+
                             $rol = \DB::table('roles')
                             ->where('roles.slug', $request->input("rol_slug"))
                             ->first();
@@ -1037,7 +1037,7 @@ class PersonasController extends Controller
 
                             //Asignando rol registrador en la tabla users
                             $usuario->assignRole($rol->id);
-        
+
                             if ($persona->save()) {
                                 // creamos las relaciones usuario - casa de campaña
                                 $usuario_casa_campana = new UsuarioCasaCampana();
@@ -1052,12 +1052,12 @@ class PersonasController extends Controller
                             } else {
                                 // si no se guarda el update
                             }
-                            
+
                         } else {
                             //si el usuario no se guarda
                             return "failed usuario;";
                         }
-                        
+
                     } else {
                         return "id_casa_campana";
                     }
@@ -1075,13 +1075,13 @@ class PersonasController extends Controller
                         $persona->id_rol = $rol->id;
                         //Asignando rol
                         $usuario->assignRole($rol->id);
-    
+
                         if ($persona->save()) {
                             return view("mensajes.msj_enviado")->with("msj","enviado_editar_persona");
                         } else {
                             // si no se guarda el update
                         }
-                        
+
                     } else {
                         //si el usuario no se guarda
                         return "failed usuario;";
@@ -1089,18 +1089,18 @@ class PersonasController extends Controller
                 }elseif ($request->input("rol_slug") == 'responsable_mesa'){
                     //rol responsable_mesa
                     if ($request->has("mesas")) {
-        
+
                         //Si el usuario es creado correctamente modificamos su rol
                         if ($usuario->save()) {
-            
+
                             $rol = \DB::table('roles')
                             ->where('roles.slug', $request->input("rol_slug"))
                             ->first();
-            
+
                             $persona->id_rol =$rol->id;
                             //Asignando rol
                             $usuario->assignRole($rol->id);
-            
+
                             if ($persona->save()) {
                                 // creamos las relaciones usuario - mesas
                                 foreach ($request->mesas as $value) {
@@ -1114,12 +1114,12 @@ class PersonasController extends Controller
                             } else {
                                 // si no se guarda el update
                             }
-                            
+
                         } else {
                             //si el usuario no se guarda
                             return "failed usuario;";
                         }
-                        
+
                     } else {
                         return "mesas";
                     }
@@ -1128,10 +1128,10 @@ class PersonasController extends Controller
 
                     // rol responsable recinto
                     if ($request->input("recinto") != "") {
-                            
+
                         //Si el usuario es creado correctamente modificamos su rol
                         if ($usuario->save()) {
-            
+
                             $rol = \DB::table('roles')
                             ->where('roles.slug', $request->input("rol_slug"))
                             ->first();
@@ -1140,7 +1140,7 @@ class PersonasController extends Controller
                             $persona->id_rol =$rol->id;
                             //Asignando rol
                             $usuario->assignRole($rol->id);
-        
+
                             if ($persona->save()) {
                                 // creamos las relaciones usuario - recinto
                                 $usuario_recinto = new UsuarioRecinto;
@@ -1155,12 +1155,12 @@ class PersonasController extends Controller
                             } else {
                                 // si no se guarda el update
                             }
-                            
+
                         } else {
                             //si el usuario no se guarda
                             return "failed usuario;";
                         }
-                        
+
                     } else {
                         return "recinto";
                     }
@@ -1168,10 +1168,10 @@ class PersonasController extends Controller
                 }elseif ($request->input("rol_slug") == 'responsable_distrito') {
                     //rol Responsable de Distrito
                     if ($request->input("recinto") != "") {
-        
+
                         //Si el usuario es creado correctamente modificamos su rol
                         if ($usuario->save()) {
-            
+
                             $rol = \DB::table('roles')
                             ->where('roles.slug', $request->input("rol_slug"))
                             ->first();
@@ -1179,7 +1179,7 @@ class PersonasController extends Controller
                             $persona->id_rol =$rol->id;
                             //Asignando rol
                             $usuario->assignRole($rol->id);
-            
+
                             if ($persona->save()) {
                                 // creamos las relaciones usuario - recinto
                                 $usuario_distrito = new UsuarioDistrito;
@@ -1194,12 +1194,12 @@ class PersonasController extends Controller
                             } else {
                                 // si no se guarda el update
                             }
-                            
+
                         } else {
                             //si el usuario no se guarda
                             return "failed usuario;";
                         }
-                        
+
                     } else {
                         return "distrito";
                     }
@@ -1207,7 +1207,7 @@ class PersonasController extends Controller
                 }elseif ($request->input("rol_slug") == 'responsable_circunscripcion') {
                     //rol Responsable Circunscripcion
                     if ($request->input("recinto") != "") {
-            
+
                         //Si el usuario es creado correctamente modificamos su rol
                         if ($usuario->save()) {
 
@@ -1218,7 +1218,7 @@ class PersonasController extends Controller
                             $persona->id_rol =$rol->id;
                             //Asignando rol
                             $usuario->assignRole($rol->id);
-        
+
                             if ($persona->save()) {
                                 // creamos las relaciones usuario - circ
                                 $usuario_circunscripcion = new UsuarioCircunscripcion;
@@ -1233,18 +1233,18 @@ class PersonasController extends Controller
                             } else {
                                 // si no se guarda el update
                             }
-                            
+
                         } else {
                             //si el usuario no se guarda
                             return "failed usuario;";
                         }
-                        
+
                     } else {
                         return "circunscripcion";
                     }
                     // fin Responsable Circunscripcion
                 }else{
-        
+
                 }
 
 
@@ -1252,7 +1252,7 @@ class PersonasController extends Controller
                 // Si el rol no cambia
                 if ($persona->id_recinto != $request->input("recinto")) {
                     //Si el recinto cambia
-                    
+
                     //Rol Actual a liberar
                 if ($request->input("rol_slug") == 'militante') {
                     # militantes...
@@ -1268,7 +1268,7 @@ class PersonasController extends Controller
                     $usuario_casa_campana->id_usuario = $usuario->id;
                     $usuario_casa_campana->id_casa_campana = $request->input("id_casa_campana");
                     $usuario_casa_campana->activo = 1;
-                    
+
                     if ($usuario_casa_campana->save()) {
                         $persona->id_recinto = $request->input("recinto");
                     }
@@ -1356,11 +1356,11 @@ class PersonasController extends Controller
                         $usuario_casa_campana->id_usuario = $usuario->id;
                         $usuario_casa_campana->id_casa_campana = $request->input("id_casa_campana");
                         $usuario_casa_campana->activo = 1;
-                        
+
                         if ($usuario_casa_campana->save()) {
                             $persona->id_recinto = $request->input("recinto");
                         }
-    
+
                     }elseif ($request->input("rol_slug") == 'conductor') {
                         # Call center
                         //Revocando relacion usuario transporte
@@ -1376,7 +1376,7 @@ class PersonasController extends Controller
                         if ($usuario_transporte->save()) {
                             return view("mensajes.msj_enviado")->with("msj","enviado_editar_persona");
                         }
-    
+
                     }elseif ($request->input("rol_slug") == 'responsable_mesa') {
                         if (UsuarioMesa::where('id_usuario', $usuario->id)->delete()){}
                         # ResponsableMesa
@@ -1399,7 +1399,7 @@ class PersonasController extends Controller
                     }
 
                 }
-                
+
             }
 
         }
@@ -1408,34 +1408,34 @@ class PersonasController extends Controller
         }
     }
 
-    
+
     public function editar_evidencia_persona(Request $request){
 
         // return $request->input("id_persona");
-            
+
         $id_persona = $request->input("id_persona");
         $persona = Persona::find($id_persona);
-    
+
         //Primero validamos el archivo
-        $reglas=[ 
+        $reglas=[
             'archivo'  => 'mimes:jpg,jpeg,gif,png,bmp | max:2048000'
             ];
-            
+
         $mensajes=[
         'archivo.mimes' => 'El archivo debe ser un archivo con formato: jpg, jpeg, gif, png, bmp.',
         'archivo.max' => 'El archivo Supera el tamaño máximo permitido',
         ];
 
         $validator = Validator::make( $request->all(),$reglas,$mensajes );
-        if( $validator->fails() ){ 
+        if( $validator->fails() ){
 
           return view("formularios.form_votar_presidencial_subir_imagen")
           ->with("persona",$persona)
           ->withErrors($validator)
           ->withInput($request->flash());
         }
-    
-        
+
+
         //Subimos el archivo
         if($request->file('archivo') != ""){
             $tiempo_actual = new DateTime(date('Y-m-d H:i:s'));
@@ -1448,7 +1448,7 @@ class PersonasController extends Controller
             $file = $request->file('archivo');
 
             $image = Image::make($file->getRealPath());
-            
+
             //reducimos la calidad y cambiamos la dimensiones de la nueva instancia.
             $image->resize(1280, null, function ($constraint) {
             $constraint->aspectRatio();
@@ -1511,7 +1511,7 @@ class PersonasController extends Controller
         return view("listados.listado_personas_asignacion")
         ->with('personas', $personas);
     }
-    
+
     // public function buscar_persona_asignacion(Request $request){
     //     $dato = $request->input("dato_buscado");
     //     $personas = Persona::join('recintos', 'personas.id_recinto', 'recintos.id_recinto')
@@ -1583,7 +1583,7 @@ class PersonasController extends Controller
         ->with('personas', $personas)
         ->with('rol', $rol);
     }
-    
+
     // public function buscar_persona(Request $request){
     //     $dato = $request->input("dato_buscado");
     //     $personas = Persona::join('recintos', 'personas.id_recinto', 'recintos.id_recinto')
@@ -1662,17 +1662,17 @@ class PersonasController extends Controller
 
     public function ObtieneUsuario($id_persona){
         $persona = Persona::find($id_persona);
-    
+
         $ci = $persona->cedula_identidad.$persona->complemento_cedula;
         $numero = 0;
         $username = $ci;
-        while (User::where('name', '=', $username)->exists()) { // user found 
+        while (User::where('name', '=', $username)->exists()) { // user found
             $username=$username+$numero;
             $numero++;
         }
-    
+
         //Quitar espacios en blanco
-        $username = str_replace(' ', '', $username); 
+        $username = str_replace(' ', '', $username);
         return $username;
-    }
+    }*/
 }

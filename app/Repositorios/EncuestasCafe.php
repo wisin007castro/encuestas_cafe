@@ -12,9 +12,10 @@ class EncuestasCafe
 
     public function __construct()
     {
-        // $base_uri = 'http://encuestas.cafe.minculturas.com/public/';
-        $base_uri = 'http://encuestas_cafe_server.test:8080';
-      
+        //Ruta de la base de datos
+        //$base_uri = 'http://encuestas_cafe_server.test:8080';
+        $base_uri = 'http://3.23.214.151:8080';
+
         $this->client = new Client([
             // Base URI is used with relative requests
             'base_uri' => $base_uri,
@@ -39,7 +40,7 @@ class EncuestasCafe
             }else{
                 return false;
             }
-           
+
         }
         catch (RequestException $e) {
             // $response = $e->getResponse();
@@ -61,7 +62,7 @@ class EncuestasCafe
             'headers'=>array('Content-Type'=>'application/json'),
             'json'=>$datas
         );
-       
+
         if($response = $this->client->post($url . '?' . $this->api_key , $data)){
             return true;
         }else{

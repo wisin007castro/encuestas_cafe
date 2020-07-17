@@ -12,27 +12,9 @@
 */
 use GuzzleHttp\Client;
 
-
 Route::get('/', function () {
     return redirect('/login');
 });
-
-
-
-//REDIRECCIONA AL FORMULARIO DE CONSULTA DESDE UN INICIO
-
-// Route::get('/', function () {
-//     return redirect('form_consulta');
-// });
-
-Route::get('form_consulta', 'ConsultasController@form_consulta');
-Route::get('consultaMesaAsignada/{recinto}', 'ConsultasController@consultaMesaAsignada');
-
-Route::get('delegados_mesa', 'ExcelController@delegados_mesa');
-Route::get('test_page', 'ExcelController@test_page');
-
-Route::get('form_pruebas', 'PruebasController@form_pruebas');
-Route::get('log_conexiones', 'PruebasController@log_conexiones');
 
 // RUTAS DEL LADO DEL CLIENTE PARA SOLICITAR O GUARDAR INFORMACION
 Route::get('cliente_informacion_basica_datas', 'ClienteEncuestasController@cliente_informacion_basica_datas');
@@ -120,8 +102,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('form_densidad_tabla', 'FormEncuestasController@form_densidad_tabla');
     Route::get('form_densidad_agregar', 'FormEncuestasController@form_densidad_agregar');
 
-
-
     Route::post('form_informacion_basica_opcion', 'FormEncuestasController@form_informacion_basica_opcion');
 
     Route::post('form_podas_control_opcion', 'FormEncuestasController@form_podas_control_opcion');
@@ -131,8 +111,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('form_enfermedades_plagas_opcion', 'FormEncuestasController@form_enfermedades_plagas_opcion');
 
     Route::post('form_sist_agroforestales_tabla', 'FormEncuestasController@form_sist_agroforestales_tabla');
-
-
 
     Route::get('listado_densidad', 'FormEncuestasController@listado_densidad');
 
@@ -171,9 +149,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('form_fertilizaciones_agregar', 'FormEncuestasController@form_fertilizaciones_agregar')->name('form_fertilizaciones_agregar');
 
 
-
-
-
     //FORMS GUARDAR
     Route::post('informacion_basica_guardar', 'FormEncuestasController@informacion_basica_guardar')->name('informacion_basica_guardar');
     Route::post('densidad_guardar', 'FormEncuestasController@densidad_guardar')->name('densidad_guardar');
@@ -191,9 +166,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-
-
-
     //FORMS EDITAR
     Route::get('form_informacion_basica_editar', 'FormEncuestasController@form_informacion_basica_editar')->name('form_informacion_basica_editar');
     Route::get('form_densidad_editar/{id}', 'FormEncuestasController@form_densidad_editar')->name('form_densidad_editar');
@@ -208,10 +180,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('form_enfermedades_editar/{id}', 'FormEncuestasController@form_enfermedades_editar')->name('form_enfermedades_editar');
     Route::get('form_plagas_editar/{id}', 'FormEncuestasController@form_plagas_editar')->name('form_plagas_editar');
     Route::get('form_fertilizaciones_editar/{id}', 'FormEncuestasController@form_fertilizaciones_editar')->name('form_fertilizaciones_editar');
-
-
-
-
 
 
     //FORMS ACTUALIZAR
@@ -245,9 +213,69 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', 'HomeController@index');
 
-    Route::get('form_asignacion_delegado_excel', 'ExcelController@form_asignacion_delegado_excel');
-
     Route::get('form_agregar_persona', 'PersonasController@form_agregar_persona');
+
+
+    //AUXILIARES
+    Route::get('listado_personas', 'PersonasController@listado_personas');
+    Route::resource('buscar_persona', 'PersonasController@buscar_persona');
+    Route::get('form_agregar_persona', 'PersonasController@form_agregar_persona');
+    Route::post('agregar_persona', 'PersonasController@agregar_persona');
+    Route::get('form_editar_persona/{id_persona}', 'PersonasController@form_editar_persona');
+    Route::post('editar_persona', 'PersonasController@editar_persona');
+    Route::post('editar_asignacion_persona', 'PersonasController@editar_asignacion_persona');
+    Route::post('baja_persona', 'PersonasController@baja_persona');
+    Route::get('listado_personas_asignacion', 'PersonasController@listado_personas_asignacion');
+    Route::resource('buscar_persona_asignacion', 'PersonasController@buscar_persona_asignacion');
+    Route::get('/listado_usuarios', 'UsuariosController@listado_usuarios');
+    Route::post('crear_usuario', 'UsuariosController@crear_usuario');
+    Route::post('editar_usuario', 'UsuariosController@editar_usuario');
+    Route::post('buscar_usuario', 'UsuariosController@buscar_usuario');
+    Route::post('borrar_usuario', 'UsuariosController@borrar_usuario');
+    Route::post('editar_acceso', 'UsuariosController@editar_acceso');
+
+    Route::post('crear_rol', 'UsuariosController@crear_rol');
+    Route::post('crear_permiso', 'UsuariosController@crear_permiso');
+    Route::post('asignar_permiso', 'UsuariosController@asignar_permiso');
+    Route::get('quitar_permiso/{idrol}/{idper}', 'UsuariosController@quitar_permiso');
+
+    Route::get('form_nuevo_usuario', 'UsuariosController@form_nuevo_usuario');
+    Route::get('form_nuevo_rol', 'UsuariosController@form_nuevo_rol');
+    Route::get('form_nuevo_permiso', 'UsuariosController@form_nuevo_permiso');
+    Route::get('form_editar_usuario/{id}', 'UsuariosController@form_editar_usuario');
+    Route::get('confirmacion_borrado_usuario/{idusuario}', 'UsuariosController@confirmacion_borrado_usuario');
+    Route::get('asignar_rol/{idusu}/{idrol}', 'UsuariosController@asignar_rol');
+    Route::get('quitar_rol/{idusu}/{idrol}', 'UsuariosController@quitar_rol');
+    Route::get('form_borrado_usuario/{idusu}', 'UsuariosController@form_borrado_usuario');
+    Route::get('borrar_rol/{idrol}', 'UsuariosController@borrar_rol');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+    Route::get('form_consulta', 'ConsultasController@form_consulta');
+    Route::get('consultaMesaAsignada/{recinto}', 'ConsultasController@consultaMesaAsignada');
+
+    Route::get('delegados_mesa', 'ExcelController@delegados_mesa');
+    Route::get('test_page', 'ExcelController@test_page');
+
+    Route::get('form_pruebas', 'PruebasController@form_pruebas');
+    Route::get('log_conexiones', 'PruebasController@log_conexiones');
+
+    Route::get('form_asignacion_delegado_excel', 'ExcelController@form_asignacion_delegado_excel');
 
 
     Route::get('form_vista_recintos', 'VistasController@form_vista_recintos');
@@ -263,23 +291,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('buscar_transportes', 'TransportesController@buscar_transportes');
     Route::get('revisar_transportes_asistencia', 'TransportesController@revisar_transportes_asistencia');
 
-    Route::get('form_agregar_persona', 'PersonasController@form_agregar_persona');
-    Route::post('agregar_persona', 'PersonasController@agregar_persona');
-
-    Route::get('form_editar_persona/{id_persona}', 'PersonasController@form_editar_persona');
-    Route::post('editar_persona', 'PersonasController@editar_persona');
-    Route::post('editar_asignacion_persona', 'PersonasController@editar_asignacion_persona');
     Route::post('editar_evidencia_persona', 'PersonasController@editar_evidencia_persona');
 
     Route::get('form_baja_persona/{id_persona}', 'PersonasController@form_baja_persona');
-
-    Route::get('listado_personas', 'PersonasController@listado_personas');
-    Route::resource('buscar_persona', 'PersonasController@buscar_persona');
-
-    Route::post('baja_persona', 'PersonasController@baja_persona');
-
-    Route::get('listado_personas_asignacion', 'PersonasController@listado_personas_asignacion');
-    Route::resource('buscar_persona_asignacion', 'PersonasController@buscar_persona_asignacion');
 
     Route::post('detalle_editar_mesa', 'MesasController@detalle_editar_mesa');
     Route::post('detalle_editar_mesa_r', 'MesasController@detalle_editar_mesa_r');
@@ -386,36 +400,6 @@ Route::group(['middleware' => 'auth'], function () {
 
 
 
-
-
-
-
-
-
-
-    Route::get('/listado_usuarios', 'UsuariosController@listado_usuarios');
-    Route::post('crear_usuario', 'UsuariosController@crear_usuario');
-    Route::post('editar_usuario', 'UsuariosController@editar_usuario');
-    Route::post('buscar_usuario', 'UsuariosController@buscar_usuario');
-    Route::post('borrar_usuario', 'UsuariosController@borrar_usuario');
-    Route::post('editar_acceso', 'UsuariosController@editar_acceso');
-
-
-    Route::post('crear_rol', 'UsuariosController@crear_rol');
-    Route::post('crear_permiso', 'UsuariosController@crear_permiso');
-    Route::post('asignar_permiso', 'UsuariosController@asignar_permiso');
-    Route::get('quitar_permiso/{idrol}/{idper}', 'UsuariosController@quitar_permiso');
-
-    Route::get('form_nuevo_usuario', 'UsuariosController@form_nuevo_usuario');
-    Route::get('form_nuevo_rol', 'UsuariosController@form_nuevo_rol');
-    Route::get('form_nuevo_permiso', 'UsuariosController@form_nuevo_permiso');
-    Route::get('form_editar_usuario/{id}', 'UsuariosController@form_editar_usuario');
-    Route::get('confirmacion_borrado_usuario/{idusuario}', 'UsuariosController@confirmacion_borrado_usuario');
-    Route::get('asignar_rol/{idusu}/{idrol}', 'UsuariosController@asignar_rol');
-    Route::get('quitar_rol/{idusu}/{idrol}', 'UsuariosController@quitar_rol');
-    Route::get('form_borrado_usuario/{idusu}', 'UsuariosController@form_borrado_usuario');
-    Route::get('borrar_rol/{idrol}', 'UsuariosController@borrar_rol');
-
     //ENCUESTAS
     Route::get('form_conteo', 'EncuestasController@form_conteo');
     Route::get('form_conteo_mujeres', 'EncuestasController@form_conteo_mujeres');
@@ -495,6 +479,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('estado_calendario/{id_sol}', 'CalendarioController@estado_calendario');
     Route::get('calendar_datos_suspension/{id}', 'CalendarioController@calendar_datos_suspension');
     Route::get('calendar_datos_emergencias/{id}', 'CalendarioController@calendar_datos_emergencias');
-
+*/
 
 });
